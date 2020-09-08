@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-
-
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -28,6 +27,8 @@ import { UserDetailsComponent } from './Components/User/user-details/user-detail
 import { appReducers } from './Store/Reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { UserEffects } from './Store/Effects/user.effects';
+import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -55,20 +56,24 @@ export function getAuthServiceConfigs() {
     SignInComponent,
     SignOutComponent,
     UserDetailsComponent,
+    FirstLoginComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatInputModule,
     SocialLoginModule,
     RouterModule.forRoot([
       { path: '', component: SignInComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
+      { path: 'firstlogin', component: FirstLoginComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'logout', component: SignOutComponent }
     ]),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects]),
+    BrowserAnimationsModule,
   ],
   providers: [
     {

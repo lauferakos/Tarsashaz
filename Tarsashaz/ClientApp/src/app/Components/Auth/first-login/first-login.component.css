@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  width: auto;
+  height: 20em;
+  background-color: #41B3A3;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  border-radius: 30px;
+  color: white;
+}
+
+.container-user-info {
+  border: 3px solid #379683;
+  background-color: #41B3A3;
+}
+
+

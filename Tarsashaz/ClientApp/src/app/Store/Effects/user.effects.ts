@@ -8,6 +8,7 @@ import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_
 
 import { switchMap } from 'rxjs/operators';
 import { SocialUser } from 'angular5-social-login';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -16,8 +17,11 @@ export class UserEffects {
   userLoggedIn$ = this.actions$.pipe(
     ofType<UserLoggedIn>(USER_LOGGED_IN),
     switchMap((u: UserLoggedIn) => this.userService.signIn(u.payload)),
-    switchMap((user: SocialUser) =>
-      of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id })))
+    switchMap((user: SocialUser) => {
+      this.router.navigate(['/firstlogin']);
+      return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id }))
+    })
+    
   );
 
   @Effect()
@@ -31,6 +35,6 @@ export class UserEffects {
     })
   );
 
-  constructor(private store: Store<AppState>, private actions$: Actions, private userService: UserService) {
+  constructor(private store: Store<AppState>, private actions$: Actions, private userService: UserService,private router:Router) {
   }
 }

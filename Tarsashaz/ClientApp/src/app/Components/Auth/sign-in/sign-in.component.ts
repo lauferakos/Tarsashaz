@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { User } from '../../../Models/user.model';
 import * as UserActions from '../../../Store/Actions/user.actions';
 import { Platform } from '../../../Enums/Platform';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-sign-in',
@@ -14,7 +15,7 @@ import { Platform } from '../../../Enums/Platform';
 /** SignIn component*/
 export class SignInComponent {
   /** SignIn ctor */
-  constructor(private user: UserService, private store: Store<AppState>) {
+  constructor(private user: UserService, private store: Store<AppState>, private router: Router) {
 
   }
 
