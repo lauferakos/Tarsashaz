@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Action } from '@ngrx/store';
-import { User } from './../Models/user.model';
-import { Platform } from '../Enums/Platform';
+import { User } from './../../Models/user.model';
+import { Platform } from '../../Enums/Platform';
 
 export const USER_FIRST_LOGIN = '[USER] First Login';
 export const USER_LOGGED_IN = '[USER] Logged in';

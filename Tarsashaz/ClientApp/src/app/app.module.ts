@@ -19,15 +19,15 @@ import {
     FacebookLoginProvider,
 } from "angular5-social-login";
 
-import { SignInComponent } from './Components/sign-in/sign-in.component';
+import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
 import { UserService } from './Services/user.service';
-import { SignOutComponent } from './Components/sign-out/sign-out.component';
+import { SignOutComponent } from './Components/Auth/sign-out/sign-out.component';
 import { StoreModule } from '@ngrx/store';
 
 import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
-import { appReducers } from './Reducers/app.reducer';
+import { appReducers } from './Store/Reducers/app.reducer';
 import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './Effects/user.effects';
+import { UserEffects } from './Store/Effects/user.effects';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(

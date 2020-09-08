@@ -3,7 +3,7 @@ import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AppState } from '../States/app.state';
-import { UserService} from '../Services/user.service';
+import { UserService} from '../../Services/user.service';
 import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_LOGGED_OUT, UserLoggedOutSuccess } from '../Actions/user.actions';
 
 import { switchMap } from 'rxjs/operators';

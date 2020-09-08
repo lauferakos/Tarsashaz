@@ -1,4 +1,4 @@
-import { User } from './../Models/user.model';
+import { User } from './../../Models/user.model';
 import { UserState, initialUserState } from './user.state';
 
 export interface AppState {

@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store'
-import { User } from './../Models/user.model'
+import { User } from './../../Models/user.model'
 import * as Actions from './../Actions/user.actions'
 import { initialUserState, UserState } from '../States/user.state';
 

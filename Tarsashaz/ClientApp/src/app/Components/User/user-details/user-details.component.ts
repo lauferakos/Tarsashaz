@@ -2,8 +2,8 @@ import { Component, OnChanges } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Store, select } from '@ngrx/store';
 import { User } from '../../../Models/user.model';
-import { AppState } from '../../../States/app.state';
-import { selectActualUser } from '../../../Selectors/user.selectors';
+import { AppState } from '../../../Store/States/app.state';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 
 @Component({
     selector: 'app-user-details',

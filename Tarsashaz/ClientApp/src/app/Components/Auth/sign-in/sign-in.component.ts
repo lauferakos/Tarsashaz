@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UserService } from '../../Services/user.service';
-import { AppState } from '../../States/app.state';
+import { UserService } from '../../../Services/user.service';
+import { AppState } from '../../../Store/States/app.state';
 import { Store } from '@ngrx/store';
-import { User } from '../../Models/user.model';
-import * as UserActions from '../../Actions/user.actions';
-import { Platform } from '../../Enums/Platform';
+import { User } from '../../../Models/user.model';
+import * as UserActions from '../../../Store/Actions/user.actions';
+import { Platform } from '../../../Enums/Platform';
 
 @Component({
     selector: 'app-sign-in',

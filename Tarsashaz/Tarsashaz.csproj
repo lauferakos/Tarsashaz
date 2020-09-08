@@ -28,27 +28,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\Actions\user.actions.ts" />
-    <None Remove="ClientApp\src\app\Effects\user.effects.ts" />
+    <None Remove="ClientApp\src\app\Store\Actions\user.actions.ts" />
+    <None Remove="ClientApp\src\app\Store\Effects\user.effects.ts" />
     <None Remove="ClientApp\src\app\Enums\Platform.ts" />
     <None Remove="ClientApp\src\app\Models\user.model.ts" />
-    <None Remove="ClientApp\src\app\Reducers\app.reducer.ts" />
-    <None Remove="ClientApp\src\app\Reducers\user.reducer.ts" />
-    <None Remove="ClientApp\src\app\Selectors\user.selectors.ts" />
-    <None Remove="ClientApp\src\app\States\app.state.ts" />
-    <None Remove="ClientApp\src\app\States\user.state.ts" />
+    <None Remove="ClientApp\src\app\Store\Reducers\app.reducer.ts" />
+    <None Remove="ClientApp\src\app\Store\Reducers\user.reducer.ts" />
+    <None Remove="ClientApp\src\app\Store\Selectors\user.selectors.ts" />
+    <None Remove="ClientApp\src\app\Store\States\app.state.ts" />
+    <None Remove="ClientApp\src\app\Store\States\user.state.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\Actions\user.actions.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Effects\user.effects.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Actions\user.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Effects\user.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Platform.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\user.model.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Reducers\app.reducer.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Reducers\user.reducer.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\Selectors\user.selectors.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\States\app.state.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\States\user.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Reducers\app.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Reducers\user.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Selectors\user.selectors.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\States\app.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\States\user.state.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
