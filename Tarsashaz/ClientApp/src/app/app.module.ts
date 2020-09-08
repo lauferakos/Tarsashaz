@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
+
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
@@ -20,6 +22,12 @@ import {
 import { SignInComponent } from './Components/sign-in/sign-in.component';
 import { UserService } from './Services/user.service';
 import { SignOutComponent } from './Components/sign-out/sign-out.component';
+import { StoreModule } from '@ngrx/store';
+
+import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
+import { appReducers } from './Reducers/app.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './Effects/user.effects';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -46,6 +54,7 @@ export function getAuthServiceConfigs() {
     FetchDataComponent,
     SignInComponent,
     SignOutComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -57,7 +66,9 @@ export function getAuthServiceConfigs() {
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'logout', component: SignOutComponent }
-    ])
+    ]),
+    StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot([UserEffects]),
   ],
   providers: [
     {
