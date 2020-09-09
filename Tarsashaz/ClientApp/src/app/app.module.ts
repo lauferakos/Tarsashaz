@@ -10,6 +10,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { AuthGuardService as AuthGuard} from './Guards/auth-guard.service';
 
 import {
     SocialLoginModule,
@@ -65,11 +66,12 @@ export function getAuthServiceConfigs() {
     MatInputModule,
     SocialLoginModule,
     RouterModule.forRoot([
-      { path: '', component: SignInComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
+      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+      { path: 'login', component: SignInComponent },
+      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
       { path: 'firstlogin', component: FirstLoginComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'logout', component: SignOutComponent }
+      { path: 'logout', component: SignOutComponent, canActivate: [AuthGuard] }
     ]),
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects]),
@@ -80,7 +82,7 @@ export function getAuthServiceConfigs() {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService
+    UserService, AuthGuard
   ],
   bootstrap: [AppComponent]
 })

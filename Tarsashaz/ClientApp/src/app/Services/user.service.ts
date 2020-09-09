@@ -21,10 +21,25 @@ export class UserService {
     return this.socialAuthService.signIn(socialPlatformProvider);
 
   }
+  putUserToSessionStorage(user: SocialUser) {
+    sessionStorage.setItem('login_token', user.token);
+  }
 
-
+  removeUserFromSessionStorage() {
+    sessionStorage.removeItem('login_token');
+  }
   signOut(): Observable<boolean>{
     this.socialAuthService.signOut();
+    this.removeUserFromSessionStorage();
     return observableOf(true);
+  }
+
+  isAuthenticated(): boolean {
+    let token = sessionStorage.getItem('login_token');
+
+    if (token) {
+      return true;
+    }
+    else return false;
   }
 }

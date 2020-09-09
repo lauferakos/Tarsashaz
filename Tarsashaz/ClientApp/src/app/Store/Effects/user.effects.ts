@@ -18,10 +18,12 @@ export class UserEffects {
     ofType<UserLoggedIn>(USER_LOGGED_IN),
     switchMap((u: UserLoggedIn) => this.userService.signIn(u.payload)),
     switchMap((user: SocialUser) => {
-      this.router.navigate(['/firstlogin']);
-      return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id }))
+      if (user) {
+        this.userService.putUserToSessionStorage(user);
+        this.router.navigate(['/firstlogin']);
+        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id }))
+      }
     })
-    
   );
 
   @Effect()
