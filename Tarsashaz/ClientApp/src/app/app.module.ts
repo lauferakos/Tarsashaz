@@ -10,6 +10,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginRoutingModule } from './Modules/RoutingModules/login-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppRoutingModule } from './Modules/RoutingModules/app-routing.module';
 
 // Angular Material
 import { MatInputModule } from '@angular/material/input';
@@ -28,10 +29,12 @@ import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
 import { SignOutComponent } from './Components/Auth/sign-out/sign-out.component';
 import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
 import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
+import { AnnouncementListComponent } from './Components/Announcement/announcement-list/announcement-list.component';
 
 // Services
 import { UserService } from './Services/user.service';
 import { HelpService } from './Services/help.service';
+import { AnnouncementService } from './Services/announcement.service';
 
 
 // Guards
@@ -73,8 +76,6 @@ import { UserEffects } from './Store/Effects/user.effects';
 import { environment } from '../environments/environment';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -88,7 +89,8 @@ import { environment } from '../environments/environment';
     FirstLoginComponent,
     SuccessfulFirstLoginComponent,
     FirstLoginUserInfoComponent,
-    HelpComponent
+    HelpComponent,
+    AnnouncementListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -96,12 +98,7 @@ import { environment } from '../environments/environment';
     FormsModule,
     MatInputModule,
     SocialLoginModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard, FirstLoginSavedGuard]},
-      { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'help', component: HelpComponent },
-    ]),
+    AppRoutingModule,
     LoginRoutingModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects]),
@@ -113,7 +110,7 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService
+    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService
   ],
   bootstrap: [AppComponent]
 })

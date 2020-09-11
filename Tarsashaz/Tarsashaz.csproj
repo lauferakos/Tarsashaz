@@ -28,9 +28,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\Enums\Priority.ts" />
+    <None Remove="ClientApp\src\app\Enums\Range.ts" />
     <None Remove="ClientApp\src\app\Guards\auth-guard.service.ts" />
     <None Remove="ClientApp\src\app\Guards\first-login-guard.service.ts" />
     <None Remove="ClientApp\src\app\Guards\first-login-saved-guard.service.ts" />
+    <None Remove="ClientApp\src\app\Models\announcement.model.ts" />
     <None Remove="ClientApp\src\app\Models\help.model.ts" />
     <None Remove="ClientApp\src\app\Services\help.service.ts" />
     <None Remove="ClientApp\src\app\Store\Actions\user.actions.ts" />
@@ -45,9 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\Enums\Priority.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Enums\Range.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\first-login-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\first-login-saved-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\announcement.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\help.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\help.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Actions\user.actions.ts" />
