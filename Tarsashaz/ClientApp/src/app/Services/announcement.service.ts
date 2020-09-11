@@ -37,7 +37,8 @@ export class AnnouncementService {
         priority: Priority.high,
         text: "Tisztelt Lakók! \
                A jövő hét kedden lakógyűlés lesz, a földszinti irodában. Mindenki jelenlétére számítunk!"
-      }
+      },
+
     ];
   }
 }

@@ -2,9 +2,9 @@
 .announcement {
   border-radius: 2px;
   margin-bottom: 3em;
-  width: calc(100% - 20em);
-  margin-left: 10em;
-  margin-right: 10em;
+  width: calc(100% - 5em);
+  margin-left: 5em;
+  margin-right: 0em;
 }
 
 .announcement-shadow {
@@ -21,8 +21,16 @@
   border-bottom-style: solid;
   border-color: rgba(0,0,0,0.24);
   background-color: rgb(245, 245, 245);
+  display:flex;
+  flex-wrap:wrap;
 }
 
 .row-body {
     padding: 4px;
+}
+
+.announcement-text {
+    display:flex;
+    justify-content:center;
+    margin-bottom:10px;
 }

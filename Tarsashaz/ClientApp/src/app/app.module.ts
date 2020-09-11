@@ -30,6 +30,7 @@ import { SignOutComponent } from './Components/Auth/sign-out/sign-out.component'
 import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
 import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
 import { AnnouncementListComponent } from './Components/Announcement/announcement-list/announcement-list.component';
+import { FlatDetailsComponent } from './Components/Flat/flat-details/flat-details.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -90,7 +91,8 @@ import { environment } from '../environments/environment';
     SuccessfulFirstLoginComponent,
     FirstLoginUserInfoComponent,
     HelpComponent,
-    AnnouncementListComponent
+    AnnouncementListComponent,
+    FlatDetailsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
