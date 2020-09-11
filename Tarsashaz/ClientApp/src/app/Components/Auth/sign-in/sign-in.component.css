@@ -10,10 +10,11 @@
   padding: 15px;
 }
 
-.login-button {
+button, #help-button {
   width: 50%;
   margin: 5px;
   font-weight: bold;
+  border-width: 2px;
 }
 
 .facebook-btn {
@@ -26,10 +27,12 @@
 
 .facebook-btn:hover {
   color: white;
+  opacity: 0.8;
 }
 
 .google-btn:hover {
   color: white;
+  opacity: 0.8;
 }
 
 .sign-in-title {
@@ -43,4 +46,10 @@
     align-items: center;
     height: 600px;
     background-image: url('../../../../assets/img/background.jpg');
+}
+
+
+#help-button:hover {
+    color:white;
+    opacity: 0.8;
 }

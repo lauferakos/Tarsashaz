@@ -25,13 +25,28 @@ export class UserService {
     sessionStorage.setItem('login_token', user.token);
   }
 
-  removeUserFromSessionStorage() {
-    sessionStorage.removeItem('login_token');
+  clearSessionStorage() {
+    sessionStorage.clear();
+  }
+
+  firstLogin() {
+    sessionStorage.setItem('first_login', 'true');
+  }
+
+  firstLoginSaved() {
+    sessionStorage.removeItem('first_login');
   }
   signOut(): Observable<boolean>{
     this.socialAuthService.signOut();
-    this.removeUserFromSessionStorage();
+    this.clearSessionStorage();
     return observableOf(true);
+  }
+  isFirstLogin(): boolean {
+    let first = sessionStorage.getItem('first_login');
+
+    if (first)
+      return true;
+    else return false;
   }
 
   isAuthenticated(): boolean {

@@ -1,0 +1,9 @@
+<h5>Amit tudunk rólad:</h5>
+<h1><strong>Név:</strong></h1>
+<mat-form-field class="example-full-width">
+  <input matInput [value]="(actualUser$ | async)?.name" readonly>
+</mat-form-field>
+<h1><strong>Email:</strong></h1>
+<mat-form-field class="example-full-width">
+  <input matInput [value]="(actualUser$ | async)?.email" readonly>
+</mat-form-field>

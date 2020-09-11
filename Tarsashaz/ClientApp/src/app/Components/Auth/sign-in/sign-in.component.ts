@@ -24,13 +24,6 @@ export class SignInComponent {
     console.log('Dispatch UserLoggedIn')
     let platform = socialPlatform == Platform.Google ? Platform.Google : Platform.Facebook;
     this.store.dispatch(new UserActions.UserLoggedIn(platform));
-    console.log('Dispatched UserLoggedIn');
-  }
-
-  signOut() {
-    console.log('Dispatch UserLoggedOut')
-    this.store.dispatch(new UserActions.UserLoggedOut());
-    console.log('Dispatched UserLoggedOut');
   }
 
 }

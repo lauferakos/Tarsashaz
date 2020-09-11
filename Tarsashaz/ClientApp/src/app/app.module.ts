@@ -1,35 +1,52 @@
+
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { LoginRoutingModule } from './Modules/RoutingModules/login-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
+// Angular Material
 import { MatInputModule } from '@angular/material/input';
 
+
+// Components
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { NavMenuComponent } from './Components/Header/nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { AuthGuardService as AuthGuard} from './Guards/auth-guard.service';
+import { SuccessfulFirstLoginComponent } from './Components/Auth/successful-first-login/successful-first-login.component';
+import { FirstLoginUserInfoComponent } from './Components/Auth/first-login-user-info/first-login-user-info.component';
+import { HelpComponent } from './Components/Help/help/help.component';
+import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
+import { SignOutComponent } from './Components/Auth/sign-out/sign-out.component';
+import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
+import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
 
+// Services
+import { UserService } from './Services/user.service';
+import { HelpService } from './Services/help.service';
+
+
+// Guards
+import { AuthGuardService as AuthGuard } from './Guards/auth-guard.service';
+import { FirstLoginGuardService as FirstLoginGuard } from './Guards/first-login-guard.service';
+import { FirstLoginSavedGuardService as FirstLoginSavedGuard} from './Guards/first-login-saved-guard.service';
+
+
+// Social Login
 import {
     SocialLoginModule,
     AuthServiceConfig,
     GoogleLoginProvider,
     FacebookLoginProvider,
 } from "angular5-social-login";
-
-import { SignInComponent } from './Components/Auth/sign-in/sign-in.component';
-import { UserService } from './Services/user.service';
-import { SignOutComponent } from './Components/Auth/sign-out/sign-out.component';
-import { StoreModule } from '@ngrx/store';
-
-import { UserDetailsComponent } from './Components/User/user-details/user-details.component';
-import { appReducers } from './Store/Reducers/app.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { UserEffects } from './Store/Effects/user.effects';
-import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function getAuthServiceConfigs() {
   let config = new AuthServiceConfig(
@@ -47,6 +64,17 @@ export function getAuthServiceConfigs() {
   return config;
 }
 
+// Reducers
+import { appReducers } from './Store/Reducers/app.reducer';
+// Effects
+import { UserEffects } from './Store/Effects/user.effects';
+
+// Environment
+import { environment } from '../environments/environment';
+
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +86,9 @@ export function getAuthServiceConfigs() {
     SignOutComponent,
     UserDetailsComponent,
     FirstLoginComponent,
+    SuccessfulFirstLoginComponent,
+    FirstLoginUserInfoComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -67,22 +98,22 @@ export function getAuthServiceConfigs() {
     SocialLoginModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
-      { path: 'login', component: SignInComponent },
-      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard] },
-      { path: 'firstlogin', component: FirstLoginComponent },
+      { path: 'counter', component: CounterComponent, canActivate: [AuthGuard, FirstLoginSavedGuard]},
       { path: 'fetch-data', component: FetchDataComponent },
-      { path: 'logout', component: SignOutComponent, canActivate: [AuthGuard] }
+      { path: 'help', component: HelpComponent },
     ]),
+    LoginRoutingModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects]),
     BrowserAnimationsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard
+    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService
   ],
   bootstrap: [AppComponent]
 })

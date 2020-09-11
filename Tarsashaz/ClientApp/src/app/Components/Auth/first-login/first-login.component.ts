@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import { selectActualUser } from '../../../Store/Selectors/user.selectors';
+import { Router } from '@angular/router';
+import { UserService } from '../../../Services/user.service';
 
 @Component({
     selector: 'app-first-login',
@@ -10,9 +12,13 @@ import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 })
 /** FirstLogin component*/
 export class FirstLoginComponent {
-  actualUser$ = this.store.pipe(select(selectActualUser));
 
-  constructor(private store: Store<AppState>) {
+  constructor(private router: Router, private userService: UserService) {
 
-    }
+  }
+
+  firstLoginSaved() {
+    this.userService.firstLoginSaved();
+    this.router.navigate(['/']);
+  }
 }

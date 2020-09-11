@@ -20,6 +20,7 @@ export class UserEffects {
     switchMap((user: SocialUser) => {
       if (user) {
         this.userService.putUserToSessionStorage(user);
+        this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
         return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id }))
       }
@@ -32,7 +33,8 @@ export class UserEffects {
     switchMap(() => this.userService.signOut()),
     switchMap((success: boolean) => {
       if (success) {
-        return of(new UserLoggedOutSuccess())
+        this.router.navigate(['/login']);
+        return of(new UserLoggedOutSuccess());
       }
     })
   );

@@ -14,7 +14,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.userReducers = void 0;
 var Actions = require("./../Actions/user.actions");
 var user_state_1 = require("../States/user.state");
-exports.userReducers = function (state, action) {
+function userReducers(state, action) {
     if (state === void 0) { state = user_state_1.initialUserState; }
     switch (action.type) {
         case Actions.USER_LOGGED_IN_SUCCESS:
@@ -28,5 +28,6 @@ exports.userReducers = function (state, action) {
         default:
             return state;
     }
-};
+}
+exports.userReducers = userReducers;
 //# sourceMappingURL=user.reducer.js.map

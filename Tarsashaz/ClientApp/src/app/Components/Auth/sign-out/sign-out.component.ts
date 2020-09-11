@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'angular5-social-login';
+import { UserService } from '../../../Services/user.service';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../Store/States/app.state';
+import * as UserActions from '../../../Store/Actions/user.actions';
 
 @Component({
     selector: 'app-sign-out',
@@ -9,11 +14,9 @@ import { AuthService } from 'angular5-social-login';
 /** SignOut component*/
 export class SignOutComponent {
     /** SignOut ctor */
-  constructor(private socialAuthService: AuthService) {
-
+  constructor(private store: Store<AppState>) {
+    console.log('Dispatch UserLoggedOut')
+    this.store.dispatch(new UserActions.UserLoggedOut());
   }
 
-  SignOut() {
-    this.socialAuthService.signOut();
-  }
 }
