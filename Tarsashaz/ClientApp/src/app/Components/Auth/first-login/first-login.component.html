@@ -16,26 +16,22 @@
         <app-first-login-user-info></app-first-login-user-info>
       </div>
     </div>
-      <div class="carousel-item">
-        <div class="container container-user-info">
-          <h5>Amit meg kell adj:</h5>
-          <mat-form-field class="example-full-width user-data">
-            <mat-label><strong>Telefonszám</strong></mat-label>
-            <input matInput type="tel">
-          </mat-form-field>
+    <div class="carousel-item">
+      <div class="container container-user-info">
+        <h2>Amit meg kell adj:</h2>
+        <mat-form-field class="example-full-width user-data">
+          <mat-label><strong>Telefonszám</strong></mat-label>
+          <input matInput type="tel">
+        </mat-form-field>
 
-        </div>
       </div>
-      <div class="carousel-item">
-        <div class="container container-user-info">
-          <h5>Válaszd ki a címet az alábbi listából:</h5>
-          <mat-form-field class="example-full-width user-data">
-            <mat-label><strong>Cím</strong></mat-label>
-            <input matInput type="text">
-          </mat-form-field>
-          <button type="button" (click)="firstLoginSaved()" class="btn save-button btn-lg">Mentés</button>
-        </div>
+    </div>
+    <div class="carousel-item">
+      <div class="container container-user-info">
+        <h2>Lakás címe:</h2>
+        <app-first-login-form></app-first-login-form>
       </div>
+    </div>
     <a class="carousel-control-prev" href="#userCarousel" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -45,3 +41,4 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
+

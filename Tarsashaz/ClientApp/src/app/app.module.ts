@@ -2,7 +2,7 @@
 // Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
@@ -14,7 +14,7 @@ import { AppRoutingModule } from './Modules/RoutingModules/app-routing.module';
 
 // Angular Material
 import { MatInputModule } from '@angular/material/input';
-
+import { MatButtonModule } from '@angular/material/button';
 
 // Components
 import { AppComponent } from './app.component';
@@ -31,6 +31,7 @@ import { UserDetailsComponent } from './Components/User/user-details/user-detail
 import { FirstLoginComponent } from './Components/Auth/first-login/first-login.component';
 import { AnnouncementListComponent } from './Components/Announcement/announcement-list/announcement-list.component';
 import { FlatDetailsComponent } from './Components/Flat/flat-details/flat-details.component';
+import { FirstLoginFormComponent } from './Components/Auth/first-login-form/first-login-form.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -92,13 +93,16 @@ import { environment } from '../environments/environment';
     FirstLoginUserInfoComponent,
     HelpComponent,
     AnnouncementListComponent,
-    FlatDetailsComponent
+    FlatDetailsComponent,
+    FirstLoginFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
+    MatButtonModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,

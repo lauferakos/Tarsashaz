@@ -13,12 +13,7 @@ import { UserService } from '../../../Services/user.service';
 /** FirstLogin component*/
 export class FirstLoginComponent {
 
-  constructor(private router: Router, private userService: UserService) {
+  constructor() {
 
-  }
-
-  firstLoginSaved() {
-    this.userService.firstLoginSaved();
-    this.router.navigate(['/']);
   }
 }
