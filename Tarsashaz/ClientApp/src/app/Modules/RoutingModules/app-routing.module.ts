@@ -8,7 +8,7 @@ import { FirstLoginSavedGuardService as FirstLoginSavedGuard } from '../../Guard
 import { AuthGuardService as AuthGuard } from '../../Guards/auth-guard.service';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'counter', component: CounterComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'help', component: HelpComponent },

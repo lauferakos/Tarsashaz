@@ -2,9 +2,6 @@
 .announcement {
   border-radius: 2px;
   margin-bottom: 3em;
-  width: calc(100% - 5em);
-  margin-left: 5em;
-  margin-right: 0em;
   display:inline-block;
   padding:3px;
 }

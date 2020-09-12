@@ -9,6 +9,7 @@ import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_
 import { switchMap } from 'rxjs/operators';
 import { SocialUser } from 'angular5-social-login';
 import { Router } from '@angular/router';
+import { Role } from '../../Enums/Role';
 
 
 @Injectable()
@@ -22,7 +23,7 @@ export class UserEffects {
         this.userService.putUserToSessionStorage(user);
         this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
-        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id }))
+        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id, role: Role.cr }))
       }
     })
   );
