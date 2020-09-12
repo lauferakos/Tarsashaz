@@ -10,14 +10,12 @@ import { UserService } from '../../../Services/user.service';
   styleUrls: ['./nav-menu.component.css']
 })
 export class NavMenuComponent implements OnInit{
-  isLoggedIn: boolean;
+  actualUser$ = this.store.pipe(select(selectActualUser));
+  constructor(private store: Store<AppState>) {
 
-  constructor(private userService: UserService) {
-    
   }
 
   ngOnInit() {
-    this.isLoggedIn = this.userService.isAuthenticated();
   }
   isExpanded = false;
 

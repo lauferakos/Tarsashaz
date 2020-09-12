@@ -1,10 +1,18 @@
 <div class="page">
  
   <div class="container">
-    <h3 class="sign-in-title">Bejelentkezés</h3>
-    <button class="btn btn-outline-primary login-button facebook-btn" (click)="socialSignIn('facebook')">Facebook</button>
-    <button class="btn btn-outline-danger login-button google-btn" (click)="socialSignIn('google')">Google</button>
-    <a [routerLink]="['/help']" id="help-button" class="btn btn-outline-warning">Súgó</a>
+    <div class="row">
+      <div class="col-md-4 col-sm-1" ></div>
+      <div class="col-md-4 col-sm-10">
+        <div class="login-panel">
+          <h3 class="sign-in-title">Bejelentkezés</h3>
+          <button class="btn btn-outline-primary login-button facebook-btn" (click)="socialSignIn('facebook')">Facebook</button>
+          <button class="btn btn-outline-danger login-button google-btn" (click)="socialSignIn('google')">Google</button>
+          <a [routerLink]="['/help']" id="help-button" class="btn btn-outline-warning">Súgó</a>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-1"></div>
+    </div>
   </div>
 </div>
 
