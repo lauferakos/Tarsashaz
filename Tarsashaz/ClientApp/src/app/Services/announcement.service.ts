@@ -27,7 +27,7 @@ export class AnnouncementService {
         date: new Date(),
         priority: Priority.medium,
         text: "Tisztelt Lakók! \
-               A héten lomtalanítás lesz, aki igényli, a közös tárolót pakolás céljából. "
+               A héten lomtalanítás lesz, aki igényli,használhatja a közös tárolót, pakolás céljából. "
       },
       {
         senderId: 1,

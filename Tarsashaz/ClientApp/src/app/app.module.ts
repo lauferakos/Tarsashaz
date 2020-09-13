@@ -15,6 +15,7 @@ import { AppRoutingModule } from './Modules/RoutingModules/app-routing.module';
 // Angular Material
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
 
 // Components
 import { AppComponent } from './app.component';
@@ -32,6 +33,8 @@ import { FirstLoginComponent } from './Components/Auth/first-login/first-login.c
 import { AnnouncementListComponent } from './Components/Announcement/announcement-list/announcement-list.component';
 import { FlatDetailsComponent } from './Components/Flat/flat-details/flat-details.component';
 import { FirstLoginFormComponent } from './Components/Auth/first-login-form/first-login-form.component';
+import { FlatListComponent } from './Components/Flat/flat-list/flat-list.component';
+import { AddFlatComponent } from './Components/Flat/add-flat/add-flat.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -80,6 +83,7 @@ import { FlatEffects } from './Store/Effects/flat.effects';
 import { environment } from '../environments/environment';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -96,7 +100,9 @@ import { environment } from '../environments/environment';
     HelpComponent,
     AnnouncementListComponent,
     FlatDetailsComponent,
-    FirstLoginFormComponent
+    FirstLoginFormComponent,
+    FlatListComponent,
+    AddFlatComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -105,6 +111,7 @@ import { environment } from '../environments/environment';
     ReactiveFormsModule,
     MatInputModule,
     MatButtonModule,
+    MatTableModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,
