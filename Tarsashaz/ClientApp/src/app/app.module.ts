@@ -37,6 +37,7 @@ import { FirstLoginFormComponent } from './Components/Auth/first-login-form/firs
 import { UserService } from './Services/user.service';
 import { HelpService } from './Services/help.service';
 import { AnnouncementService } from './Services/announcement.service';
+import { FlatService } from './Services/flat.service';
 
 
 // Guards
@@ -73,6 +74,7 @@ export function getAuthServiceConfigs() {
 import { appReducers } from './Store/Reducers/app.reducer';
 // Effects
 import { UserEffects } from './Store/Effects/user.effects';
+import { FlatEffects } from './Store/Effects/flat.effects';
 
 // Environment
 import { environment } from '../environments/environment';
@@ -107,7 +109,7 @@ import { environment } from '../environments/environment';
     AppRoutingModule,
     LoginRoutingModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([UserEffects, FlatEffects]),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
@@ -116,7 +118,7 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService
+    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService
   ],
   bootstrap: [AppComponent]
 })

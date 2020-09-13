@@ -1,4 +1,7 @@
-﻿import { Component } from '@angular/core';
+import { Component } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { AppState } from '../../../Store/States/app.state';
+import { selectActualFlat } from '../../../Store/Selectors/flat.selectors';
 
 @Component({
     selector: 'app-flat-details',
@@ -7,8 +10,9 @@
 })
 /** FlatDetails component*/
 export class FlatDetailsComponent {
+  actualFlat$ = this.store.pipe(select(selectActualFlat));
     /** FlatDetails ctor */
-    constructor() {
+  constructor(private store: Store<AppState>) {
 
     }
 }

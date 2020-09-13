@@ -39,14 +39,19 @@
     <None Remove="ClientApp\src\app\Models\flat.model.ts" />
     <None Remove="ClientApp\src\app\Models\help.model.ts" />
     <None Remove="ClientApp\src\app\Services\help.service.ts" />
+    <None Remove="ClientApp\src\app\Store\Actions\flat.actions.ts" />
     <None Remove="ClientApp\src\app\Store\Actions\user.actions.ts" />
+    <None Remove="ClientApp\src\app\Store\Effects\flat.effects.ts" />
     <None Remove="ClientApp\src\app\Store\Effects\user.effects.ts" />
     <None Remove="ClientApp\src\app\Enums\Platform.ts" />
     <None Remove="ClientApp\src\app\Models\user.model.ts" />
     <None Remove="ClientApp\src\app\Store\Reducers\app.reducer.ts" />
+    <None Remove="ClientApp\src\app\Store\Reducers\flat.reducer.ts" />
     <None Remove="ClientApp\src\app\Store\Reducers\user.reducer.ts" />
+    <None Remove="ClientApp\src\app\Store\Selectors\flat.selectors.ts" />
     <None Remove="ClientApp\src\app\Store\Selectors\user.selectors.ts" />
     <None Remove="ClientApp\src\app\Store\States\app.state.ts" />
+    <None Remove="ClientApp\src\app\Store\States\flat.state.ts" />
     <None Remove="ClientApp\src\app\Store\States\user.state.ts" />
   </ItemGroup>
 
@@ -62,14 +67,19 @@
     <TypeScriptCompile Include="ClientApp\src\app\Models\flat.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\help.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Services\help.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Actions\flat.actions.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Actions\user.actions.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Effects\flat.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Effects\user.effects.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Platform.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\user.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Reducers\app.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Reducers\flat.reducer.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Reducers\user.reducer.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\Selectors\flat.selectors.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\Selectors\user.selectors.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\States\app.state.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Store\States\flat.state.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Store\States\user.state.ts" />
   </ItemGroup>
 
