@@ -1,49 +1,78 @@
 <div class="container">
-  <form [formGroup]="addressForm" class="example-form" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Irányítószám</mat-label>
-          <input matInput type="number" class="addressInput" formControlName="postCode">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Város</mat-label>
-          <input matInput type="text" formControlName="city">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Út</mat-label>
-          <input matInput type="text" formControlName="street">
-        </mat-form-field>
-      </div>
+  <!--Validation-PostCode-->
+  <div *ngIf="addressForm.get('postCode').invalid && (addressForm.get('postCode').dirty || addressForm.get('postCode').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('postCode').errors.required">
+      Add meg az irányítószámot!
     </div>
-    <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Házszám</mat-label>
-          <input matInput type="number" formControlName="number">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Emelet</mat-label>
-          <input matInput type="number" formControlName="floor">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Ajtó</mat-label>
-          <input matInput type="number" formControlName="door">
-        </mat-form-field>
-      </div>
+  </div>
+  <!--Validation-City-->
+  <div *ngIf="addressForm.get('city').invalid && (addressForm.get('city').dirty || addressForm.get('city').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('city').errors.required">
+      Add meg a várost!
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <button mat-raised-button color="warn" class="btn-lg save-button" type="submit">Mentés</button>
-      </div>
+  </div>
+  <!--Validation-Street-->
+  <div *ngIf="addressForm.get('street').invalid && (addressForm.get('street').dirty || addressForm.get('street').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('street').errors.required">
+      Add meg az utcát!
     </div>
-  </form>
-</div>
+  </div>
+  <!--Validation-Number-->
+  <div *ngIf="addressForm.get('number').invalid && (addressForm.get('number').dirty || addressForm.get('number').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('number').errors.required">
+      Add meg a házszámot!
+    </div>
+  </div>
+
+    <form [formGroup]="addressForm" class="example-form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Irányítószám</mat-label>
+            <input matInput type="number" class="addressInput" formControlName="postCode">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Város</mat-label>
+            <input matInput type="text" formControlName="city">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Út</mat-label>
+            <input matInput type="text" formControlName="street">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Házszám</mat-label>
+            <input matInput type="number" formControlName="number">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Emelet</mat-label>
+            <input matInput type="number" formControlName="floor">
+          </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-12">
+          <mat-form-field class="example-full-width">
+            <mat-label>Ajtó</mat-label>
+            <input matInput type="number" formControlName="door">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="warn" class="btn-lg save-button" type="submit">Mentés</button>
+        </div>
+      </div>
+    </form>
+  </div>

@@ -21,19 +21,23 @@ export class AddFlatComponent {
 
   }
   onSubmit() {
-    
-    let flats$ = this.store.pipe(select(selectFlats));
-    let flatsLength = 0;
-    flats$.subscribe((flats) => flatsLength = flats.length);
+    if (this.addressForm.valid) {
+      let flats$ = this.store.pipe(select(selectFlats));
+      let flatsLength = 0;
+      flats$.subscribe((flats) => flatsLength = flats.length);
 
-    let flat: Flat = {
-      id: flatsLength + 1,
-      address: this.addressForm.value,
-      ownerId: 1
+      let flat: Flat = {
+        id: flatsLength + 1,
+        address: this.addressForm.value,
+        ownerId: 1
+      }
+      console.log('submit', flat);
+      this.store.dispatch(new FlatActions.FlatAdded(flat));
+      this.flatSavedEvent.emit();
     }
-    console.log('submit',flat);
-    this.store.dispatch(new FlatActions.FlatAdded(flat));
-    this.flatSavedEvent.emit();
+    else {
+      console.log('A form invalid');
+    }
   }
 
   ngOnInit() {

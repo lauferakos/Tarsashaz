@@ -1,4 +1,34 @@
 <div class="container">
+
+  <!--Validation-PostCode-->
+  <div *ngIf="addressForm.get('postCode').invalid && (addressForm.get('postCode').dirty || addressForm.get('postCode').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('postCode').errors.required">
+      Add meg az irányítószámot!
+    </div>
+  </div>
+  <!--Validation-City-->
+  <div *ngIf="addressForm.get('city').invalid && (addressForm.get('city').dirty || addressForm.get('city').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('city').errors.required">
+      Add meg a várost!
+    </div>
+  </div>
+  <!--Validation-Street-->
+  <div *ngIf="addressForm.get('street').invalid && (addressForm.get('street').dirty || addressForm.get('street').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('street').errors.required">
+      Add meg az utcát!
+    </div>
+  </div>
+  <!--Validation-Number-->
+  <div *ngIf="addressForm.get('number').invalid && (addressForm.get('number').dirty || addressForm.get('number').touched)"
+       class="alert alert-danger">
+    <div *ngIf="addressForm.get('number').errors.required">
+      Add meg a házszámot!
+    </div>
+  </div>
+
   <form [formGroup]="addressForm" class="example-form" (ngSubmit)="onSubmit()">
     <div class="row">
       <div class="col-md-4 col-sm-12">
