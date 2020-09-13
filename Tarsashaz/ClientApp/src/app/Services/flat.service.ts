@@ -1,29 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Flat } from '../Models/flat.model';
 import { Observable, of as observableOf } from 'rxjs';
+import { AppState } from '../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectFlats } from '../Store/Selectors/flat.selectors';
 
 @Injectable()
 export class FlatService {
-    constructor() {
+  constructor(private store: Store<AppState>) {
 
   }
 
   addFlat(f: Flat): Observable<Flat>{
-    console.log('FlatService:', f);
+    console.log('Addflat',f);
+    
     return observableOf(f);
   }
 
-  getFlatById(idx: number): Observable<Flat> {
-    return observableOf({
-      address: {
-        postCode: 1234,
-        city: 'Tevel',
-        street: 'Dorogi u.',
-        number: 340,
-        floor: 1,
-        door: 1,
-      },
-      ownerId: 1
-    });
+  getFlatById(id: number): Observable<Flat> {
+    let flats$ = this.store.pipe(select(selectFlats));
+    let result: Flat;
+    flats$.subscribe((flats) => result = flats.find(f => f.id == id));
+    return observableOf(result);
   }
 }

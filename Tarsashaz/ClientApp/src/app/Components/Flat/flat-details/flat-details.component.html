@@ -12,7 +12,7 @@
         <span> - ZIP</span>
       </span>
     </div>
-    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.postCode" disabled>
+    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.address.postCode" disabled>
   </div>
 
 
@@ -27,7 +27,7 @@
         <span> - Város</span>
       </span>
     </div>
-    <input type="text" class="form-control" [value]="(actualFlat$ | async)?.city" disabled>
+    <input type="text" class="form-control" [value]="(actualFlat$ | async)?.address.city" disabled>
   </div>
 
   <!--Street-->
@@ -41,7 +41,7 @@
         <span> - Út</span>
       </span>
     </div>
-    <input type="text" class="form-control" [value]="(actualFlat$ | async)?.street" disabled>
+    <input type="text" class="form-control" [value]="(actualFlat$ | async)?.address.street" disabled>
   </div>
 
   <!--Number-->
@@ -56,7 +56,7 @@
         <span> - Házszám</span>
       </span>
     </div>
-    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.number" disabled>
+    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.address.number" disabled>
   </div>
 
   <!--Floor-->
@@ -71,7 +71,7 @@
         <span> - Emelet</span>
       </span>
     </div>
-    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.floor" disabled>
+    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.address.floor" disabled>
   </div>
 
   <!--Door-->
@@ -84,7 +84,7 @@
         <span> - Ajtó</span>
       </span>
     </div>
-    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.door" disabled>
+    <input type="number" class="form-control" [value]="(actualFlat$ | async)?.address.door" disabled>
   </div>
 
 </div>
