@@ -13,7 +13,6 @@ const appRoutes: Routes = [
   { path: 'counter', component: CounterComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'help', component: HelpComponent },
-  { path: 'flat', component: FlatListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
 ];
 
 @NgModule({

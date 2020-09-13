@@ -81,6 +81,7 @@ import { FlatEffects } from './Store/Effects/flat.effects';
 
 // Environment
 import { environment } from '../environments/environment';
+import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module';
 
 
 
@@ -115,6 +116,7 @@ import { environment } from '../environments/environment';
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,
+    FlatRoutingModule,
     StoreModule.forRoot(appReducers),
     EffectsModule.forRoot([UserEffects, FlatEffects]),
     BrowserAnimationsModule,
