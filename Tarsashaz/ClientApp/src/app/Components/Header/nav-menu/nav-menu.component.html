@@ -26,10 +26,10 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']" *ngIf="actualUser$ | async">Profilom</a>
+            <a class="nav-link text-dark" [routerLink]="['/counter']" *ngIf="(actualUser$ | async) || isLoggedIn">Profilom</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/flat']" *ngIf="actualUser$ | async">Lakásom</a>
+            <a class="nav-link text-dark" [routerLink]="['/flat']" *ngIf="(actualUser$ | async) || isLoggedIn">Lakásom</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/counter']">Hiba bejelentés</a>
@@ -37,8 +37,8 @@
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">
             <a class="nav-link text-dark" [routerLink]="['/counter']">Beszámoló</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="actualUser$ | async">
-            <a class="nav-link text-dark" [routerLink]="['/logout']">Kijelentkezés</a>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async) || isLoggedIn">
+            <button mat-raised-button color="warn" class="save-button" (click)="logOut()">Kijelentkezés</button>
           </li>
         </ul>
       </div>

@@ -32,6 +32,9 @@ export class FlatListComponent {
 
   selectFlat(i:number) {
     console.log(i);
-    this.store.dispatch(new FlatActions.ActualFlatChanged(i));
+    let actualIdx;
+    this.actualFlat$.subscribe(f => actualIdx = f.id)
+    if (i != actualIdx)
+      this.store.dispatch(new FlatActions.ActualFlatChanged(i));
   }
 }
