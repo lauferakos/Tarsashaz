@@ -20,6 +20,8 @@
   border-bottom-style: solid;
   border-color: rgba(0,0,0,0.24);
   background-color: rgb(245, 245, 245);
+  display:flex;
+  align-items:center;
 }
 
 .row-body {
@@ -34,4 +36,25 @@
 
 span {
     margin:5px;
+}
+
+.container-btn {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.delete-btn {
+    font-size:8px;
+    padding-left:5px;
+    padding-right:5px;
+    height:80%;
+    padding-top:1px;
+    padding-bottom:1px;
+}
+
+.delete-btn:hover {
+    color:black;
 }

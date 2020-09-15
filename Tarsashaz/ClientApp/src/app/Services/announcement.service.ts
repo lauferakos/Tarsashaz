@@ -2,15 +2,25 @@ import { Injectable } from '@angular/core';
 import { Announcement } from '../Models/announcement.model';
 import { Range } from '../Enums/Range';
 import { Priority } from '../Enums/Priority';
+import { Observable, of as observableOf } from 'rxjs';
+import { AppState } from '../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectAnnouncements } from '../Store/Selectors/announcement.selectors';
 
 @Injectable()
 export class AnnouncementService {
-    constructor() {
+  announcements: Announcement[];
+  constructor(private store: Store<AppState>) {
 
   }
 
-  getAnnouncements(): Announcement[]{
-    return [
+  getAnnouncements(): Observable<Announcement[]>{
+    this.store.pipe(select(selectAnnouncements)).subscribe(res => this.announcements = res);
+    console.log(this.announcements);
+    if (this.announcements.length > 0)
+      return observableOf(this.announcements);
+    else
+    return observableOf([
       {
         senderId: 1,
         senderName: "Laufer Ákos",
@@ -39,6 +49,10 @@ export class AnnouncementService {
                A jövő hét kedden lakógyűlés lesz, a földszinti irodában. Mindenki jelenlétére számítunk!"
       },
 
-    ];
+    ]);
+  }
+
+  addAnnouncement(a: Announcement): Observable<Announcement> {
+    return observableOf(a);
   }
 }

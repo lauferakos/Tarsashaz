@@ -20,10 +20,11 @@ export class UserEffects {
     switchMap((u: UserLoggedIn) => this.userService.signIn(u.payload)),
     switchMap((user: SocialUser) => {
       if (user) {
+        console.log(user);
         this.userService.putUserToSessionStorage(user);
-        this.userService.firstLogin();
+        //this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
-        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: user.id, role: Role.cr }))
+        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: +user.id, role: Role.cr }))
       }
     })
   );

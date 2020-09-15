@@ -1,17 +1,16 @@
 import { NgModule } from "@angular/core";
-import { FlatRoutingModule } from "./RoutingModules/flat-routing.module";
-
 import { AuthGuardService as AuthGuard } from '../Guards/auth-guard.service';
 import { FirstLoginSavedGuardService as FirstLoginSavedGuard } from '../Guards/first-login-saved-guard.service';
+import { AnnouncementRoutingModule } from "./RoutingModules/announcement-routing.module";
 
 @NgModule({
   imports: [
-    FlatRoutingModule
+    AnnouncementRoutingModule
   ],
   declarations: [
   ],
   providers: [AuthGuard, FirstLoginSavedGuard]
 })
-export class FlatModule {
+export class AnnouncementModule {
 
 }

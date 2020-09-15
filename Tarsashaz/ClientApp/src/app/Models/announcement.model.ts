@@ -4,7 +4,7 @@ import { Priority } from '../Enums/Priority';
 export interface Announcement {
   senderId: number;
   senderName: string;
-  range: Range.resident | Range.all;
+  range: Range;
   date: Date;
   priority: Priority;
   text: string;

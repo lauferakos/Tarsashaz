@@ -11,6 +11,8 @@ import { LoginRoutingModule } from './Modules/RoutingModules/login-routing.modul
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './Modules/RoutingModules/app-routing.module';
+import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module';
+import { AnnouncementRoutingModule } from './Modules/RoutingModules/announcement-routing.module';
 
 // Angular Material
 import { MatInputModule } from '@angular/material/input';
@@ -35,6 +37,8 @@ import { FlatDetailsComponent } from './Components/Flat/flat-details/flat-detail
 import { FirstLoginFormComponent } from './Components/Auth/first-login-form/first-login-form.component';
 import { FlatListComponent } from './Components/Flat/flat-list/flat-list.component';
 import { AddFlatComponent } from './Components/Flat/add-flat/add-flat.component';
+import { NewAnnouncementComponent } from './Components/Announcement/new-announcement/new-announcement.component';
+
 
 // Services
 import { UserService } from './Services/user.service';
@@ -78,10 +82,13 @@ import { appReducers } from './Store/Reducers/app.reducer';
 // Effects
 import { UserEffects } from './Store/Effects/user.effects';
 import { FlatEffects } from './Store/Effects/flat.effects';
+import { AnnouncementEffects } from './Store/Effects/announcement.effects';
 
 // Environment
 import { environment } from '../environments/environment';
-import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module';
+
+
+
 
 
 
@@ -103,7 +110,8 @@ import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module'
     FlatDetailsComponent,
     FirstLoginFormComponent,
     FlatListComponent,
-    AddFlatComponent
+    AddFlatComponent,
+    NewAnnouncementComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -117,8 +125,9 @@ import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module'
     AppRoutingModule,
     LoginRoutingModule,
     FlatRoutingModule,
+    AnnouncementRoutingModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects, FlatEffects]),
+    EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects]),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve ",
+    "start": "ng serve",
     "build": "ng build",
     "build:ssr": "ng run Tarsashaz:server:dev",
     "test": "ng test",
