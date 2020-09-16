@@ -1,0 +1,63 @@
+<div *ngIf="isSuccess">
+  <div class="alert alert-success" role="alert">
+    A hibát sikeresen bejelentetted!
+  </div>
+</div>
+<div class="container" *ngIf="!isSuccess">
+  <div class="row">
+    <div class="col">
+      <input style="display: none"
+             type="file" multiple="" (change)="onFileChanged($event)"
+             #fileInput>
+      <button type="button" class="btn btn-warning" (click)="fileInput.click()">Kép kiválasztás</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h4 *ngIf="problem.pictures.length > 0">Feltöltött képek</h4>
+      <div *ngIf="isPicsVisible">
+        <div class="container container-pic">
+          <div class="row">
+            <div *ngFor="let pic of problem.pictures; let i = index">
+              <div class="col-sm-12  upload-picture">
+                <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+                <button class="badge badge-danger delete-btn" (click)="deletePic(pic.url)">Törlés</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Probléma kategóriák</mat-label>
+        <select matNativeControl required [(ngModel)]="problem.type">
+          <option value="oldal">Oldal működésével kapcsolatos</option>
+          <option value="társasház">Társasházzal kapcsolatos</option>
+        </select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="problemDescTextArea">Megjegyzés</label>
+        <textarea class="form-control" id="problemDescTextArea" rows="5" [(ngModel)]="problem.text"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Mentés</button>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col" *ngIf="isSuccess">
+      <button type="button" class="btn btn-success" (click)="newProblem()">Új hiba bejelentése</button>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { User } from '../../../Models/user.model';
 import { AppState } from '../../../Store/States/app.state';
 import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 import * as UserActions from '../../../Store/Actions/user.actions';
+import { Router } from '@angular/router';
 
 
 
@@ -43,13 +44,15 @@ export class UserDetailsComponent implements OnInit{
     });
   }
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private router: Router) {
   
   }
 
   onSubmit() {
-    if (this.actualUser.id !== 0)
+    if (this.actualUser.id !== 0) {
       this.store.dispatch(new UserActions.UserDataChanged(this.actualUser));
+      this.router.navigate(['/']);
+    }
     else console.log('Rossz felhasználó');
   }
 

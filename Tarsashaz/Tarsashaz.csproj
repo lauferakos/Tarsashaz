@@ -10,6 +10,7 @@
 
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
+    <UserSecretsId>f6a3b241-9ca9-4a23-888c-ae18e52e622d</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Enums\Priority.ts" />
+    <None Remove="ClientApp\src\app\Enums\ProblemType.ts" />
     <None Remove="ClientApp\src\app\Enums\Range.ts" />
     <None Remove="ClientApp\src\app\Enums\Role.ts" />
     <None Remove="ClientApp\src\app\Guards\auth-guard.service.ts" />
@@ -38,6 +40,8 @@
     <None Remove="ClientApp\src\app\Models\announcement.model.ts" />
     <None Remove="ClientApp\src\app\Models\flat.model.ts" />
     <None Remove="ClientApp\src\app\Models\help.model.ts" />
+    <None Remove="ClientApp\src\app\Models\picture.model.ts" />
+    <None Remove="ClientApp\src\app\Models\problem.model.ts" />
     <None Remove="ClientApp\src\app\Modules\announcement.module.ts" />
     <None Remove="ClientApp\src\app\Modules\flat.module.ts" />
     <None Remove="ClientApp\src\app\Modules\RoutingModules\announcement-routing.module.ts" />
@@ -66,6 +70,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Priority.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Enums\ProblemType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Range.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Role.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\auth-guard.service.ts" />
@@ -75,6 +80,8 @@
     <TypeScriptCompile Include="ClientApp\src\app\Models\announcement.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\flat.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\help.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\picture.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\problem.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Modules\announcement.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Modules\flat.module.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Modules\RoutingModules\announcement-routing.module.ts" />

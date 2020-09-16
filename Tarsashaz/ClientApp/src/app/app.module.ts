@@ -18,6 +18,7 @@ import { AnnouncementRoutingModule } from './Modules/RoutingModules/announcement
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 // Components
 import { AppComponent } from './app.component';
@@ -38,6 +39,7 @@ import { FirstLoginFormComponent } from './Components/Auth/first-login-form/firs
 import { FlatListComponent } from './Components/Flat/flat-list/flat-list.component';
 import { AddFlatComponent } from './Components/Flat/add-flat/add-flat.component';
 import { NewAnnouncementComponent } from './Components/Announcement/new-announcement/new-announcement.component';
+import { ProblemReportComponent } from './Components/Problem/problem-report/problem-report.component';
 
 
 // Services
@@ -111,7 +113,8 @@ import { environment } from '../environments/environment';
     FirstLoginFormComponent,
     FlatListComponent,
     AddFlatComponent,
-    NewAnnouncementComponent
+    NewAnnouncementComponent,
+    ProblemReportComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -121,6 +124,7 @@ import { environment } from '../environments/environment';
     MatInputModule,
     MatButtonModule,
     MatTableModule,
+    MatSelectModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,

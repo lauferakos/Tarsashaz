@@ -1,0 +1,14 @@
+
+.container-pic {
+    display:flex;
+    flex-direction:row;
+    justify-content:flex-start;
+}
+
+.upload-picture {
+    display:flex;
+    flex-direction:column;
+}
+
+select {
+}
