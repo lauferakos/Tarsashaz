@@ -4,12 +4,13 @@ import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AppState } from '../States/app.state';
 import { UserService} from '../../Services/user.service';
-import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_LOGGED_OUT, UserLoggedOutSuccess } from '../Actions/user.actions';
+import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_LOGGED_OUT, UserLoggedOutSuccess, UserDataChanged, USER_DATA_CHANGED, UserDataChangedSuccess } from '../Actions/user.actions';
 
 import { switchMap } from 'rxjs/operators';
 import { SocialUser } from 'angular5-social-login';
 import { Router } from '@angular/router';
 import { Role } from '../../Enums/Role';
+import { User } from '../../Models/user.model';
 
 
 @Injectable()
@@ -22,9 +23,9 @@ export class UserEffects {
       if (user) {
         console.log(user);
         this.userService.putUserToSessionStorage(user);
-        //this.userService.firstLogin();
+        this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
-        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: +user.id, role: Role.cr }))
+        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: +user.id, role: Role.cr, phone:'06707894134' }))
       }
     })
   );
@@ -37,6 +38,17 @@ export class UserEffects {
       if (success) {
         this.router.navigate(['/login']);
         return of(new UserLoggedOutSuccess());
+      }
+    })
+  );
+
+  @Effect()
+  userDataChanged$ = this.actions$.pipe(
+    ofType<UserDataChanged>(USER_DATA_CHANGED),
+    switchMap((u: UserDataChanged) => this.userService.updateActualUser(u.payload)),
+    switchMap((res: User) => {
+      if (res) {
+        return of(new UserDataChangedSuccess(res));
       }
     })
   );

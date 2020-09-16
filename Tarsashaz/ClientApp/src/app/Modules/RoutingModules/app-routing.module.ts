@@ -7,10 +7,12 @@ import { HelpComponent } from '../../Components/Help/help/help.component';
 import { FirstLoginSavedGuardService as FirstLoginSavedGuard } from '../../Guards/first-login-saved-guard.service';
 import { AuthGuardService as AuthGuard } from '../../Guards/auth-guard.service';
 import { FlatListComponent } from '../../Components/Flat/flat-list/flat-list.component';
+import { UserDetailsComponent } from '../../Components/User/user-details/user-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'counter', component: CounterComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'profile', component: UserDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'help', component: HelpComponent },
 ];

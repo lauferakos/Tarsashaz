@@ -1,7 +1,8 @@
-import { Action } from '@ngrx/store'
+
 import { User } from './../../Models/user.model'
 import * as Actions from './../Actions/user.actions'
 import { initialUserState, UserState } from '../States/user.state';
+
 
 export function userReducers (state = initialUserState, action: Actions.UserActions): UserState {
   switch (action.type) {
@@ -24,6 +25,12 @@ export function userReducers (state = initialUserState, action: Actions.UserActi
         ...state,
         firstLogin: true
       };
+    case Actions.USER_DATA_CHANGED_SUCCESS:
+      console.log('USER_DATA_CHANGED_SUCCESS');
+      return {
+        ...state,
+        actualUser: action.payload
+      }
     default:
       return state;
   }

@@ -57,4 +57,8 @@ export class UserService {
     }
     else return false;
   }
+
+  updateActualUser(u: User): Observable<User>{
+    return observableOf(u);
+  }
 }

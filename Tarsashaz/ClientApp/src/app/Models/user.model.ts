@@ -6,4 +6,5 @@ export interface User {
   email: string;
   token: string;
   role: Role.cr | Role.resident;
+  phone: string;
 }

@@ -25,6 +25,9 @@ function userReducers(state, action) {
             return __assign(__assign({}, state), { actualUser: null, firstLogin: false });
         case Actions.USER_FIRST_LOGIN:
             return __assign(__assign({}, state), { firstLogin: true });
+        case Actions.USER_DATA_CHANGED_SUCCESS:
+            console.log('USER_DATA_CHANGED_SUCCESS');
+            return __assign(__assign({}, state), { actualUser: action.payload });
         default:
             return state;
     }

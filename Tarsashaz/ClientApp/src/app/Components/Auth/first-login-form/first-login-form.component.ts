@@ -5,8 +5,11 @@ import { UserService } from '../../../Services/user.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import * as FlatActions from '../../../Store/Actions/flat.actions';
+import * as UserActions from '../../../Store/Actions/user.actions';
 import { selectFlats } from '../../../Store/Selectors/flat.selectors';
 import { Flat } from '../../../Models/flat.model';
+import { User } from '../../../Models/user.model';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 
 @Component({
     selector: 'app-first-login-form',
@@ -16,6 +19,15 @@ import { Flat } from '../../../Models/flat.model';
 /** FirstLoginForm component*/
 export class FirstLoginFormComponent implements OnInit{
   addressForm: FormGroup;
+  user: User = {
+    id: 0,
+    token: '',
+    name: '',
+    email: '',
+    role: null,
+    phone: ''
+  };
+  actualUser$ = this.store.pipe(select(selectActualUser));
     /** FirstLoginForm ctor */
   constructor(private router: Router, private userService: UserService, private store: Store<AppState>) {
 
@@ -31,7 +43,7 @@ export class FirstLoginFormComponent implements OnInit{
         address: this.addressForm.value,
         ownerId: 1
       }
-      console.log('submit', flat);
+      this.store.dispatch(new UserActions.UserDataChanged(this.user));
       this.store.dispatch(new FlatActions.FlatAdded(flat));
       this.userService.firstLoginSaved();
       this.router.navigate(['/']);
@@ -50,5 +62,18 @@ export class FirstLoginFormComponent implements OnInit{
       'floor': new FormControl(null),
       'door': new FormControl(null)
     });
+    this.actualUser$.subscribe(res => {
+      if (res !== null) {
+        this.user = {
+          id: res.id,
+          token: res.token,
+          name: res.name,
+          email: res.email,
+          role: res.role,
+          phone: res.phone
+        }
+      }
+    });
+
   }
 }

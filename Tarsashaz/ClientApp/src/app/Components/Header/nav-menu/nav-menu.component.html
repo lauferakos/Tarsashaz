@@ -23,10 +23,10 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/']">Kezdőlap</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']" *ngIf="(actualUser$ | async) || isLoggedIn">Profilom</a>
+            <a class="nav-link text-dark" [routerLink]="['/profile']" *ngIf="(actualUser$ | async) || isLoggedIn">Profilom</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/flat']" *ngIf="(actualUser$ | async) || isLoggedIn">Lakásom</a>
