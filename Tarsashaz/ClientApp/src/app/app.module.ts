@@ -40,7 +40,8 @@ import { FlatListComponent } from './Components/Flat/flat-list/flat-list.compone
 import { AddFlatComponent } from './Components/Flat/add-flat/add-flat.component';
 import { NewAnnouncementComponent } from './Components/Announcement/new-announcement/new-announcement.component';
 import { ProblemReportComponent } from './Components/Problem/problem-report/problem-report.component';
-
+import { BillDetailsComponent } from './Components/Bill/bill-details/bill-details.component';
+import { BillsListComponent } from './Components/Bill/bills-list/bills-list.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -94,6 +95,7 @@ import { environment } from '../environments/environment';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -114,7 +116,9 @@ import { environment } from '../environments/environment';
     FlatListComponent,
     AddFlatComponent,
     NewAnnouncementComponent,
-    ProblemReportComponent
+    ProblemReportComponent,
+    BillDetailsComponent,
+    BillsListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

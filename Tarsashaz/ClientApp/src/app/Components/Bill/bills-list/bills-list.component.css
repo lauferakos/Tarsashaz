@@ -1,0 +1,22 @@
+.container {
+    margin-top:30px;
+}
+.table-header {
+   color:white;
+}
+.row-header {
+  background-color: #FF6F61;
+}
+
+.row-body {
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.btn-details {
+  background-color: #FF6F61;
+}
+
+.btn-details:hover {
+  background-color: rgb(255,151,137);
+}

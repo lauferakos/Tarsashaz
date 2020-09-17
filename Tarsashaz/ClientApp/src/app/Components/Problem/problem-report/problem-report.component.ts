@@ -27,6 +27,11 @@ export class ProblemReportComponent implements OnInit {
   }
   newProblem() {
     this.isSuccess = false;
+    this.problem = {
+      type: ProblemType.oldal,
+      text: '',
+      pictures: []
+    };
   }
   
   onFileChanged(event) {

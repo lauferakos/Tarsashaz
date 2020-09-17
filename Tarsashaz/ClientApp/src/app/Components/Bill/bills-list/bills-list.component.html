@@ -1,0 +1,46 @@
+<div class="container" *ngIf="(actualFlat$ | async)?.bills.length > 0">
+  <div class="row row-header">
+    <div class="col-md-2">
+      <div class="table-header">
+        <h6>Típus</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="table-header">
+        <h6>Összeg</h6>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="table-header">
+        <h6>Határidő</h6>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="table-header">
+        <h6>Részletek</h6>
+      </div>
+    </div>
+  </div>
+  <div class="row row-body" *ngFor="let bill of (actualFlat$ | async)?.bills">
+    <div class="col-md-2">
+      <div class="table-body">
+        <h6>{{bill.type}}</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="table-body">
+        <h6>{{bill.amount | currency:'HUF'}}</h6>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="table-body">
+        <h6>{{bill.billDate.deadline | date:'medium'}}</h6>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="table-body">
+        <button type="button" (click)="billDetails()" class="btn btn-details">Megtekint</button>
+      </div>
+    </div>
+  </div>
+</div>

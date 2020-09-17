@@ -9,6 +9,7 @@ import { AuthGuardService as AuthGuard } from '../../Guards/auth-guard.service';
 import { FlatListComponent } from '../../Components/Flat/flat-list/flat-list.component';
 import { UserDetailsComponent } from '../../Components/User/user-details/user-details.component';
 import { ProblemReportComponent } from '../../Components/Problem/problem-report/problem-report.component';
+import { BillDetailsComponent } from '../../Components/Bill/bill-details/bill-details.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
   { path: 'profile', component: UserDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'help', component: HelpComponent },
-  { path: 'problem/report', component: ProblemReportComponent }
+  { path: 'problem/report', component: ProblemReportComponent },
+  { path: 'bill/details', component: BillDetailsComponent, canActivate:[AuthGuard, FirstLoginSavedGuard] }
 ];
 
 @NgModule({

@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-header">
+      <h5>{{bill.type}} számla</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-user-info">
+      <h6>{{bill.user.name}}</h6>
+      <h6>{{bill.destAddress.city}}</h6>
+      <h6>{{bill.destAddress.street}} {{bill.destAddress.number}}</h6>
+      <h6>{{bill.destAddress.postCode}}</h6>
+    </div>
+    <div class="col-md-6 col-sm-12 col-provider-info">
+      <h6>{{bill.provider.address.postCide}}</h6>
+      <h6>{{bill.provider.address.city}} {{bill.provider.address.street}} {{bill.provider.address.number}}</h6>
+      <h6>{{bill.provider.accountNum}}</h6>
+      <h6>Kelt: {{bill.billDate.startDate | date:'medium'}}</h6>
+    </div>
+  </div>
+  <div class="row row-pay-info-header">
+    <div class="col-sm-12 col-md-6">
+      <div class="row row-pay-info-body">
+        <div class="col-sm-12">
+          <h6>Elszámolási időszak: {{bill.billDate.payoffStart | date:'medium'}} - {{bill.billDate.payoffEnd | date:'medium'}}</h6>
+        </div>
+      </div>
+      <div class="row row-pay-info-body">
+        <div class="col-sm-12">
+          <h6>Határidő: {{bill.billDate.deadline | date:'medium'}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6 pay-amount">
+      <h3><strong>{{bill.amount | currency:'HUF'}}</strong></h3>
+    </div>
+  </div>
+  <div class="row payment-details">
+    <div class="col-sm-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tétel megnevezése</th>
+            <th scope="col">ÁFA %</th>
+            <th scope="col">Nettó (HUF)</th>
+            <th scope="col">ÁFA (HUF)</th>
+            <th scope="col">Bruttó (HUF)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of bill.items">
+            <th scope="row">1</th>
+            <td>{{item.name}}</td>
+            <td>{{item.vat}}</td>
+            <td>{{item.gross}}</td>
+            <td>{{(item.vat/100) * item.gross}}</td>
+            <td>{{(1+(item.vat/100))* item.gross }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <h6>Státusz: </h6>
+      <span class="badge badge-success" *ngIf="bill.isPaid">Fizetve</span>
+      <span class="badge badge-danger" *ngIf="!bill.isPaid">Befizetésre vár</span>
+    </div>
+  </div>
+</div>
