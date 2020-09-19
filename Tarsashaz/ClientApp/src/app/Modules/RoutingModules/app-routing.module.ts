@@ -10,6 +10,7 @@ import { FlatListComponent } from '../../Components/Flat/flat-list/flat-list.com
 import { UserDetailsComponent } from '../../Components/User/user-details/user-details.component';
 import { ProblemReportComponent } from '../../Components/Problem/problem-report/problem-report.component';
 import { BillDetailsComponent } from '../../Components/Bill/bill-details/bill-details.component';
+import { UploadDataComponent } from '../../Components/Data/upload-data/upload-data.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
@@ -18,7 +19,8 @@ const appRoutes: Routes = [
   { path: 'fetch-data', component: FetchDataComponent },
   { path: 'help', component: HelpComponent },
   { path: 'problem/report', component: ProblemReportComponent },
-  { path: 'bill/details', component: BillDetailsComponent, canActivate:[AuthGuard, FirstLoginSavedGuard] }
+  { path: 'bill/details', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'data/upload', component: UploadDataComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] }
 ];
 
 @NgModule({

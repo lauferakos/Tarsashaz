@@ -93,7 +93,7 @@ export class AddFlatComponent {
             }
           }
         ],
-        
+        flatDatas:[]
       }
       console.log('submit', flat);
       this.store.dispatch(new FlatActions.FlatAdded(flat));

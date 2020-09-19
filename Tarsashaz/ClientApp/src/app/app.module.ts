@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // Components
 import { AppComponent } from './app.component';
@@ -42,6 +43,8 @@ import { NewAnnouncementComponent } from './Components/Announcement/new-announce
 import { ProblemReportComponent } from './Components/Problem/problem-report/problem-report.component';
 import { BillDetailsComponent } from './Components/Bill/bill-details/bill-details.component';
 import { BillsListComponent } from './Components/Bill/bills-list/bills-list.component';
+import { UploadDataComponent } from './Components/Data/upload-data/upload-data.component';
+import { DataListComponent } from './Components/Data/data-list/data-list.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -95,7 +98,6 @@ import { environment } from '../environments/environment';
 
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +120,9 @@ import { environment } from '../environments/environment';
     NewAnnouncementComponent,
     ProblemReportComponent,
     BillDetailsComponent,
-    BillsListComponent
+    BillsListComponent,
+    UploadDataComponent,
+    DataListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -129,6 +133,7 @@ import { environment } from '../environments/environment';
     MatButtonModule,
     MatTableModule,
     MatSelectModule,
+    MatExpansionModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,

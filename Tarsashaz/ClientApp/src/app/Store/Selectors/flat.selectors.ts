@@ -13,3 +13,8 @@ export const selectActualFlat = createSelector(
   selectFlat,
   (state: FlatState) => state.actualFlat
 );
+
+export const selectActualFlatDatas = createSelector(
+  selectFlat,
+  (state: FlatState) => state.actualFlat.flatDatas
+);

@@ -104,7 +104,8 @@ export class FirstLoginFormComponent implements OnInit{
               deadline: new Date('2020-11-15'),
             }
           }
-        ]
+        ],
+        flatDatas:[]
       }
       this.store.dispatch(new UserActions.UserDataChanged(this.user));
       this.store.dispatch(new FlatActions.FlatAdded(flat));

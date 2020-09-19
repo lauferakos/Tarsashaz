@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\Enums\BillType.ts" />
+    <None Remove="ClientApp\src\app\Enums\FlatDataType.ts" />
     <None Remove="ClientApp\src\app\Enums\Priority.ts" />
     <None Remove="ClientApp\src\app\Enums\ProblemType.ts" />
     <None Remove="ClientApp\src\app\Enums\Range.ts" />
@@ -42,6 +43,7 @@
     <None Remove="ClientApp\src\app\Models\bill.model.ts" />
     <None Remove="ClientApp\src\app\Models\billdate.model.ts" />
     <None Remove="ClientApp\src\app\Models\flat.model.ts" />
+    <None Remove="ClientApp\src\app\Models\flatdata.model.ts" />
     <None Remove="ClientApp\src\app\Models\help.model.ts" />
     <None Remove="ClientApp\src\app\Models\item.model.ts" />
     <None Remove="ClientApp\src\app\Models\picture.model.ts" />
@@ -75,6 +77,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\Enums\BillType.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Enums\FlatDataType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Priority.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\ProblemType.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Enums\Range.ts" />
@@ -87,6 +90,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Models\bill.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\billdate.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\flat.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\flatdata.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\help.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\item.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\picture.model.ts" />

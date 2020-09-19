@@ -3,7 +3,7 @@ import { Effect,ofType,Actions} from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { AppState } from "../States/app.state";
 import { Router } from "@angular/router";
-import { FlatAdded, FLAT_ADDED, FlatAddedSuccess, ActualFlatChanged, ACTUAL_FLAT_CHANGED, ActualFlatChangedSuccess } from "../Actions/flat.actions";
+import { FlatAdded, FLAT_ADDED, FlatAddedSuccess, ActualFlatChanged, ACTUAL_FLAT_CHANGED, ActualFlatChangedSuccess, ActualFlatUpdated, ACTUAL_FLAT_UPDATED, ActualFlatUpdatedSuccess } from "../Actions/flat.actions";
 import { switchMap } from "rxjs/operators";
 import { FlatService } from "../../Services/flat.service";
 import { of } from 'rxjs';
@@ -31,7 +31,18 @@ export class FlatEffects {
         return of(new ActualFlatChangedSuccess(f));
       }
     }
-  ));
+    ));
+
+  @Effect()
+  actualFlatUpdated$ = this.actions$.pipe(
+    ofType<ActualFlatUpdated>(ACTUAL_FLAT_UPDATED),
+    switchMap((a: ActualFlatUpdated) => this.flatService.updateActualFlat(a.payload)),
+    switchMap((f: Flat) => {
+      if (f != null) {
+        return of(new ActualFlatUpdatedSuccess(f));
+      }
+    })
+  );
 
     constructor(private store: Store < AppState >, private actions$: Actions,private flatService:FlatService, private router: Router) {
 }

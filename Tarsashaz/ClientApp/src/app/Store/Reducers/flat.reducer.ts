@@ -16,6 +16,13 @@ export function flatReducers(state = initialFlatState, action: Actions.FlatActio
         ...state,
         actualFlat: action.payload
       }
+    case Actions.ACTUAL_FLAT_UPDATED_SUCCESS:
+      console.log('ACTUAL_FLAT_UPDATED_SUCCESS');
+      return {
+        ...state,
+        flats: state.flats.filter(f => f.id != action.payload.id).concat(action.payload),
+        actualFlat: action.payload
+      }
     default:
       return state;
   }

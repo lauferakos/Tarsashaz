@@ -23,6 +23,9 @@ function flatReducers(state, action) {
         case Actions.ACTUAL_FLAT_CHANGED_SUCCESS:
             console.log('ACTUAL_FLAT_CHANGED_SUCCESS');
             return __assign(__assign({}, state), { actualFlat: action.payload });
+        case Actions.ACTUAL_FLAT_UPDATED_SUCCESS:
+            console.log('ACTUAL_FLAT_UPDATED_SUCCESS');
+            return __assign(__assign({}, state), { flats: state.flats.filter(function (f) { return f.id != action.payload.id; }).concat(action.payload), actualFlat: action.payload });
         default:
             return state;
     }

@@ -23,4 +23,9 @@ export class FlatService {
     flats$.subscribe((flats) => result = flats.find(f => f.id == id));
     return observableOf(result);
   }
+
+  updateActualFlat(f: Flat): Observable<Flat> {
+    console.log('UppdateFlat', f);
+    return observableOf(f);
+  }
 }

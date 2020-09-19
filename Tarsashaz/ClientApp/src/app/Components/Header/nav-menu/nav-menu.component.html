@@ -32,6 +32,9 @@
             <a class="nav-link text-dark" [routerLink]="['/flat']" *ngIf="(actualUser$ | async) || isLoggedIn">Lakásom</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
+            <a class="nav-link text-dark" [routerLink]="['/data/upload']" *ngIf="(actualUser$ | async) || isLoggedIn">Adatok feltöltése</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/problem/report']">Hiba bejelentés</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">

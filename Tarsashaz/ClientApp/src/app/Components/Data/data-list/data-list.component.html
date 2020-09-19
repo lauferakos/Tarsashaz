@@ -1,0 +1,32 @@
+<h3>Feltöltött adatok: </h3>
+<div *ngIf="(flatDatas$ | async)?.length == 0">
+  <div class="alert alert-success" role="alert">
+    Még nem tölöttél fel adatot az aktuális lakásról!
+  </div>
+</div>
+<div class="container">
+  <div *ngFor="let flatData of (flatDatas$ | async)">
+    <div class="flatData-panel">
+      <div class="row row-pics">
+        <div class="col">
+          <h6 *ngIf="flatData.pics.length > 0">Feltöltött képek</h6>
+          <div class="container container-pic">
+            <div class="row">
+              <div *ngFor="let pic of flatData.pics">
+                <div class="col-sm-12">
+                  <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row row-text">
+        <div class="col">
+          <h6>Megjegyzés:</h6>
+          <p>{{flatData.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

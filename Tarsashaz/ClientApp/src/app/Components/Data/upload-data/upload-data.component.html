@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Aktuális lakás
+          </mat-panel-title>
+          <mat-panel-description class="d-flex justify-content-end">
+              <a class="btn btn-danger btn-sm" [routerLink]="['/flat']">Másik lakás</a>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div *ngIf="(actualFlat$ | async)?.address" class="flat-details">
+          <p>{{(actualFlat$ | async)?.address.postCode}}</p>
+          <p>{{(actualFlat$ | async)?.address.city}} {{(actualFlat$ | async)?.address.street}} {{(actualFlat$ | async)?.address.number}}</p>
+          <p>{{(actualFlat$ | async)?.address.floor}}.emelet {{(actualFlat$ | async)?.address.door}}.ajtó</p>
+        </div>
+        <div *ngIf="!(actualFlat$ | async)?.address">
+          <div class="alert alert-danger" role="alert">
+            Nincs aktuális lakás kiválasztva, adj meg egyet a fenti gomb segítségével!
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 *ngIf="flatData.pics.length > 0">Feltöltött képek</h4>
+      <div class="container container-pic">
+        <div class="row">
+          <div *ngFor="let pic of flatData.pics">
+            <div class="col-sm-12  upload-picture">
+              <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+              <button class="badge badge-danger delete-btn" (click)="deletePic(pic.url)">Törlés</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <mat-form-field appearance="fill">
+        <mat-label>Adat kategóriák</mat-label>
+        <select matNativeControl required [(ngModel)]="flatData.type">
+          <option value="víz">Vízóra adatok</option>
+          <option value="villany">Villanyóra adatok</option>
+        </select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="form-group">
+        <label for="problemDescTextArea">Megjegyzés</label>
+        <textarea class="form-control" id="problemDescTextArea" rows="5" [(ngModel)]="flatData.text"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Feltöltés</button>
+      <input style="display: none"
+             type="file" multiple="" (change)="onFileChanged($event)"
+             #fileInput>
+      <button type="button" class="btn btn-warning" (click)="fileInput.click()">Kép kiválasztás</button>
+    </div>
+  </div>
+</div>
