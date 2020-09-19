@@ -44,6 +44,7 @@
     <None Remove="ClientApp\src\app\Models\billdate.model.ts" />
     <None Remove="ClientApp\src\app\Models\condominium.model.ts" />
     <None Remove="ClientApp\src\app\Models\flat.model.ts" />
+    <None Remove="ClientApp\src\app\Models\flatbalance.model.ts" />
     <None Remove="ClientApp\src\app\Models\flatdata.model.ts" />
     <None Remove="ClientApp\src\app\Models\help.model.ts" />
     <None Remove="ClientApp\src\app\Models\item.model.ts" />
@@ -92,6 +93,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Models\billdate.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\condominium.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\flat.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Models\flatbalance.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\flatdata.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\help.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\item.model.ts" />

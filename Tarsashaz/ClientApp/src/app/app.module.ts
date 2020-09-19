@@ -20,6 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCardModule } from '@angular/material/card';
 
 // Components
 import { AppComponent } from './app.component';
@@ -46,6 +47,7 @@ import { BillsListComponent } from './Components/Bill/bills-list/bills-list.comp
 import { UploadDataComponent } from './Components/Data/upload-data/upload-data.component';
 import { DataListComponent } from './Components/Data/data-list/data-list.component';
 import { PayPalCheckOutComponent } from './Components/PayPal/pay-pal-check-out/pay-pal-check-out.component';
+import { FlatBalanceComponent } from './Components/Flat/flat-balance/flat-balance.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -100,6 +102,7 @@ import { environment } from '../environments/environment';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -125,7 +128,8 @@ import { environment } from '../environments/environment';
     BillsListComponent,
     UploadDataComponent,
     DataListComponent,
-    PayPalCheckOutComponent
+    PayPalCheckOutComponent,
+    FlatBalanceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -137,6 +141,7 @@ import { environment } from '../environments/environment';
     MatTableModule,
     MatSelectModule,
     MatExpansionModule,
+    MatCardModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,

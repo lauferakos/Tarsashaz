@@ -39,7 +39,8 @@ export class UploadDataComponent implements OnInit{
           address: actual.address,
           ownerId: actual.ownerId,
           bills: actual.bills,
-          flatDatas: actual.flatDatas
+          flatDatas: actual.flatDatas,
+          balances: actual.balances
         }
       }
     })

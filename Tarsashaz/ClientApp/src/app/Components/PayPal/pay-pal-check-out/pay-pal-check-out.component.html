@@ -1,9 +1,31 @@
-<h4>A közös költség {{price}} Ft</h4>
-<div *ngIf="!successfulPayment">
-  <div id="checkout-btn"></div>
-</div>
-<div *ngIf="successfulPayment">
-  <div class="alert alert-success" role="alert">
-    Sikeresen befizetted a közös költséget!
+<div class="container">
+
+  <div class="checkout-panel">
+    <div class="row">
+      <div class="col text-center">
+        <div>A közös költség: {{price}} Ft</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <div class="payment-info"> Az alábbi gomb megnyomásával, PayPal-on keresztül tudsz fizetni. Regisztráció nélkül, bankkártya adatok megadásával is lehetséges a fizetés.</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div *ngIf="!successfulPayment">
+          <div id="checkout-btn"></div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col justify-content-center">
+        <div *ngIf="successfulPayment">
+          <div class="alert alert-success" role="alert">
+            Sikeresen befizetted a közös költséget!
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

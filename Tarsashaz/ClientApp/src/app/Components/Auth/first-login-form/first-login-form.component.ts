@@ -105,7 +105,21 @@ export class FirstLoginFormComponent implements OnInit{
             }
           }
         ],
-        flatDatas:[]
+        flatDatas: [],
+        balances: [
+          {
+            type: BillType.Electric,
+            amount: 5000
+          },
+          {
+            type: BillType.Heating,
+            amount: -10000
+          },
+          {
+            type: BillType.Water,
+            amount: 0
+          }
+        ],
       }
       this.store.dispatch(new UserActions.UserDataChanged(this.user));
       this.store.dispatch(new FlatActions.FlatAdded(flat));

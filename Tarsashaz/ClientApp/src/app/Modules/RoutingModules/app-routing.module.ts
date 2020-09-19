@@ -11,6 +11,10 @@ import { UserDetailsComponent } from '../../Components/User/user-details/user-de
 import { ProblemReportComponent } from '../../Components/Problem/problem-report/problem-report.component';
 import { BillDetailsComponent } from '../../Components/Bill/bill-details/bill-details.component';
 import { UploadDataComponent } from '../../Components/Data/upload-data/upload-data.component';
+import { DataListComponent } from '../../Components/Data/data-list/data-list.component';
+import { BillsListComponent } from '../../Components/Bill/bills-list/bills-list.component';
+import { PayPalCheckOutComponent } from '../../Components/PayPal/pay-pal-check-out/pay-pal-check-out.component';
+import { FlatBalanceComponent } from '../../Components/Flat/flat-balance/flat-balance.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
@@ -20,7 +24,11 @@ const appRoutes: Routes = [
   { path: 'help', component: HelpComponent },
   { path: 'problem/report', component: ProblemReportComponent },
   { path: 'bill/details', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
-  { path: 'data/upload', component: UploadDataComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] }
+  { path: 'bills', component: BillsListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'data/upload', component: UploadDataComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'datas', component: DataListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'common', component: PayPalCheckOutComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'balance', component: FlatBalanceComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
 ];
 
 @NgModule({

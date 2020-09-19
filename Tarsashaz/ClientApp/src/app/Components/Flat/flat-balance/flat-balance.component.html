@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div class="container container-balance-info"
+           [ngClass]="{ 'equal': waterBalance?.amount ==0, 'behind': waterBalance?.amount > 0,'over': waterBalance?.amount < 0 }">
+        <div class="row">
+          <div class="col">
+            <div class="row justify-content-center">
+              <div *ngIf="!waterBalance">
+                <div>Nincs adat</div>
+              </div>
+              <div *ngIf="waterBalance?.amount > 0">
+                <div>Elmaradás</div>
+              </div>
+              <div *ngIf="waterBalance?.amount < 0">
+                <div>Túlfizetés</div>
+              </div>
+              <div *ngIf="waterBalance?.amount == 0">
+                <div>Egyenlőség</div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div *ngIf="waterBalance?.amount != 0">
+                <div class="balance-amount">{{waterBalance?.amount | currency:'HUF'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="balance-description">
+        <span>Víz számla egyenleg</span>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="container container-balance-info"
+           [ngClass]="{ 'equal': heathingBalance?.amount ==0, 'behind': heathingBalance?.amount > 0,'over': heathingBalance?.amount < 0 }">
+        <div class="row">
+          <div class="col">
+            <div class="row justify-content-center">
+              <div *ngIf="!waterBalance">
+                <div>Nincs adat</div>
+              </div>
+              <div *ngIf="heathingBalance?.amount > 0">
+                <div>Elmaradás</div>
+              </div>
+              <div *ngIf="heathingBalance?.amount < 0">
+                <div>Túlfizetés</div>
+              </div>
+              <div *ngIf="heathingBalance?.amount == 0">
+                <div>Egyenlőség</div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div *ngIf="heathingBalance?.amount != 0">
+                <div class="balance-amount">{{heathingBalance?.amount | currency:'HUF'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="balance-description">
+        <span>Fűtés számla egyenleg</span>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 justify-content-center">
+      <div class="container container-balance-info"
+           [ngClass]="{ 'equal': electricBalance?.amount ==0, 'behind': electricBalance?.amount > 0,'over': electricBalance?.amount < 0 }">
+        <div class="row">
+          <div class="col">
+            <div class="row justify-content-center">
+              <div *ngIf="!waterBalance">
+                <div>Nincs adat</div>
+              </div>
+              <div *ngIf="electricBalance?.amount > 0">
+                <div>Elmaradás</div>
+              </div>
+              <div *ngIf="electricBalance?.amount < 0">
+                <div>Túlfizetés</div>
+              </div>
+              <div *ngIf="electricBalance?.amount == 0">
+                <div>Egyenlőség</div>
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div *ngIf="electricBalance?.amount != 0">
+                <div class="balance-amount">{{electricBalance?.amount | currency:'HUF'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="balance-description">
+        <div>Villany számla egyenleg</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -61,8 +61,50 @@
 </div>
 
 <app-add-flat (flatSavedEvent)="cancelAddPanel()" *ngIf="isAddPanelVisible"></app-add-flat>
-<app-bills-list></app-bills-list>
-<app-data-list></app-data-list>
-<h1>Közös költség fizetés</h1>
-<app-pay-pal-check-out></app-pay-pal-check-out>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <mat-card class="menu-card">
+        <a [routerLink]="['/datas']">
+        <img mat-card-image src="assets/img/upload.jpg" class="menu-icon">
+        </a>
+        <mat-card-content>
+          <p>Feltöltött adatok</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card class="menu-card">
+        <a [routerLink]="['/balance']">
+          <img mat-card-image src="assets/img/scale.png" class="menu-icon">
+        </a>
+        <mat-card-content>
+          <p>Lakás egyenleg</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card class="menu-card">
+        <a [routerLink]="['/common']">
+          <img mat-card-image src="assets/img/money.png" class="menu-icon">
+        </a>
+        <mat-card-content>
+          <p>Közös költség</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-md-3">
+      <mat-card class="menu-card">
+        <a [routerLink]="['/bills']">
+          <img mat-card-image src="assets/img/bill.png" class="menu-icon">
+        </a>
+        <mat-card-content>
+          <p>Számlák</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
 

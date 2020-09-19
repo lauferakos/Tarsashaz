@@ -18,3 +18,8 @@ export const selectActualFlatDatas = createSelector(
   selectFlat,
   (state: FlatState) => state.actualFlat.flatDatas
 );
+
+export const selectActualFlatBalance = createSelector(
+  selectFlat,
+  (state: FlatState) => state.actualFlat.balances
+);
