@@ -45,12 +45,14 @@ import { BillDetailsComponent } from './Components/Bill/bill-details/bill-detail
 import { BillsListComponent } from './Components/Bill/bills-list/bills-list.component';
 import { UploadDataComponent } from './Components/Data/upload-data/upload-data.component';
 import { DataListComponent } from './Components/Data/data-list/data-list.component';
+import { PayPalCheckOutComponent } from './Components/PayPal/pay-pal-check-out/pay-pal-check-out.component';
 
 // Services
 import { UserService } from './Services/user.service';
 import { HelpService } from './Services/help.service';
 import { AnnouncementService } from './Services/announcement.service';
 import { FlatService } from './Services/flat.service';
+import { CondominiumService } from './Services/condominium.service';
 
 
 // Guards
@@ -122,7 +124,8 @@ import { environment } from '../environments/environment';
     BillDetailsComponent,
     BillsListComponent,
     UploadDataComponent,
-    DataListComponent
+    DataListComponent,
+    PayPalCheckOutComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -149,7 +152,7 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService
+    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService, CondominiumService
   ],
   bootstrap: [AppComponent]
 })

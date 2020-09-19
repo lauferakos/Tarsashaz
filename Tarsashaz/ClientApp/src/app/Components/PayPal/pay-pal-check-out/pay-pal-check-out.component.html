@@ -1,0 +1,9 @@
+<h4>A közös költség {{price}} Ft</h4>
+<div *ngIf="!successfulPayment">
+  <div id="checkout-btn"></div>
+</div>
+<div *ngIf="successfulPayment">
+  <div class="alert alert-success" role="alert">
+    Sikeresen befizetted a közös költséget!
+  </div>
+</div>
