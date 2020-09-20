@@ -53,8 +53,11 @@ export class ProblemReportComponent implements OnInit {
     this.problem.pictures = this.problem.pictures.filter(p => p.url != url);
   }
   onSubmit() {
-    console.log('Uploading');
-    console.log(this.problem);
-    this.isSuccess = true;
+    if (this.problem.text != '') {
+      console.log('Uploading');
+      console.log(this.problem);
+      this.isSuccess = true;
+    }
+    else console.log('Add meg a hiba szövegét is!');
   }
 }

@@ -1,0 +1,65 @@
+<div class="container" *ngIf="condominium.bills.length > 0">
+  <h4>A lakásra vonatkozó havi számlák:</h4>
+  <div class="row row-header">
+    <div class="col-md-2">
+      <div class="table-header">
+        <h6>Típus</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="table-header">
+        <h6>Összeg</h6>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="table-header">
+        <h6>Határidő</h6>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="table-header">
+        <h6>Részletek</h6>
+      </div>
+    </div>
+  </div>
+  <div class="row row-body" *ngFor="let bill of condominium.bills">
+    <div class="col-md-2">
+      <div class="table-body">
+        <h6>{{bill.type}}</h6>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="table-body">
+        <h6>{{bill.amount | currency:'HUF'}}</h6>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="table-body">
+        <h6>{{bill.billDate.deadline | date:'medium'}}</h6>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="table-body">
+        <button type="button" (click)="billDetails()" class="btn btn-details">Megtekint</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-summary></app-summary>
+    </div>
+  </div>
+  <div class="row row-chart">
+    <div class="col">
+      <app-doughnut-chart></app-doughnut-chart>
+    </div>
+  </div>
+  <div class="row row-chart">
+    <div class="col">
+      <app-bar-chart></app-bar-chart>
+    </div>
+  </div>
+</div>
+
+
+

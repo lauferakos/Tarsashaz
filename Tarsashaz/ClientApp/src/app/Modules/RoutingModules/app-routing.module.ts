@@ -15,6 +15,7 @@ import { DataListComponent } from '../../Components/Data/data-list/data-list.com
 import { BillsListComponent } from '../../Components/Bill/bills-list/bills-list.component';
 import { PayPalCheckOutComponent } from '../../Components/PayPal/pay-pal-check-out/pay-pal-check-out.component';
 import { FlatBalanceComponent } from '../../Components/Flat/flat-balance/flat-balance.component';
+import { ReportComponent } from '../../Components/Report/report/report.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
   { path: 'datas', component: DataListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'common', component: PayPalCheckOutComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'balance', component: FlatBalanceComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'report', component: ReportComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
 ];
 
 @NgModule({

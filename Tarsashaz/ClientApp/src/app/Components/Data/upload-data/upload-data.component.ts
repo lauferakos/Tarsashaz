@@ -62,10 +62,15 @@ export class UploadDataComponent implements OnInit{
     this.flatData.pics = this.flatData.pics.filter(p => p.url != url);
   }
   onSubmit() {
-    this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.flatData);
-    console.log(this.actualFlat);
-    console.log('Dispatch ActualFlatUpdated');
-    this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
-    this.router.navigate(['/flat']);
+    if (this.flatData.text != '') {
+      this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.flatData);
+      console.log(this.actualFlat);
+      console.log('Dispatch ActualFlatUpdated');
+      this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
+      this.router.navigate(['/flat']);
+    } else {
+      console.log('A szöveg nem lehet üres');
+
+    }
   }
 }

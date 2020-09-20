@@ -1,0 +1,13 @@
+
+.container {
+  margin-top:20px;
+  margin-bottom:20px;
+  border: 2px solid #FF6F61;
+  background-color: #FF6F61;
+  color: white;
+}
+
+.mat-divider {
+  border-top-width: 3px;
+  border-top-color: white;
+}

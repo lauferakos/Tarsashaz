@@ -38,7 +38,7 @@
             <a class="nav-link text-dark" [routerLink]="['/problem/report']">Hiba bejelentés</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">
-            <a class="nav-link text-dark" [routerLink]="['/counter']">Beszámoló</a>
+            <a class="nav-link text-dark" [routerLink]="['/report']">Beszámoló</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async) || isLoggedIn">
             <button mat-raised-button color="warn" class="save-button" (click)="logOut()">Kijelentkezés</button>

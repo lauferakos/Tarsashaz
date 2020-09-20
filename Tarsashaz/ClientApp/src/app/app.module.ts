@@ -13,6 +13,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppRoutingModule } from './Modules/RoutingModules/app-routing.module';
 import { FlatRoutingModule } from './Modules/RoutingModules/flat-routing.module';
 import { AnnouncementRoutingModule } from './Modules/RoutingModules/announcement-routing.module';
+import { ChartsModule, ThemeService } from 'ng2-charts';
 
 // Angular Material
 import { MatInputModule } from '@angular/material/input';
@@ -21,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
 
 // Components
 import { AppComponent } from './app.component';
@@ -48,6 +50,10 @@ import { UploadDataComponent } from './Components/Data/upload-data/upload-data.c
 import { DataListComponent } from './Components/Data/data-list/data-list.component';
 import { PayPalCheckOutComponent } from './Components/PayPal/pay-pal-check-out/pay-pal-check-out.component';
 import { FlatBalanceComponent } from './Components/Flat/flat-balance/flat-balance.component';
+import { ReportComponent } from './Components/Report/report/report.component';
+import { DoughnutChartComponent } from './Components/Report/doughnut-chart/doughnut-chart.component';
+import { BarChartComponent } from './Components/Report/bar-chart/bar-chart.component';
+import { SummaryComponent } from './Components/Report/summary/summary.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -100,9 +106,6 @@ import { environment } from '../environments/environment';
 
 
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -129,19 +132,25 @@ import { environment } from '../environments/environment';
     UploadDataComponent,
     DataListComponent,
     PayPalCheckOutComponent,
-    FlatBalanceComponent
+    FlatBalanceComponent,
+    ReportComponent,
+    DoughnutChartComponent,
+    BarChartComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ChartsModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,
     MatSelectModule,
     MatExpansionModule,
     MatCardModule,
+    MatDividerModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,
@@ -157,7 +166,7 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService, CondominiumService
+    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService, CondominiumService, ThemeService
   ],
   bootstrap: [AppComponent]
 })
