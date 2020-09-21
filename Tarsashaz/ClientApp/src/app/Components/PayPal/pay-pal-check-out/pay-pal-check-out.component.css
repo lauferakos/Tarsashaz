@@ -3,9 +3,10 @@
   border-radius: 10px;
   color: rgb(68, 184, 172);
   font-weight: bold;
-  width: 50%;
-  height: 300px;
+  
+  height: auto;
   display: flex;
+  padding:100px;
   flex-direction: column;
   justify-content: center;
   align-items: center;

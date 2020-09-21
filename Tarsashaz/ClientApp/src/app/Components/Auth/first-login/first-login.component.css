@@ -1,7 +1,10 @@
 .container {
   display: flex;
   width: auto;
-  height: 40em;
+  height: auto;
+  min-height:40em;
+  padding-top:100px;
+  padding-bottom:100px;
   background-color: #41B3A3;
   align-items: center;
   justify-content: center;

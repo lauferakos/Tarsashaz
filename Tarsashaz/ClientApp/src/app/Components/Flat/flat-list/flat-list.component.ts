@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import { selectFlats, selectActualFlat } from '../../../Store/Selectors/flat.selectors';
@@ -11,8 +11,7 @@ import * as FlatActions from '../../../Store/Actions/flat.actions';
     styleUrls: ['./flat-list.component.css']
 })
 /** FlatList component*/
-export class FlatListComponent {
-  displayedColumns: string[] = ['postCode', 'city', 'street', 'number', 'floor', 'door','actions'];
+export class FlatListComponent{
   flats$ = this.store.pipe(select(selectFlats));
   actualFlat$ = this.store.pipe(select(selectActualFlat));
   isAddPanelVisible: boolean = false;
@@ -30,8 +29,7 @@ export class FlatListComponent {
     this.isAddPanelVisible = false;
   }
 
-  selectFlat(i:number) {
-    console.log(i);
+  selectFlat(i: number) {
     let actualIdx;
     this.actualFlat$.subscribe(f => actualIdx = f.id)
     if (i != actualIdx)

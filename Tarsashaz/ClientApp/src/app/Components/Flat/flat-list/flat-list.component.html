@@ -1,64 +1,61 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <table mat-table [dataSource]="flats$ | async" class="mat-elevation-z8">
+<div class="container mat-elevation-z8">
+  <div class="row row-header">
+    <div class="col-sm-2">
+      Irányítószám
+    </div>
+    <div class="col-sm-3">
+      Város
+    </div>
+    <div class="col-sm-2">
+      Út
+    </div>
+    <div class="col-sm-1">
+      Házszám
+    </div>
+    <div class="col-sm-1">
+      Emelet
+    </div>
+    <div class="col-sm-1">
+      Ajtó
+    </div>
+    <div class="col-sm-2">
 
-
-        <!-- Post Code Column -->
-        <ng-container matColumnDef="postCode">
-          <th mat-header-cell *matHeaderCellDef> Irányítószám </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.postCode }} </td>
-        </ng-container>
-
-        <!-- City Column -->
-        <ng-container matColumnDef="city">
-          <th mat-header-cell *matHeaderCellDef> Város </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.city }} </td>
-        </ng-container>
-
-        <!-- Street Column -->
-        <ng-container matColumnDef="street">
-          <th mat-header-cell *matHeaderCellDef> Út </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.street }} </td>
-        </ng-container>
-
-        <!-- Number Column -->
-        <ng-container matColumnDef="number">
-          <th mat-header-cell *matHeaderCellDef> Házszám </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.number }} </td>
-        </ng-container>
-
-        <!-- Floor Column -->
-        <ng-container matColumnDef="floor">
-          <th mat-header-cell *matHeaderCellDef> Emelet </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.floor }} </td>
-        </ng-container>
-
-        <!-- Door Column -->
-        <ng-container matColumnDef="door">
-          <th mat-header-cell *matHeaderCellDef> Ajtó </th>
-          <td mat-cell *matCellDef="let element"> {{ element.address.door }} </td>
-        </ng-container>
-
-        <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Műveletek </th>
-          <td mat-cell *matCellDef="let element">
-            <button type="button" (click)="selectFlat(element.id)" class="btn btn-warning btn-sm">Kiválaszt</button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns; let element" [ngClass]="{ 'actual-flat':element.id == (actualFlat$ | async)?.id }"></tr>
-      </table>
     </div>
   </div>
+  <mat-divider></mat-divider>
+  <div class="row row-flat" *ngFor="let f of (flats$ | async)" [ngClass]="{ 'actual-flat':f.id == (actualFlat$ | async)?.id }">
+    <div class="col-sm-2">
+      {{f.address.postCode}}
+    </div>
+    <div class="col-sm-3">
+      {{f.address.city}}
+    </div>
+    <div class="col-sm-2">
+      {{f.address.street}}
+    </div>
+    <div class="col-sm-1">
+      {{f.address.number}}
+    </div>
+    <div class="col-sm-1">
+      {{f.address.floor}}
+    </div>
+    <div class="col-sm-1">
+      {{f.address.door}}
+    </div>
+    <div class="col-sm-2">
+      <button type="button" (click)="selectFlat(f.id)" class="btn btn-warning btn-sm">Kiválaszt</button>
+    </div>
+  </div>
+</div>
+<div class="container">
   <div class="row">
     <div class="col col-btn">
       <button type="button" (click)="showAddPanel()" class="btn btn-success">Új Lakás</button>
     </div>
   </div>
 </div>
+
+
 
 <app-add-flat (flatSavedEvent)="cancelAddPanel()" *ngIf="isAddPanelVisible"></app-add-flat>
 
@@ -67,7 +64,7 @@
     <div class="col-md-3">
       <mat-card class="menu-card">
         <a [routerLink]="['/datas']">
-        <img mat-card-image src="assets/img/upload.jpg" class="menu-icon">
+          <img mat-card-image src="assets/img/upload.jpg" class="menu-icon">
         </a>
         <mat-card-content>
           <p>Feltöltött adatok</p>

@@ -36,3 +36,29 @@ table {
     margin-top:20px;
     margin-bottom:20px;
 }
+
+.row-flat {
+  min-height: 3em;
+  display: flex;
+  align-items: center;
+}
+
+.row-header {
+    min-height:4em;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+@media (max-width: 1024px) {
+  .row-header{
+    font-size:10px;
+    
+  }
+}
+
+@media (max-width: 576px) {
+  .row-header {
+    flex-direction:column;
+  }
+}

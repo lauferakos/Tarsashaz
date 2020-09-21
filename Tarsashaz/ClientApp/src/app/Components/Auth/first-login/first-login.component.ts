@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, DoCheck } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import { selectActualUser } from '../../../Store/Selectors/user.selectors';
@@ -14,6 +14,6 @@ import { UserService } from '../../../Services/user.service';
 export class FirstLoginComponent {
 
   constructor() {
-
   }
+  
 }
