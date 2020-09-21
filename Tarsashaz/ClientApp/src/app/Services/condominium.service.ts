@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Condominium } from '../Models/condominium.model';
 import { BillType } from '../Enums/BillType';
 import { Role } from '../Enums/Role';
+import { Observable, of as observableOf } from 'rxjs';
 
 @Injectable()
 export class CondominiumService {
@@ -9,8 +10,8 @@ export class CondominiumService {
 
   }
 
-  getCondominiumByUserId(id: number): Condominium{
-    return {
+  getCondominiumByUserId(id: number): Observable<Condominium>{
+    return observableOf({
       id: 1,
       crId: 1,
       address: {
@@ -30,12 +31,12 @@ export class CondominiumService {
             city: 'a',
             street: 'a',
             number: 1,
-            floor:1,
+            floor: 1,
             door: 1
           },
           bills: [],
           balances: [],
-          flatDatas:[]
+          flatDatas: []
         }
       ],
       bills: [
@@ -244,8 +245,8 @@ export class CondominiumService {
             100000, 150000, 180000, 200000, 150000, 210000, 310000, 190000, 230000, 240000, 300000, 220000,
           ]
         }
-       ]
-    }
+      ]
+    });
   }
 
   getCommonChargeByFlatId(flatid: number): number {

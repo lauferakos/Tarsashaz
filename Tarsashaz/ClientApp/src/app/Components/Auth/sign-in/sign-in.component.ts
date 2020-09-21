@@ -6,6 +6,7 @@ import { User } from '../../../Models/user.model';
 import * as UserActions from '../../../Store/Actions/user.actions';
 import { Platform } from '../../../Enums/Platform';
 import { Router } from '@angular/router';
+import { GetCondominium } from '../../../Store/Actions/condominium.actions';
 
 @Component({
     selector: 'app-sign-in',
@@ -24,6 +25,7 @@ export class SignInComponent {
     console.log('Dispatch UserLoggedIn')
     let platform = socialPlatform == Platform.Google ? Platform.Google : Platform.Facebook;
     this.store.dispatch(new UserActions.UserLoggedIn(platform));
+    this.store.dispatch(new GetCondominium(1));
   }
 
 }

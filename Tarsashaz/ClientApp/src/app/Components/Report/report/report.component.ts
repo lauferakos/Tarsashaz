@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CondominiumService } from '../../../Services/condominium.service';
 import { Condominium } from '../../../Models/condominium.model';
 import { Router } from '@angular/router';
+import { AppState } from '../../../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
 
 @Component({
     selector: 'app-report',
@@ -12,11 +15,12 @@ import { Router } from '@angular/router';
 export class ReportComponent implements OnInit{
   /** Report ctor */
   condominium: Condominium;
-  constructor(private connService: CondominiumService, private router: Router) {
+  constructor(private connService: CondominiumService, private router: Router, private store: Store<AppState>) {
 
   }
   ngOnInit() {
-    this.condominium = this.connService.getCondominiumByUserId(1);
+    let condominium$ = this.store.pipe(select(selectActualCon));
+    condominium$.subscribe(c => this.condominium = c);
 
   }
 

@@ -9,6 +9,7 @@ import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import { selectActualFlatBills } from '../../../Store/Selectors/flat.selectors';
 import { CondominiumService } from '../../../Services/condominium.service';
+import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
 
 @Component({
     selector: 'app-bill-details',
@@ -31,8 +32,9 @@ export class BillDetailsComponent implements OnInit{
     let connId = Number.parseInt(this._Activatedroute.snapshot.paramMap.get("connId"));
     if (connId) {
       // ?
-      let condominium = this.connService.getCondominiumByUserId(1);
-      this.bill = condominium.bills.find(b => b.id == id);
+     
+      let condominium$ = this.store.pipe(select(selectActualCon));
+      condominium$.subscribe(c => this.bill = c.bills.find(b=>b.id == id))
     }
     else {
       let bills$ = this.store.pipe(select(selectActualFlatBills));

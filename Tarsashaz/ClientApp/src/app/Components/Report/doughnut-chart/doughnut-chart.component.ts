@@ -3,6 +3,9 @@ import { SingleDataSet, Label } from 'ng2-charts';
 import { ChartType } from 'chart.js';
 import { CondominiumService } from '../../../Services/condominium.service';
 import { Condominium } from '../../../Models/condominium.model';
+import { AppState } from '../../../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
 
 @Component({
     selector: 'app-doughnut-chart',
@@ -16,15 +19,18 @@ export class DoughnutChartComponent implements OnInit{
   public doughnutChartLabels: Label[] = [];
   public doughnutChartType: ChartType = 'doughnut';
   /** DoughnutChart ctor */
-  constructor(private connService: CondominiumService) {
+  constructor(private connService: CondominiumService, private store: Store<AppState>) {
 
   }
   ngOnInit() {
-    this.condominium = this.connService.getCondominiumByUserId(1);
+    let condominium$ = this.store.pipe(select(selectActualCon));
+    condominium$.subscribe(c => this.condominium = c);
+    if (this.condominium) {
 
-    for (let bill of this.condominium.bills) {
-      this.doughnutChartLabels.push(bill.type);
-      this.doughnutChartData.push(bill.amount);
+      for (let bill of this.condominium.bills) {
+        this.doughnutChartLabels.push(bill.type);
+        this.doughnutChartData.push(bill.amount);
+      }
     }
   }
 

@@ -100,6 +100,7 @@ import { appReducers } from './Store/Reducers/app.reducer';
 import { UserEffects } from './Store/Effects/user.effects';
 import { FlatEffects } from './Store/Effects/flat.effects';
 import { AnnouncementEffects } from './Store/Effects/announcement.effects';
+import { CondominiumEffects } from './Store/Effects/condominium.effects';
 
 // Environment
 import { environment } from '../environments/environment';
@@ -158,7 +159,7 @@ import { environment } from '../environments/environment';
     FlatRoutingModule,
     AnnouncementRoutingModule,
     StoreModule.forRoot(appReducers),
-    EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects]),
+    EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects, CondominiumEffects]),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
