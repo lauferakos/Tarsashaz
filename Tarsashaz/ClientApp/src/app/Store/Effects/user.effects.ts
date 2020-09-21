@@ -24,6 +24,7 @@ export class UserEffects {
         console.log(user);
         this.userService.putUserToSessionStorage(user);
         this.userService.firstLogin();
+        this.userService.loginAsCR();
         this.router.navigate(['/firstlogin']);
         return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: +user.id, role: Role.cr, phone:'' }))
       }

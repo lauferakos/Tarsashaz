@@ -38,6 +38,7 @@
     <None Remove="ClientApp\src\app\Guards\auth-guard.service.ts" />
     <None Remove="ClientApp\src\app\Guards\first-login-guard.service.ts" />
     <None Remove="ClientApp\src\app\Guards\first-login-saved-guard.service.ts" />
+    <None Remove="ClientApp\src\app\Guards\representative-guard.service.ts" />
     <None Remove="ClientApp\src\app\Models\address.model.ts" />
     <None Remove="ClientApp\src\app\Models\announcement.model.ts" />
     <None Remove="ClientApp\src\app\Models\bill.model.ts" />
@@ -88,6 +89,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\Guards\auth-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\first-login-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Guards\first-login-saved-guard.service.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\Guards\representative-guard.service.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\address.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\announcement.model.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\Models\bill.model.ts" />

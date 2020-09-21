@@ -23,3 +23,7 @@ export const selectActualFlatBalance = createSelector(
   selectFlat,
   (state: FlatState) => state.actualFlat.balances
 );
+
+export const selectActualFlatBills = createSelector(
+  selectFlat,
+  (state: FlatState) => state.actualFlat.bills);

@@ -63,17 +63,17 @@ export class CondominiumService {
           },
           items: [
             {
-              name: 'item1',
+              name: 'teszt1',
               vat: 25,
               gross: 500000
             },
             {
-              name: 'item2',
+              name: 'teszt2',
               vat: 25,
               gross: 200000
             },
             {
-              name: 'item3',
+              name: 'teszt3',
               vat: 25,
               gross: 150000
             },
@@ -99,7 +99,7 @@ export class CondominiumService {
           }
         },
         {
-          id: 1,
+          id: 2,
           type: BillType.Electric,
           pic: null,
           isPaid: true,
@@ -158,7 +158,7 @@ export class CondominiumService {
           }
         },
         {
-          id: 1,
+          id: 3,
           type: BillType.Heating,
           pic: null,
           isPaid: true,

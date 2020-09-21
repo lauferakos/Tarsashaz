@@ -1,4 +1,9 @@
-<div class="container">
+<div *ngIf="!bill">
+  <div class="alert alert-danger" role="alert">
+    Hiba a betöltés közben!
+  </div>
+</div>
+<div class="container" *ngIf="bill">
   <div class="row">
     <div class="col-sm-12 col-header">
       <h5>{{bill.type}} számla</h5>

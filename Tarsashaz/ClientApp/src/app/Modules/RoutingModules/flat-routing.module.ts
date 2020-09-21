@@ -16,7 +16,8 @@ const flatRoutes: Routes = [
   { path: 'common', component: PayPalCheckOutComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'balance', component: FlatBalanceComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'data/upload', component: UploadDataComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
-  { path: 'bill/details', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'bill/details/:id', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'bill/details/:id/:connId', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'bills', component: BillsListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
 ];
 

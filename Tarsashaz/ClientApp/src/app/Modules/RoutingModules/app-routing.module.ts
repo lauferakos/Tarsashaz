@@ -7,13 +7,14 @@ import { AuthGuardService as AuthGuard } from '../../Guards/auth-guard.service';
 import { UserDetailsComponent } from '../../Components/User/user-details/user-details.component';
 import { ProblemReportComponent } from '../../Components/Problem/problem-report/problem-report.component';
 import { ReportComponent } from '../../Components/Report/report/report.component';
+import { RepresentativeGuardService as RepresentativeGuard } from '../../Guards/representative-guard.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'profile', component: UserDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'help', component: HelpComponent },
   { path: 'problem/report', component: ProblemReportComponent },
-  { path: 'report', component: ReportComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'report', component: ReportComponent, canActivate: [AuthGuard, FirstLoginSavedGuard, RepresentativeGuard] },
 ];
 
 @NgModule({

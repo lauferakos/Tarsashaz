@@ -66,7 +66,8 @@ import { CondominiumService } from './Services/condominium.service';
 // Guards
 import { AuthGuardService as AuthGuard } from './Guards/auth-guard.service';
 import { FirstLoginGuardService as FirstLoginGuard } from './Guards/first-login-guard.service';
-import { FirstLoginSavedGuardService as FirstLoginSavedGuard} from './Guards/first-login-saved-guard.service';
+import { FirstLoginSavedGuardService as FirstLoginSavedGuard } from './Guards/first-login-saved-guard.service';
+import { RepresentativeGuardService as RepresentativeGuard } from './Guards/representative-guard.service';
 
 
 // Social Login
@@ -166,7 +167,16 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
-    UserService, AuthGuard, FirstLoginGuard, FirstLoginSavedGuard, HelpService, AnnouncementService, FlatService, CondominiumService, ThemeService
+    UserService,
+    AuthGuard,
+    FirstLoginGuard,
+    FirstLoginSavedGuard,
+    RepresentativeGuard,
+    HelpService,
+    AnnouncementService,
+    FlatService,
+    CondominiumService,
+    ThemeService
   ],
   bootstrap: [AppComponent]
 })

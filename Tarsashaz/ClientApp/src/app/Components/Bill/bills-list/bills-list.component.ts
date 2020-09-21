@@ -17,7 +17,7 @@ export class BillsListComponent {
 
   }
 
-  billDetails() {
-    this.router.navigate(['/bill/details']);
+  billDetails(id: number) {
+    this.router.navigate(['/bill/details',id]);
   }
 }

@@ -25,6 +25,17 @@ export class UserService {
     sessionStorage.setItem('login_token', user.token);
   }
 
+  loginAsCR() {
+    sessionStorage.setItem('cr', 'true');
+  }
+
+  isLoggedInAsCr() {
+    let result = sessionStorage.getItem('cr');
+
+    if (result)
+      return true;
+    else return false;
+  }
   clearSessionStorage() {
     sessionStorage.clear();
   }
