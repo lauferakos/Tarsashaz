@@ -21,9 +21,17 @@
           </div>
         </div>
       </div>
+      <div class="row row-value">
+        <div class="col col-value">
+          <h6><strong>Érték:</strong></h6>
+          <h6>{{flatData.value}}</h6>
+          <h6 *ngIf="flatData.type == 'víz'">m3</h6>
+          <h6 *ngIf="flatData.type == 'villany'">kWh</h6>
+        </div>
+      </div>
       <div class="row row-text">
         <div class="col col-text">
-          <h6>Megjegyzés:</h6>
+          <h6><strong>Megjegyzés:</strong></h6>
           <p>{{flatData.text}}</p>
         </div>
       </div>

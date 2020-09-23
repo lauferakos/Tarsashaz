@@ -23,3 +23,12 @@
 p {
     padding:20px;
 }
+
+.col-value{
+    display:flex;
+    flex-direction:row;
+}
+
+h6 {
+    margin:5px;
+}

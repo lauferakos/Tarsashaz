@@ -6,5 +6,5 @@ export interface FlatData {
   type: FlatDataType;
   pics: Picture[];
   text: string;
-
+  value:number
 }

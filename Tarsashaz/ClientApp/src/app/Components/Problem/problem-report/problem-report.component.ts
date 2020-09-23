@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Problem } from '../../../Models/problem.model';
 import { ProblemType } from '../../../Enums/ProblemType';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-problem-report',
@@ -12,26 +13,22 @@ export class ProblemReportComponent implements OnInit {
 
   isPicsVisible = false;
   isSuccess = false;
-
-  problem: Problem = {
-    type: ProblemType.oldal,
-    text: '',
-    pictures:[]
-  }
+  problemForm: FormGroup;
     /** ProblemReport ctor */
     constructor() {
 
   }
   ngOnInit() {
-    
+    this.problemForm = new FormGroup({
+      'type': new FormControl(ProblemType.társasház, Validators.required),
+      'text': new FormControl(null, Validators.required),
+      'pictures': new FormControl([]),
+    });
   }
   newProblem() {
+
+    this.problemForm.reset({ type: ProblemType.társasház, text:'',pictures:[] })
     this.isSuccess = false;
-    this.problem = {
-      type: ProblemType.oldal,
-      text: '',
-      pictures: []
-    };
   }
   
   onFileChanged(event) {
@@ -43,21 +40,20 @@ export class ProblemReportComponent implements OnInit {
         console.log(file);
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
-          this.problem.pictures.push({ url: event.target.result, file:file })
+          this.problemForm.value.pictures.push({ url: event.target.result, file: file })
         }
       };
     }
     
   }
   deletePic(url: string) {
-    this.problem.pictures = this.problem.pictures.filter(p => p.url != url);
+    this.problemForm.value.pictures = this.problemForm.value.pictures.filter(p => p.url != url);
   }
   onSubmit() {
-    if (this.problem.text != '') {
+    if (this.problemForm.valid) {
       console.log('Uploading');
-      console.log(this.problem);
+      console.log(this.problemForm.value);
       this.isSuccess = true;
     }
-    else console.log('Add meg a hiba szövegét is!');
   }
 }

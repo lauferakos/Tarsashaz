@@ -8,6 +8,7 @@ import { Flat } from '../../../Models/flat.model';
 import * as FlatActions from '../../../Store/Actions/flat.actions';
 import { concat } from 'rxjs';
 import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 @Component({
     selector: 'app-upload-data',
     templateUrl: './upload-data.component.html',
@@ -19,19 +20,23 @@ export class UploadDataComponent implements OnInit{
   actualFlat: Flat;
   panelOpenState = false;
 
-  flatData: FlatData = {
-    id: 1,
-    flatId: 1,
-    type: FlatDataType.Water,
-    pics: [],
-    text:''
-  }
+
+  dataForm: FormGroup;
   /** UploadData ctor */
   constructor(private store: Store<AppState>, private router: Router) {
 
   }
 
   ngOnInit() {
+    this.dataForm = new FormGroup({
+      'id': new FormControl(1, Validators.required),
+      'flatId': new FormControl(1, Validators.required),
+      'type': new FormControl(FlatDataType.Water, Validators.required),
+      'pics': new FormControl([]),
+      'text': new FormControl(null),
+      'value': new FormControl(null,[Validators.required, Validators.min(0)])
+    });
+    
     this.actualFlat$.subscribe(actual => {
       if (actual != null) {
         this.actualFlat = {
@@ -43,34 +48,32 @@ export class UploadDataComponent implements OnInit{
           balances: actual.balances
         }
       }
-    })
+    });
   }
   onFileChanged(event) {
+    
     if (event.target.files) {
       for (let i = 0; i < event.target.files.length; i++) {
         var reader = new FileReader();
         let file = event.target.files[i];
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
-          this.flatData.pics.push({ url: event.target.result, file: file })
+          this.dataForm.value.pics.push({ url: event.target.result, file: file })
         }
       };
     }
 
   }
   deletePic(url: string) {
-    this.flatData.pics = this.flatData.pics.filter(p => p.url != url);
+    this.dataForm.value.pics = this.dataForm.value.pics.filter(p => p.url != url);
   }
   onSubmit() {
-    if (this.flatData.text != '') {
-      this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.flatData);
-      console.log(this.actualFlat);
+    console.log(this.dataForm);
+    if (this.dataForm.valid) {
+      this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.dataForm.value);
       console.log('Dispatch ActualFlatUpdated');
       this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
       this.router.navigate(['/flat']);
-    } else {
-      console.log('A szöveg nem lehet üres');
-
     }
   }
 }

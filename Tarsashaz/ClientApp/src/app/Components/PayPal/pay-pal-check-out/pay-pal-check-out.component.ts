@@ -9,7 +9,6 @@ declare let paypal: any;
 })
 /** PayPalCheckOut component*/
 export class PayPalCheckOutComponent implements AfterViewChecked{
-
   addScript: boolean = false;
   successfulPayment: boolean = false;
   price: number = 10;
@@ -41,12 +40,15 @@ export class PayPalCheckOutComponent implements AfterViewChecked{
   }
 
   ngAfterViewChecked(): void {
+
     if (!this.addScript) {
       this.addPayPalScript().then(() => {
         paypal.Button.render(this.paypalConfig,'#checkout-btn')
       })
     }
   }
+
+
 
   addPayPalScript() {
     this.addScript = true;
