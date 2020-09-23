@@ -104,7 +104,7 @@ import { CondominiumEffects } from './Store/Effects/condominium.effects';
 
 // Environment
 import { environment } from '../environments/environment';
-
+import { LOCALE_ID } from '@angular/core';
 
 
 
@@ -168,6 +168,7 @@ import { environment } from '../environments/environment';
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
+    { provide: LOCALE_ID, useValue: 'en-GB' },
     UserService,
     AuthGuard,
     FirstLoginGuard,
