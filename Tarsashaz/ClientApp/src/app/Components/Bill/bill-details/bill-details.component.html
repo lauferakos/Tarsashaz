@@ -26,7 +26,7 @@
   <div class="row row-pay-info-header" *ngIf="bill.billDate">
     <div class="col-sm-12 col-md-6">
       <div class="row row-pay-info-body">
-        <div class="col-sm-12">
+        <div class="col-sm-12" *ngIf="bill.billDate.payoffStart &&  bill.billDate.payoffEnd">
           <h6>Elszámolási időszak: {{bill.billDate.payoffStart | date:'medium'}} - {{bill.billDate.payoffEnd | date:'medium'}}</h6>
         </div>
       </div>

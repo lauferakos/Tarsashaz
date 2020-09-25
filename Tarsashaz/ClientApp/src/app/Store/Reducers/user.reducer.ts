@@ -28,3 +28,9 @@ export function userReducers (state = initialUserState, action: Actions.UserActi
       return state;
   }
 }
+
+export function logout(reducer) {
+  return function (state, action) {
+    return reducer(action.type === Actions.USER_LOGGED_OUT_SUCCESS ? undefined : state, action);
+  }
+}

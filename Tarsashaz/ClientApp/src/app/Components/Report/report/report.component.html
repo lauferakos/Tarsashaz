@@ -1,5 +1,20 @@
 <div class="container" *ngIf="(bills$ | async)">
   <h4>A lakásra vonatkozó havi számlák:</h4>
+  <div class="row" *ngIf="years">
+    <div class="col-md-12 col-years">
+      <div *ngFor="let year of years">
+        <button (click)="filterByYear(year)" class="badge badge-danger">
+          {{year}}
+        </button>
+      </div>
+      <button (click)="cancelFilter()" class="badge badge-danger">
+        Összes
+      </button>
+      <button (click)="actualBillsFilter()" class="badge badge-danger">
+        Aktuális
+      </button>
+    </div>
+  </div>
   <div class="row row-header">
     <div class="col-md-2">
       <div class="table-header">
@@ -22,7 +37,7 @@
       </div>
     </div>
   </div>
-  <div class="row row-body" *ngFor="let bill of (bills$ | async)">
+  <div class="row row-body" *ngFor="let bill of bills">
     <div class="col-md-2">
       <div class="table-body">
         <h6>{{bill.type}}</h6>

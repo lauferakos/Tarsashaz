@@ -21,6 +21,12 @@ export function announcementReducers(state = initialAnnouncementState, action: A
         ...state,
         announcements: state.announcements.concat(action.payload)
       }
+    case Actions.ANNOUNCEMENT_DELETED_SUCCESS:
+      console.log('ANNOUNCEMENT_DELETED_SUCCESS');
+      return {
+        ...state,
+        announcements: state.announcements.filter(a => a.id != action.payload)
+      }
     default:
       return state;
   }

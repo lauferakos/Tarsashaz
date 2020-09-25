@@ -90,7 +90,12 @@ export class FlatService {
           user: user,
           pic: null,
           provider: null,
-          billDate: null,
+          billDate: {
+            startDate: new Date(),
+            payoffEnd: null,
+            payoffStart: null,
+            deadline: new Date(),
+          },
           amount: amount,
           items: [
             {

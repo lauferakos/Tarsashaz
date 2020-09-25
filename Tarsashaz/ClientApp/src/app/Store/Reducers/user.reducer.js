@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userReducers = void 0;
+exports.logout = exports.userReducers = void 0;
 var Actions = require("./../Actions/user.actions");
 var user_state_1 = require("../States/user.state");
 function userReducers(state, action) {
@@ -31,4 +31,10 @@ function userReducers(state, action) {
     }
 }
 exports.userReducers = userReducers;
+function logout(reducer) {
+    return function (state, action) {
+        return reducer(action.type === Actions.USER_LOGGED_OUT_SUCCESS ? undefined : state, action);
+    };
+}
+exports.logout = logout;
 //# sourceMappingURL=user.reducer.js.map

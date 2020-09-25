@@ -38,4 +38,8 @@ export class AnnouncementService {
   addAnnouncement(a: Announcement): Observable<Announcement> {
     return observableOf(a);
   }
+
+  deleteAnnouncement(id: number): Observable<number> {
+    return observableOf(id);
+  }
 }

@@ -26,3 +26,13 @@
 .row-chart {
     margin-top:20px;
 }
+
+.col-years {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
+.badge {
+  margin: 5px;
+}

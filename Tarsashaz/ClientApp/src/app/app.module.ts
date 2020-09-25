@@ -105,6 +105,7 @@ import { CondominiumEffects } from './Store/Effects/condominium.effects';
 // Environment
 import { environment } from '../environments/environment';
 import { LOCALE_ID } from '@angular/core';
+import { logout } from './Store/Reducers/user.reducer';
 
 
 
@@ -158,7 +159,7 @@ import { LOCALE_ID } from '@angular/core';
     LoginRoutingModule,
     FlatRoutingModule,
     AnnouncementRoutingModule,
-    StoreModule.forRoot(appReducers),
+    StoreModule.forRoot(appReducers, { metaReducers: [logout] }),
     EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects, CondominiumEffects]),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),

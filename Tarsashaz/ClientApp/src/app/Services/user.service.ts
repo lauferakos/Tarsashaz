@@ -4,6 +4,8 @@ import { Platform } from '../Enums/Platform';
 import { User } from '../Models/user.model';
 import { Observable, of as observableOf} from 'rxjs';
 import { Role } from '../Enums/Role';
+import { AppState } from '../Store/States/app.state';
+import { Store } from '@ngrx/store';
 
 export interface UserLoginStatus {
   firstLogin: boolean;
@@ -12,7 +14,7 @@ export interface UserLoginStatus {
 
 @Injectable()
 export class UserService {
-  constructor(private socialAuthService: AuthService) {
+  constructor(private socialAuthService: AuthService,private store:Store<AppState>) {
 
   }
 

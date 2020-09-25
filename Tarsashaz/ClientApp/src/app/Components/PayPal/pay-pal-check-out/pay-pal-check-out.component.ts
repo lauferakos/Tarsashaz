@@ -1,8 +1,10 @@
-import { Component, AfterViewChecked } from '@angular/core';
+import { Component, AfterViewChecked, OnInit } from '@angular/core';
 import { CondominiumService } from '../../../Services/condominium.service';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import { FlatService } from '../../../Services/flat.service';
+import { selectActualFlat } from '../../../Store/Selectors/flat.selectors';
+import { BillType } from '../../../Enums/BillType';
 declare let paypal: any;
 
 @Component({
@@ -11,11 +13,24 @@ declare let paypal: any;
     styleUrls: ['./pay-pal-check-out.component.css']
 })
 /** PayPalCheckOut component*/
-export class PayPalCheckOutComponent implements AfterViewChecked{
+export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
   addScript: boolean = false;
   successfulPayment: boolean = false;
   price: number;
 
+
+  ngOnInit() {
+    let actualFlat$ = this.store.pipe(select(selectActualFlat));
+    actualFlat$.subscribe(flat => {
+      let result = flat.bills.find(b => b.type == BillType.CommonCharge &&
+        b.billDate.startDate.getFullYear() == new Date().getFullYear() &&
+        b.billDate.startDate.getMonth() == new Date().getMonth())
+
+      if (result) {
+        this.successfulPayment = true;
+      }
+    });
+  }
   paypalConfig = {
     env: 'sandbox',
     client: {

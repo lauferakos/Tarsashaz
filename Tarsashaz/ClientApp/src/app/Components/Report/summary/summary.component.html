@@ -4,24 +4,33 @@
       <div class="col-md-10 col-sm-6">
         víz számla:
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="waterAmount">
         {{waterAmount | currency:'HUF'}}
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!waterAmount">
+        Nincs adat
       </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-sm-6">
         villany számla:
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="electricAmount">
         {{electricAmount | currency:'HUF'}}
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!electricAmount">
+        Nincs adat
       </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-sm-6">
         fűtés számla:
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="heatingAmount">
         {{heatingAmount | currency:'HUF'}}
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!heatingAmount">
+        Nincs adat
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -29,16 +38,22 @@
       <div class="col-md-10 col-sm-6">
         <strong>Összesen:</strong>
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="fullAmount">
         <strong>{{fullAmount | currency:'HUF'}}</strong>
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!fullAmount">
+        Nincs adat
       </div>
     </div>
     <div class="row">
       <div class="col-md-10 col-sm-6">
         lakások száma:
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="flatNumber">
         {{flatNumber}} db
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!flatNumber">
+        Nincs adat
       </div>
     </div>
     <mat-divider></mat-divider>
@@ -46,8 +61,16 @@
       <div class="col-md-10 col-sm-6">
         <strong>közös költség 1 lakásra:</strong>
       </div>
-      <div class="col-md-2 col-sm-6 text-right">
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="commonCharge">
         <strong>{{commonCharge | currency:'HUF'}}</strong>
+      </div>
+      <div class="col-md-2 col-sm-6 text-right" *ngIf="!commonCharge">
+        Nincs adat
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-send-btn">
+        <button class="btn btn-danger" (click)="sendSummary()">Új hirdetmény</button>
       </div>
     </div>
   </div>

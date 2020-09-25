@@ -2,7 +2,7 @@
 <div class="container-btn">
   <a class="btn btn-success btn-sm" [routerLink]="['/announcements/new']" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">Új hirdetmény</a>
 </div>
-<div *ngFor="let a of (announcements$ | async).slice().reverse()">
+<div *ngFor="let a of announcements.slice().reverse()">
   <div class="container">
     <div class="row">
       <div class="col-md-2 col-sm-1"></div>
@@ -27,7 +27,7 @@
                 <span class="badge badge-light" *ngSwitchDefault>ismeretlen</span>
               </div>
 
-            <button class="badge badge-danger delete-btn" (click)="deleteAnnouncement()" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">Törlés</button>
+            <button class="badge badge-danger delete-btn" (click)="deleteAnnouncement(a.id)" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">Törlés</button>
             </div>
             <div class="row row-body">
               <div class="col-12">
