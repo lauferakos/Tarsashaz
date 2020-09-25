@@ -19,12 +19,10 @@ function userReducers(state, action) {
     switch (action.type) {
         case Actions.USER_LOGGED_IN_SUCCESS:
             console.log('USER_LOGGED_IN_SUCCESS');
-            return __assign(__assign({}, state), { actualUser: action.payload, firstLogin: false });
+            return __assign(__assign({}, state), { actualUser: action.payload });
         case Actions.USER_LOGGED_OUT_SUCCESS:
             console.log('USER_LOGGED_OUT_SUCCESS');
-            return __assign(__assign({}, state), { actualUser: null, firstLogin: false });
-        case Actions.USER_FIRST_LOGIN:
-            return __assign(__assign({}, state), { firstLogin: true });
+            return __assign(__assign({}, state), { actualUser: null });
         case Actions.USER_DATA_CHANGED_SUCCESS:
             console.log('USER_DATA_CHANGED_SUCCESS');
             return __assign(__assign({}, state), { actualUser: action.payload });

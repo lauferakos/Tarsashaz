@@ -5,7 +5,7 @@ import { CondominiumService } from '../../../Services/condominium.service';
 import { Condominium } from '../../../Models/condominium.model';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
+import { selectConBills } from '../../../Store/Selectors/condominium.selectors';
 
 @Component({
     selector: 'app-doughnut-chart',
@@ -23,15 +23,14 @@ export class DoughnutChartComponent implements OnInit{
 
   }
   ngOnInit() {
-    let condominium$ = this.store.pipe(select(selectActualCon));
-    condominium$.subscribe(c => this.condominium = c);
-    if (this.condominium) {
-
-      for (let bill of this.condominium.bills) {
+    let bills$ = this.store.pipe(select(selectConBills));
+    bills$.subscribe(bills => {
+      for (let bill of bills) {
         this.doughnutChartLabels.push(bill.type);
         this.doughnutChartData.push(bill.amount);
       }
-    }
+    })
+ 
   }
 
 

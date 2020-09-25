@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-md-5">
-      <div class="table-body">
+      <div class="table-body" *ngIf="bill.billDate">
         <h6>{{bill.billDate.deadline | date:'medium'}}</h6>
       </div>
     </div>

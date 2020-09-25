@@ -45,7 +45,8 @@ export class AddFlatComponent {
               token: '1561',
               id: 454,
               role: Role.resident,
-              phone: '12345'
+              phone: '12345',
+              flats:[]
             },
             destAddress: {
               postCode: 123,

@@ -4,7 +4,8 @@ import { Condominium } from '../../../Models/condominium.model';
 import { Router } from '@angular/router';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
+import { selectConBills, selectConId } from '../../../Store/Selectors/condominium.selectors';
+
 
 @Component({
     selector: 'app-report',
@@ -14,17 +15,18 @@ import { selectActualCon } from '../../../Store/Selectors/condominium.selectors'
 /** Report component*/
 export class ReportComponent implements OnInit{
   /** Report ctor */
-  condominium: Condominium;
+  bills$ = this.store.pipe(select(selectConBills));
   constructor(private connService: CondominiumService, private router: Router, private store: Store<AppState>) {
 
   }
   ngOnInit() {
-    let condominium$ = this.store.pipe(select(selectActualCon));
-    condominium$.subscribe(c => this.condominium = c);
+    
 
   }
 
-  billDetails(billId:number,connId:number) {
+  billDetails(billId: number) {
+    let connId;
+    this.store.pipe(select(selectConId)).subscribe(id => connId = id);
     this.router.navigate(['/bill/details',billId,connId]);
   }
 }

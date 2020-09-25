@@ -15,6 +15,12 @@ export function announcementReducers(state = initialAnnouncementState, action: A
         ...state,
         announcements: state.announcements.concat(action.payload)
       }
+    case Actions.ANNOUNCEMENTS_ADDED_SUCCESS:
+      console.log('ANNOUNCEMENTS_ADDED_SUCCESS');
+      return {
+        ...state,
+        announcements: state.announcements.concat(action.payload)
+      }
     default:
       return state;
   }

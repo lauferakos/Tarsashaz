@@ -3,14 +3,19 @@ import { Condominium } from '../Models/condominium.model';
 import { BillType } from '../Enums/BillType';
 import { Role } from '../Enums/Role';
 import { Observable, of as observableOf } from 'rxjs';
+import { Range } from '../Enums/Range';
+import { Priority } from '../Enums/Priority';
+import { AppState } from '../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import {selectConCommonCharge } from '../Store/Selectors/condominium.selectors';
 
 @Injectable()
 export class CondominiumService {
-    constructor() {
+  constructor(private store: Store<AppState>) {
 
   }
 
-  getCondominiumByUserId(id: number): Observable<Condominium>{
+  getCondominiumByFlatId(id: number): Observable<Condominium>{
     return observableOf({
       id: 1,
       crId: 1,
@@ -52,7 +57,8 @@ export class CondominiumService {
             token: '1561',
             id: 454,
             role: Role.cr,
-            phone: '12345'
+            phone: '12345',
+            flats:[]
           },
           destAddress: {
             postCode: 123,
@@ -111,7 +117,8 @@ export class CondominiumService {
             token: '1561',
             id: 454,
             role: Role.cr,
-            phone: '12345'
+            phone: '12345',
+            flats:[]
           },
           destAddress: {
             postCode: 123,
@@ -170,7 +177,8 @@ export class CondominiumService {
             token: '1561',
             id: 454,
             role: Role.cr,
-            phone: '12345'
+            phone: '12345',
+            flats:[]
           },
           destAddress: {
             postCode: 123,
@@ -217,39 +225,58 @@ export class CondominiumService {
             deadline: new Date('2020-11-15'),
           }
         }
-
       ],
-      commonCharge: 10000,
-      billDatas: [
+      commonCharge: 100,
+      announcements: [
         {
-          type: BillType.Water,
-          start: new Date('2020.01.01'),
-          end: new Date('2021.01.01'),
-          amounts: [
-            100000, 200000, 300000, 100000, 150000, 230000, 350000, 190000, 200000, 200000, 300000, 250000,
-          ]
+          id: 1,
+          senderId: 1,
+          senderName: "Laufer Ákos",
+          range: Range.resident,
+          date: new Date(),
+          priority: Priority.low,
+          text: "Tisztelt Lakók! \
+               A jövő héten felújítási munkálatok zajlanak a földszinten. Az okozott kellemetlenségekért elnézésüket kérjük"
         },
         {
-          type: BillType.Electric,
-          start: new Date('2020.01.01'),
-          end: new Date('2021.01.01'),
-          amounts: [
-            300000, 400000, 500000, 400000, 350000, 250000, 350000, 190000, 230000, 240000, 320000, 280000,
-          ]
+          id: 2,
+          senderId: 1,
+          senderName: "Laufer Ákos",
+          range: Range.resident,
+          date: new Date(),
+          priority: Priority.medium,
+          text: "Tisztelt Lakók! \
+               A héten lomtalanítás lesz, aki igényli,használhatja a közös tárolót, pakolás céljából. "
         },
         {
-          type: BillType.Heating,
-          start: new Date('2020.01.01'),
-          end: new Date('2021.01.01'),
-          amounts: [
-            100000, 150000, 180000, 200000, 150000, 210000, 310000, 190000, 230000, 240000, 300000, 220000,
-          ]
-        }
-      ]
+          id: 3,
+          senderId: 1,
+          senderName: "Laufer Ákos",
+          range: Range.resident,
+          date: new Date(),
+          priority: Priority.high,
+          text: "Tisztelt Lakók! \
+               A jövő hét kedden lakógyűlés lesz, a földszinti irodában. Mindenki jelenlétére számítunk!"
+        },
+        {
+          id:4,
+          senderId: 1,
+          senderName: "Laufer Ákos",
+          range: Range.resident,
+          date: new Date(),
+          priority: Priority.low,
+          text: "Tisztelt Lakók! \
+               Csőtörés keletkezett a földszinten, a hiba megoldásán dolgozunk!"
+        },
+      ],
+      problems: []
     });
   }
 
-  getCommonChargeByFlatId(flatid: number): number {
-    return 100;
+  getCommonCharge(): number {
+    let condominium$ = this.store.pipe(select(selectConCommonCharge));
+    let commonCharge: number;
+    condominium$.subscribe(c => commonCharge = c);
+    return commonCharge;
   }
 }

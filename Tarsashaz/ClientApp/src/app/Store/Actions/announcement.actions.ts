@@ -4,6 +4,8 @@ import { Announcement } from "../../Models/announcement.model";
 export const ANNOUNCEMENT_ADDED = '[ANNOUNCEMENT] Announcement added';
 export const ANNOUNCEMENT_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcement added success';
 
+export const ANNOUNCEMENTS_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcements added success';
+
 export const ANNOUNCEMENT_DELETED = '[ANNOUNCEMENT] Announcement deleted';
 export const ANNOUNCEMENT_DELETED_SUCCESS = '[ANNOUNCEMENT] Announcement deleted success';
 
@@ -19,6 +21,11 @@ export class AnnouncementAdded implements Action {
 export class AnnouncementAddedSuccess implements Action {
   public readonly type = ANNOUNCEMENT_ADDED_SUCCESS;
   constructor(public payload: Announcement) { }
+}
+
+export class AnnouncementsAddedSuccess implements Action {
+  public readonly type = ANNOUNCEMENTS_ADDED_SUCCESS;
+  constructor(public payload: Announcement[]) { }
 }
 
 export class AnnouncementDeleted implements Action {
@@ -41,4 +48,4 @@ export class GetAnnouncementsSuccess implements Action {
 }
 
 export type AnnouncementActions = AnnouncementAdded | AnnouncementAddedSuccess
-  | AnnouncementDeleted | AnnouncementDeletedSuccess | GetAnnouncements | GetAnnouncementsSuccess;
+  | AnnouncementDeleted | AnnouncementDeletedSuccess | GetAnnouncements | GetAnnouncementsSuccess | AnnouncementsAddedSuccess;

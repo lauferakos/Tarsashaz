@@ -19,6 +19,7 @@ export class NewAnnouncementComponent {
   actualUser: User;
   /** NewAnnouncement ctor */
   announcement: Announcement = {
+    id:1,
     senderId: this.actualUser ? this.actualUser.id : 0,
     senderName: this.actualUser?this.actualUser.name:'',
     date: new Date(),

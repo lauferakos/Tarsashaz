@@ -3,7 +3,6 @@ import { Action } from '@ngrx/store';
 import { User } from './../../Models/user.model';
 import { Platform } from '../../Enums/Platform';
 
-export const USER_FIRST_LOGIN = '[USER] First Login';
 export const USER_LOGGED_IN = '[USER] Logged in';
 export const USER_LOGGED_IN_SUCCESS = '[USER] Logged in Success';
 export const USER_LOGGED_OUT = '[USER] Logged out';
@@ -12,9 +11,7 @@ export const USER_DATA_CHANGED = '[USER] User data changed';
 export const USER_DATA_CHANGED_SUCCESS = '[USER] User data changed success';
 
 
-export class UserFirstLogin implements Action {
-  public readonly type = USER_FIRST_LOGIN;
-}
+
 
 export class UserLoggedIn implements Action {
   public readonly type = USER_LOGGED_IN;
@@ -44,4 +41,4 @@ export class UserDataChangedSuccess implements Action {
   public readonly type = USER_DATA_CHANGED_SUCCESS;
   constructor(public payload: User) { }
 }
-export type UserActions = UserFirstLogin | UserLoggedIn | UserLoggedInSuccess | UserLoggedOut | UserLoggedOutSuccess | UserDataChanged | UserDataChangedSuccess;
+export type UserActions =  UserLoggedIn | UserLoggedInSuccess | UserLoggedOut | UserLoggedOutSuccess | UserDataChanged | UserDataChangedSuccess;

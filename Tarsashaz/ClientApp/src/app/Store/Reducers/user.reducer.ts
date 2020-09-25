@@ -11,19 +11,12 @@ export function userReducers (state = initialUserState, action: Actions.UserActi
       return {
         ...state,
         actualUser: action.payload,
-        firstLogin: false
       };
     case Actions.USER_LOGGED_OUT_SUCCESS:
       console.log('USER_LOGGED_OUT_SUCCESS');
       return {
         ...state,
-        actualUser: null,
-        firstLogin: false
-      };
-    case Actions.USER_FIRST_LOGIN:
-      return {
-        ...state,
-        firstLogin: true
+        actualUser: null
       };
     case Actions.USER_DATA_CHANGED_SUCCESS:
       console.log('USER_DATA_CHANGED_SUCCESS');

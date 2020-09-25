@@ -23,6 +23,9 @@ function announcementReducers(state, action) {
         case Actions.ANNOUNCEMENT_ADDED_SUCCESS:
             console.log('ANNOUNCEMENT_ADDED_SUCCESS');
             return __assign(__assign({}, state), { announcements: state.announcements.concat(action.payload) });
+        case Actions.ANNOUNCEMENTS_ADDED_SUCCESS:
+            console.log('ANNOUNCEMENTS_ADDED_SUCCESS');
+            return __assign(__assign({}, state), { announcements: state.announcements.concat(action.payload) });
         default:
             return state;
     }

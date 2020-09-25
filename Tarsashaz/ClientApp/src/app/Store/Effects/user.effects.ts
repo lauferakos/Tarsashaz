@@ -3,7 +3,7 @@ import { Effect, ofType, Actions } from '@ngrx/effects';
 import { Store, select } from '@ngrx/store';
 import { of } from 'rxjs';
 import { AppState } from '../States/app.state';
-import { UserService} from '../../Services/user.service';
+import { UserService, UserLoginStatus} from '../../Services/user.service';
 import { UserLoggedIn, USER_LOGGED_IN, UserLoggedInSuccess, UserLoggedOut, USER_LOGGED_OUT, UserLoggedOutSuccess, UserDataChanged, USER_DATA_CHANGED, UserDataChangedSuccess } from '../Actions/user.actions';
 
 import { switchMap } from 'rxjs/operators';
@@ -12,22 +12,28 @@ import { Router } from '@angular/router';
 import { Role } from '../../Enums/Role';
 import { User } from '../../Models/user.model';
 
-
+import * as FlatActions from '../Actions/flat.actions';
 @Injectable()
 export class UserEffects {
   @Effect()
   userLoggedIn$ = this.actions$.pipe(
     ofType<UserLoggedIn>(USER_LOGGED_IN),
     switchMap((u: UserLoggedIn) => this.userService.signIn(u.payload)),
-    switchMap((user: SocialUser) => {
-      if (user) {
-        console.log(user);
-        this.userService.putUserToSessionStorage(user);
+    switchMap((user: SocialUser) => this.userService.login(user)),
+    switchMap((result: UserLoginStatus) => {
+      if (result.firstLogin) {
         this.userService.firstLogin();
-        this.userService.loginAsCR();
         this.router.navigate(['/firstlogin']);
-        return of(new UserLoggedInSuccess({ name: user.name, email: user.email, token: user.token, id: +user.id, role: Role.cr, phone:'' }))
       }
+      else {
+        this.router.navigate(['/']);
+      }
+      if (result.user.flats) {
+        this.store.dispatch(new FlatActions.FlatsAddedSuccess(result.user.flats));
+      }
+      console.log('UserLoginStatus', result);
+      return of(new UserLoggedInSuccess(result.user)
+      )
     })
   );
 

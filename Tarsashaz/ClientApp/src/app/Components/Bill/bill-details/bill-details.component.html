@@ -16,14 +16,14 @@
       <h6>{{bill.destAddress.street}} {{bill.destAddress.number}}</h6>
       <h6>{{bill.destAddress.postCode}}</h6>
     </div>
-    <div class="col-md-6 col-sm-12 col-provider-info">
+    <div class="col-md-6 col-sm-12 col-provider-info" *ngIf="bill.provider">
       <h6>{{bill.provider.address.postCode}}</h6>
       <h6>{{bill.provider.address.city}} {{bill.provider.address.street}} {{bill.provider.address.number}}</h6>
       <h6>{{bill.provider.accountNum}}</h6>
       <h6>Kelt: {{bill.billDate.startDate | date:'medium'}}</h6>
     </div>
   </div>
-  <div class="row row-pay-info-header">
+  <div class="row row-pay-info-header" *ngIf="bill.billDate">
     <div class="col-sm-12 col-md-6">
       <div class="row row-pay-info-body">
         <div class="col-sm-12">

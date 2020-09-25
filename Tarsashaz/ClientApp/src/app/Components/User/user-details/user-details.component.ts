@@ -26,7 +26,8 @@ export class UserDetailsComponent implements OnInit{
     name: '',
     email: '',
     role: null,
-    phone:''
+    phone: '',
+    flats:[],
   };
 
   ngOnInit() {
@@ -38,7 +39,8 @@ export class UserDetailsComponent implements OnInit{
           name: res.name,
           email: res.email,
           role: res.role,
-          phone: res.phone
+          phone: res.phone,
+          flats: res.flats
         }
       }
     });

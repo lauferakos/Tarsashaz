@@ -5,6 +5,8 @@ import { Priority } from '../Enums/Priority';
 import { Observable, of as observableOf } from 'rxjs';
 import { AppState } from '../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
+import { Condominium } from '../Models/condominium.model';
+import * as CondominiumActions from '../Store/Actions/condominium.actions';
 import { selectAnnouncements } from '../Store/Selectors/announcement.selectors';
 
 @Injectable()
@@ -16,39 +18,20 @@ export class AnnouncementService {
 
   getAnnouncements(): Observable<Announcement[]>{
     this.store.pipe(select(selectAnnouncements)).subscribe(res => this.announcements = res);
-    console.log(this.announcements);
     if (this.announcements.length > 0)
       return observableOf(this.announcements);
     else
     return observableOf([
       {
+        id:1,
         senderId: 1,
         senderName: "Laufer Ákos",
         range: Range.resident,
         date: new Date(),
         priority: Priority.low,
         text: "Tisztelt Lakók! \
-               A jövő héten felújítási munkálatok zajlanak a földszinten. Az okozott kellemetlenségekért elnézésüket kérjük"
-      },
-      {
-        senderId: 1,
-        senderName: "Laufer Ákos",
-        range: Range.resident,
-        date: new Date(),
-        priority: Priority.medium,
-        text: "Tisztelt Lakók! \
-               A héten lomtalanítás lesz, aki igényli,használhatja a közös tárolót, pakolás céljából. "
-      },
-      {
-        senderId: 1,
-        senderName: "Laufer Ákos",
-        range: Range.resident,
-        date: new Date(),
-        priority: Priority.high,
-        text: "Tisztelt Lakók! \
-               A jövő hét kedden lakógyűlés lesz, a földszinti irodában. Mindenki jelenlétére számítunk!"
-      },
-
+               A társasházhoz jelenleg nem érhető el hirdetmény!"
+      }
     ]);
   }
 

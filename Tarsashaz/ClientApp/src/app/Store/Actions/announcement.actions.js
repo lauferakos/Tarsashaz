@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetAnnouncementsSuccess = exports.GetAnnouncements = exports.AnnouncementDeletedSuccess = exports.AnnouncementDeleted = exports.AnnouncementAddedSuccess = exports.AnnouncementAdded = exports.GET_ANNOUNCEMENTS_SUCCESS = exports.GET_ANNOUNCEMENTS = exports.ANNOUNCEMENT_DELETED_SUCCESS = exports.ANNOUNCEMENT_DELETED = exports.ANNOUNCEMENT_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED = void 0;
+exports.GetAnnouncementsSuccess = exports.GetAnnouncements = exports.AnnouncementDeletedSuccess = exports.AnnouncementDeleted = exports.AnnouncementsAddedSuccess = exports.AnnouncementAddedSuccess = exports.AnnouncementAdded = exports.GET_ANNOUNCEMENTS_SUCCESS = exports.GET_ANNOUNCEMENTS = exports.ANNOUNCEMENT_DELETED_SUCCESS = exports.ANNOUNCEMENT_DELETED = exports.ANNOUNCEMENTS_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED = void 0;
 exports.ANNOUNCEMENT_ADDED = '[ANNOUNCEMENT] Announcement added';
 exports.ANNOUNCEMENT_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcement added success';
+exports.ANNOUNCEMENTS_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcements added success';
 exports.ANNOUNCEMENT_DELETED = '[ANNOUNCEMENT] Announcement deleted';
 exports.ANNOUNCEMENT_DELETED_SUCCESS = '[ANNOUNCEMENT] Announcement deleted success';
 exports.GET_ANNOUNCEMENTS = '[ANNOUNCEMENT] Get announcements';
@@ -23,6 +24,14 @@ var AnnouncementAddedSuccess = /** @class */ (function () {
     return AnnouncementAddedSuccess;
 }());
 exports.AnnouncementAddedSuccess = AnnouncementAddedSuccess;
+var AnnouncementsAddedSuccess = /** @class */ (function () {
+    function AnnouncementsAddedSuccess(payload) {
+        this.payload = payload;
+        this.type = exports.ANNOUNCEMENTS_ADDED_SUCCESS;
+    }
+    return AnnouncementsAddedSuccess;
+}());
+exports.AnnouncementsAddedSuccess = AnnouncementsAddedSuccess;
 var AnnouncementDeleted = /** @class */ (function () {
     function AnnouncementDeleted(payload) {
         this.payload = payload;

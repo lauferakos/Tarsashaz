@@ -9,7 +9,3 @@ export const selectActualUser = createSelector(
   (state: UserState) => state.actualUser
 );
 
-export const selectFirstLogin = createSelector(
-  selectUser,
-  (state: UserState) => state.firstLogin
-);

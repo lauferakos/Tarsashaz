@@ -3,12 +3,26 @@ import * as Actions from './../Actions/flat.actions'
 
 export function flatReducers(state = initialFlatState, action: Actions.FlatActions): FlatState {
   switch (action.type) {
+    case Actions.GET_FLATS_SUCCESS:
+      console.log('GET_FLATS_SUCCESS')
+      return {
+        ...state,
+        flats: action.payload,
+        actualFlat: action.payload[0]
+      }
     case Actions.FLAT_ADDED_SUCCESS:
       console.log('FLAT_ADDED_SUCCESS');
       return {
         ...state,
         flats: state.flats.concat(action.payload),
         actualFlat: action.payload
+      }
+    case Actions.FLATS_ADDED_SUCCESS:
+      console.log('FLATS_ADDED_SUCCESS');
+      return {
+        ...state,
+        flats: state.flats.concat(action.payload),
+        actualFlat: action.payload[0]
       }
     case Actions.ACTUAL_FLAT_CHANGED_SUCCESS:
       console.log('ACTUAL_FLAT_CHANGED_SUCCESS');

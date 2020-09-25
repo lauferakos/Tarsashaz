@@ -28,9 +28,7 @@ export class AnnouncementEffects {
     ofType<AnnouncementAdded>(ANNOUNCEMENT_ADDED),
     switchMap((a: AnnouncementAdded) => this.annService.addAnnouncement(a.payload)),
     switchMap((res: Announcement) => {
-      if (res) {
         return of(new AnnouncementAddedSuccess(res));
-      }
     })
   );
 

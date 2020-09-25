@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../../Services/user.service';
 import { AppState } from '../../../Store/States/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { User } from '../../../Models/user.model';
 import * as UserActions from '../../../Store/Actions/user.actions';
 import { Platform } from '../../../Enums/Platform';
 import { Router } from '@angular/router';
-import { GetCondominium } from '../../../Store/Actions/condominium.actions';
+import * as CondominiumActions from '../../../Store/Actions/condominium.actions';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
+import * as FlatActions from '../../../Store/Actions/flat.actions';
 
 @Component({
     selector: 'app-sign-in',
@@ -24,8 +26,9 @@ export class SignInComponent {
   async socialSignIn(socialPlatform: string) {
     console.log('Dispatch UserLoggedIn')
     let platform = socialPlatform == Platform.Google ? Platform.Google : Platform.Facebook;
+    
     this.store.dispatch(new UserActions.UserLoggedIn(platform));
-    this.store.dispatch(new GetCondominium(1));
+    this.store.dispatch(new CondominiumActions.GetCondominium(1));
   }
 
 }

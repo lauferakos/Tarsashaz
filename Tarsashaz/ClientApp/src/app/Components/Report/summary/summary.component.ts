@@ -4,7 +4,8 @@ import { Condominium } from '../../../Models/condominium.model';
 import { BillType } from '../../../Enums/BillType';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
+import { selectConBills, selectConFlats } from '../../../Store/Selectors/condominium.selectors';
+
 
 @Component({
     selector: 'app-summary',
@@ -13,7 +14,6 @@ import { selectActualCon } from '../../../Store/Selectors/condominium.selectors'
 })
 /** Summary component*/
 export class SummaryComponent implements OnInit{
-  condominium: Condominium;
   waterAmount: number;
   heatingAmount: number;
   electricAmount: number;
@@ -26,10 +26,10 @@ export class SummaryComponent implements OnInit{
   }
 
   ngOnInit() {
-    let condominium$ = this.store.pipe(select(selectActualCon));
-    condominium$.subscribe(c => this.condominium = c);
-    if (this.condominium) {
-      for (let bill of this.condominium.bills) {
+    let bills$ = this.store.pipe(select(selectConBills));
+    let flats$ = this.store.pipe(select(selectConFlats));
+    bills$.subscribe(bills => {
+      for (let bill of bills) {
         switch (bill.type) {
           case BillType.Electric:
             this.electricAmount = bill.amount;
@@ -44,14 +44,14 @@ export class SummaryComponent implements OnInit{
             break;
         }
       }
-      this.fullAmount = this.electricAmount + this.heatingAmount + this.waterAmount;
-      this.flatNumber = this.condominium.flats.length;
-      if (this.flatNumber != 0) {
-        this.commonCharge = this.fullAmount / this.flatNumber;
-      }
-      else {
-        this.commonCharge = 0;
-      }
+    });
+    flats$.subscribe(flats => this.flatNumber = flats.length);
+    this.fullAmount = this.electricAmount + this.heatingAmount + this.waterAmount;
+    if (this.flatNumber != 0) {
+      this.commonCharge = this.fullAmount / this.flatNumber;
+    }
+    else {
+      this.commonCharge = 0;
+    }
     }
   }
-}

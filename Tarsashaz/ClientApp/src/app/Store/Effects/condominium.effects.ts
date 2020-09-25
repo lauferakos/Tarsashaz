@@ -7,15 +7,19 @@ import { GET_CONDOMINIUM, GetCondominium, GetCondominiumSuccess } from "../Actio
 import { switchMap } from "rxjs/operators";
 import { Condominium } from "../../Models/condominium.model";
 import { of } from "rxjs";
+import * as AnnouncementActions from '../Actions/announcement.actions';
 
 @Injectable()
 export class CondominiumEffects {
   @Effect()
   getCondominium$ = this.actions$.pipe(
     ofType<GetCondominium>(GET_CONDOMINIUM),
-    switchMap((c: GetCondominium) => this.conService.getCondominiumByUserId(c.payload)),
+    switchMap((c: GetCondominium) => this.conService.getCondominiumByFlatId(c.payload)),
     switchMap((conn: Condominium) => {
       if (conn) {
+        if (conn.announcements) {
+          this.store.dispatch(new AnnouncementActions.AnnouncementsAddedSuccess(conn.announcements));
+        }
         return of(new GetCondominiumSuccess(conn));
       }
     })

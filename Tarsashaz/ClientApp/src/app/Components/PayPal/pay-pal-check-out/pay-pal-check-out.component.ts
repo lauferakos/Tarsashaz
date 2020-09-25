@@ -1,5 +1,8 @@
 import { Component, AfterViewChecked } from '@angular/core';
 import { CondominiumService } from '../../../Services/condominium.service';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../Store/States/app.state';
+import { FlatService } from '../../../Services/flat.service';
 declare let paypal: any;
 
 @Component({
@@ -11,7 +14,7 @@ declare let paypal: any;
 export class PayPalCheckOutComponent implements AfterViewChecked{
   addScript: boolean = false;
   successfulPayment: boolean = false;
-  price: number = 10;
+  price: number;
 
   paypalConfig = {
     env: 'sandbox',
@@ -31,12 +34,13 @@ export class PayPalCheckOutComponent implements AfterViewChecked{
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
         this.successfulPayment = true;
+        this.flatService.addCommonChargeBillToActualFlat(this.price);
       })
     }
   };
   /** PayPalCheckOut ctor */
-  constructor(private conService: CondominiumService) {
-    this.price = this.conService.getCommonChargeByFlatId(1);
+  constructor(private conService: CondominiumService, private store: Store<AppState>, private flatService: FlatService) {
+    this.price = this.conService.getCommonCharge();
   }
 
   ngAfterViewChecked(): void {

@@ -19,7 +19,10 @@ function condominiumReducers(state, action) {
     switch (action.type) {
         case Actions.GET_CONDOMINIUM_SUCCESS:
             console.log('GET_CONDOMINIUM_SUCCESS');
-            return __assign(__assign({}, state), { actualCon: action.payload });
+            return __assign(__assign({}, state), { id: action.payload.id, crId: action.payload.crId, commonCharge: action.payload.commonCharge, bills: action.payload.bills, flats: action.payload.flats, address: action.payload.address });
+        case Actions.ACTUAL_CON_CHANGED:
+            console.log('ACTUAL_CON_CHANGED_SUCCESS');
+            return __assign(__assign({}, state), { id: action.payload.id, crId: action.payload.crId, commonCharge: action.payload.commonCharge, bills: action.payload.bills, flats: action.payload.flats, address: action.payload.address });
         default:
             return state;
     }

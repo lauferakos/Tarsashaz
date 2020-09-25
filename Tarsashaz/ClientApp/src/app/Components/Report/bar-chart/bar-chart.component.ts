@@ -6,7 +6,6 @@ import { Label } from 'ng2-charts';
 import { BillType } from '../../../Enums/BillType';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectActualCon } from '../../../Store/Selectors/condominium.selectors';
 
 
 @Component({
@@ -52,7 +51,7 @@ export class BarChartComponent implements OnInit{
   heatingDatas: number[];
   electricDatas: number[];
   ngOnInit() {
-    let condominium$ = this.store.pipe(select(selectActualCon));
+    /*let condominium$ = this.store.pipe(select(selectActualCon));
     condominium$.subscribe(c => this.condominium = c);
     if (this.condominium) {
 
@@ -78,6 +77,6 @@ export class BarChartComponent implements OnInit{
       this.barChartData.push({ data: this.waterDatas, label: 'Víz számlák' });
       this.barChartData.push({ data: this.heatingDatas, label: 'Fűtés számlák' });
       this.barChartData.push({ data: this.electricDatas, label: 'Áram számlák' })
-    }
+    }*/
   }
 }

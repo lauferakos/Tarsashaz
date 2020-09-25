@@ -6,10 +6,10 @@ import { AnnouncementState, initialAnnouncementState } from './announcement.stat
 import { CondominiumState, initialConState } from './condominium.state';
 
 export interface AppState {
-  user: UserState;
-  flat: FlatState;
-  announcement: AnnouncementState;
-  condominium: CondominiumState
+  user: UserState; //Belépett User
+  flat: FlatState; // Belépett user lakásai +aktuális
+  announcement: AnnouncementState; //Aktuális lakás hirdetményei
+  condominium: CondominiumState //Aktuális lakáshoz tartozó társasház
 }
 
 export const initialAppState: AppState ={

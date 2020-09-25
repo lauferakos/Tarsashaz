@@ -27,7 +27,8 @@ export class FirstLoginFormComponent implements OnInit{
     name: '',
     email: '',
     role: null,
-    phone: ''
+    phone: '',
+    flats:[]
   };
   actualUser$ = this.store.pipe(select(selectActualUser));
     /** FirstLoginForm ctor */
@@ -57,7 +58,8 @@ export class FirstLoginFormComponent implements OnInit{
               token: '1561',
               id: 454,
               role: Role.resident,
-              phone: '12345'
+              phone: '12345',
+              flats:[]
             },
             destAddress: {
               postCode: 123,
@@ -148,7 +150,8 @@ export class FirstLoginFormComponent implements OnInit{
           name: res.name,
           email: res.email,
           role: res.role,
-          phone: res.phone
+          phone: res.phone,
+          flats: res.flats
         }
       }
     });

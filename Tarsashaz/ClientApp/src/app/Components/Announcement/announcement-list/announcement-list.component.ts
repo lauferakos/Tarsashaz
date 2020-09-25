@@ -8,13 +8,14 @@ import { selectAnnouncements } from '../../../Store/Selectors/announcement.selec
 import * as AnnouncementActions from '../../../Store/Actions/announcement.actions';
 import { switchMap } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-announcement-list',
   templateUrl: './announcement-list.component.html',
   styleUrls: ['./announcement-list.component.css']
 })
 /** AnnouncementList component*/
-export class AnnouncementListComponent implements OnInit {
+export class AnnouncementListComponent{
   actualUser$ = this.store.pipe(select(selectActualUser));
   announcements$ = this.store.pipe(select(selectAnnouncements));
 /** AnnouncementList ctor */
@@ -24,10 +25,7 @@ export class AnnouncementListComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    console.log('Dispatched GetAnnouncements')
-    this.store.dispatch(new AnnouncementActions.GetAnnouncements());
-  }
+
 
   deleteAnnouncement() {
     console.log('Hír törölve');
