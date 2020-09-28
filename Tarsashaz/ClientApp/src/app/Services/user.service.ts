@@ -31,7 +31,7 @@ export class UserService {
   login(user: SocialUser): Observable<UserLoginStatus> {
     let result: Observable<UserLoginStatus> = observableOf({
       //Ha DB-ben van akkor false, ha nincs akkor true
-      firstLogin: false,
+      firstLogin: true,
       user: {
         name: user.name,
         id: +user.id,
