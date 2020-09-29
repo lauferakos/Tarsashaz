@@ -54,8 +54,8 @@ export class ReportComponent implements OnInit{
     this.bills$.subscribe(bills => this.bills = bills);
   }
   actualBillsFilter() {
-    this.bills = this.bills.filter(b => b.billDate.payoffStart.getFullYear() == new Date().getFullYear() &&
-      b.billDate.payoffStart.getMonth() == new Date().getMonth()
+    this.bills = this.bills.filter(b => b.billDate.deadline.getFullYear() == new Date().getFullYear() &&
+      b.billDate.deadline.getMonth() == (new Date().getMonth() + 1 )
       );
   }
 }

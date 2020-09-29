@@ -28,7 +28,26 @@ namespace Tarsashaz
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            //services.AddDbContext<DAL.DbContexts.CondominiumDbContext>(options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TarsashazDB;Trusted_Connection=True;"));
+            services.AddDbContext<DAL.DbContexts.CondominiumDbContext>
+                (options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TarsashazDB;Trusted_Connection=True;"));
+            services.AddScoped<DAL.IRepositories.ICondominiumAddressRepository, DAL.Repositories.CondominiumAddressRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatAddressRepository, DAL.Repositories.FlatAddressRepository>();
+            services.AddScoped<DAL.IRepositories.IProviderAddressRepository, DAL.Repositories.ProviderAddressRepository>();
+            services.AddScoped<DAL.IRepositories.ICondominiumBillRepository, DAL.Repositories.CondominiumBillRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatBillRepository, DAL.Repositories.FlatBillRepository>();
+            services.AddScoped<DAL.IRepositories.IBillDateRepository, DAL.Repositories.BillDateRepository>();
+            services.AddScoped<DAL.IRepositories.IProviderRepository, DAL.Repositories.ProviderRepository>();
+            services.AddScoped<DAL.IRepositories.IAnnouncementRepository, DAL.Repositories.AnnouncementRepository>();
+            services.AddScoped<DAL.IRepositories.ICondominiumRepository, DAL.Repositories.CondominiumRepository>();
+            services.AddScoped<DAL.IRepositories.IProblemRepository, DAL.Repositories.ProblemRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatRepository, DAL.Repositories.FlatRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatBalanceRepository, DAL.Repositories.FlatBalanceRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatDataRepository, DAL.Repositories.FlatDataRepository>();
+            services.AddScoped<DAL.IRepositories.IBillPictureRepository, DAL.Repositories.BillPictureRepository>();
+            services.AddScoped<DAL.IRepositories.IFlatPictureRepository, DAL.Repositories.FlatPictureRepository>();
+            services.AddScoped<DAL.IRepositories.IProblemPictureRepository, DAL.Repositories.ProblemPictureRepository>();
+            services.AddScoped<DAL.IRepositories.IUserRepository, DAL.Repositories.UserRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

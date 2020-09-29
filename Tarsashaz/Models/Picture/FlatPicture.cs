@@ -8,7 +8,7 @@ namespace Tarsashaz.Models.Pictures
 {
     public class FlatPicture:Picture
     {
-        public int FlatId { get; set; }
-        public Flat Flat { get; set; }
+        public int? FlatDataId { get; set; }
+        public FlatData FlatData { get; set; }
     }
 }

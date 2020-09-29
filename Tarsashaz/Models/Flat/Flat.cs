@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.Models.Addresses;
@@ -11,6 +12,7 @@ namespace Tarsashaz.Models.Flats
 {
     public class Flat
     {
+        [Key]
         public int Id { get; set; }
         public int AddressId { get; set; }
         public FlatAddress Address { get; set; }

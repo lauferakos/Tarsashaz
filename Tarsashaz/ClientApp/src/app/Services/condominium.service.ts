@@ -102,7 +102,7 @@ export class CondominiumService {
             startDate: new Date('2020-09-15'),
             payoffStart: new Date('2020-09-15'),
             payoffEnd: new Date('2020-10-15'),
-            deadline: new Date('2020-11-15'),
+            deadline: new Date('2020-10-15'),
           }
         },
         {
@@ -162,7 +162,7 @@ export class CondominiumService {
             startDate: new Date('2020-09-15'),
             payoffStart: new Date('2020-09-15'),
             payoffEnd: new Date('2020-10-15'),
-            deadline: new Date('2020-11-15'),
+            deadline: new Date('2020-10-15'),
           }
         },
         {
@@ -222,7 +222,7 @@ export class CondominiumService {
             startDate: new Date('2020-09-15'),
             payoffStart: new Date('2020-09-15'),
             payoffEnd: new Date('2020-10-15'),
-            deadline: new Date('2020-11-15'),
+            deadline: new Date('2020-10-15'),
           }
         },
         {
@@ -279,10 +279,10 @@ export class CondominiumService {
             accountNum: 1454431154487,
           },
           billDate: {
-            startDate: new Date('2020-08-15'),
-            payoffStart: new Date('2020-08-15'),
-            payoffEnd: new Date('2020-09-15'),
-            deadline: new Date('2020-10-15'),
+            startDate: new Date('2019-08-15'),
+            payoffStart: new Date('2019-08-15'),
+            payoffEnd: new Date('2019-09-15'),
+            deadline: new Date('2019-10-15'),
           }
         },
         {
@@ -339,10 +339,10 @@ export class CondominiumService {
             accountNum: 1454431154487,
           },
           billDate: {
-            startDate: new Date('2020-08-15'),
-            payoffStart: new Date('2020-08-15'),
-            payoffEnd: new Date('2020-09-15'),
-            deadline: new Date('2020-10-15'),
+            startDate: new Date('2018-08-15'),
+            payoffStart: new Date('2018-08-15'),
+            payoffEnd: new Date('2018-09-15'),
+            deadline: new Date('2018-10-15'),
           }
         },
         {
@@ -399,10 +399,10 @@ export class CondominiumService {
             accountNum: 1454431154487,
           },
           billDate: {
-            startDate: new Date('2020-08-15'),
-            payoffStart: new Date('2020-08-15'),
-            payoffEnd: new Date('2020-09-15'),
-            deadline: new Date('2020-10-15'),
+            startDate: new Date('2017-08-15'),
+            payoffStart: new Date('2017-08-15'),
+            payoffEnd: new Date('2017-09-15'),
+            deadline: new Date('2017-10-15'),
           }
         }
       ],

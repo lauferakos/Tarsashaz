@@ -8,7 +8,7 @@ namespace Tarsashaz.Models.Pictures
 {
     public class ProblemPicture:Picture
     {
-        public int ProblemId { get; set; }
+        public int? ProblemId { get; set; }
         public Problem Problem { get; set; }
     }
 }
