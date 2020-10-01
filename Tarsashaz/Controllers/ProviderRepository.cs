@@ -4,42 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
-using Tarsashaz.Models.Addresses;
-using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Bills;
 
 namespace Tarsashaz.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CondominiumController : ControllerBase
+    public class ProviderRepository : ControllerBase
     {
-        private readonly ICondominiumRepository repository;
-
-        public CondominiumController(ICondominiumRepository _repository)
+        private readonly IProviderRepository repository;
+        public ProviderRepository(IProviderRepository _repository)
         {
             repository = _repository;
         }
 
         [HttpGet("{id}")]
-        public Condominium Find(int id)
+        public Provider Find(int id)
         {
             return repository.Find(id);
         }
 
         [HttpPost]
-        public Condominium Insert([FromBody] Condominium c)
+        public Provider Insert([FromBody] Provider p)
         {
-            return repository.Insert(c);
+            return repository.Insert(p);
         }
 
         [HttpPut("{id}")]
-        public Condominium Update(int id, [FromBody] Condominium c)
+        public Provider Update(int id, [FromBody] Provider p)
         {
-            return repository.Update(c, id);
+            return repository.Update(p, id);
         }
 
         [HttpDelete("{id}")]
-        public Condominium Delete(int id)
+        public Provider Delete(int id)
         {
             return repository.Delete(id);
         }

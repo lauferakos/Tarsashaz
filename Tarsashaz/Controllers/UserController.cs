@@ -12,17 +12,35 @@ namespace Tarsashaz.Controllers
     [Route("[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository userRepository;
+        private readonly IUserRepository repository;
 
-        public UserController(IUserRepository ur)
+        public UserController(IUserRepository _repository)
         {
-            userRepository = ur;
+            repository = _repository;
         }
 
         [HttpGet("users/{id}")]
         public User FindUser(int id)
         {
-            return userRepository.Find(id);
+            return repository.Find(id);
+        }
+
+        [HttpPost]
+        public User Insert([FromBody] User u)
+        {
+            return repository.Insert(u);
+        }
+
+        [HttpPut("{id}")]
+        public User Update(int id, [FromBody] User u)
+        {
+            return repository.Update(u, id);
+        }
+
+        [HttpDelete("{id}")]
+        public User Delete(int id)
+        {
+            return repository.Delete(id);
         }
     }
 }

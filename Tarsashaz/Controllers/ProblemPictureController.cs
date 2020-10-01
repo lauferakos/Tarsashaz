@@ -4,42 +4,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
-using Tarsashaz.Models.Addresses;
-using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Pictures;
 
 namespace Tarsashaz.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CondominiumController : ControllerBase
+    public class ProblemPictureController : ControllerBase
     {
-        private readonly ICondominiumRepository repository;
-
-        public CondominiumController(ICondominiumRepository _repository)
+        private readonly IProblemPictureRepository repository;
+        public ProblemPictureController(IProblemPictureRepository _repository)
         {
             repository = _repository;
         }
 
         [HttpGet("{id}")]
-        public Condominium Find(int id)
+        public ProblemPicture Find(int id)
         {
             return repository.Find(id);
         }
 
         [HttpPost]
-        public Condominium Insert([FromBody] Condominium c)
+        public ProblemPicture Insert([FromBody] ProblemPicture pp)
         {
-            return repository.Insert(c);
+            return repository.Insert(pp);
         }
 
         [HttpPut("{id}")]
-        public Condominium Update(int id, [FromBody] Condominium c)
+        public ProblemPicture Update(int id, [FromBody] ProblemPicture pp)
         {
-            return repository.Update(c, id);
+            return repository.Update(pp, id);
         }
 
         [HttpDelete("{id}")]
-        public Condominium Delete(int id)
+        public ProblemPicture Delete(int id)
         {
             return repository.Delete(id);
         }

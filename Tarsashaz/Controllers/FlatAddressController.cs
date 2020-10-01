@@ -5,41 +5,39 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
 using Tarsashaz.Models.Addresses;
-using Tarsashaz.Models.Condominiums;
 
 namespace Tarsashaz.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CondominiumController : ControllerBase
+    public class FlatAddressController : ControllerBase
     {
-        private readonly ICondominiumRepository repository;
-
-        public CondominiumController(ICondominiumRepository _repository)
+        private readonly IFlatAddressRepository repository;
+        public FlatAddressController(IFlatAddressRepository _repository)
         {
             repository = _repository;
         }
 
         [HttpGet("{id}")]
-        public Condominium Find(int id)
+        public FlatAddress Find(int id)
         {
             return repository.Find(id);
         }
 
         [HttpPost]
-        public Condominium Insert([FromBody] Condominium c)
+        public FlatAddress Insert([FromBody] FlatAddress fa)
         {
-            return repository.Insert(c);
+            return repository.Insert(fa);
         }
 
         [HttpPut("{id}")]
-        public Condominium Update(int id, [FromBody] Condominium c)
+        public FlatAddress Update(int id, [FromBody] FlatAddress fa)
         {
-            return repository.Update(c, id);
+            return repository.Update(fa, id);
         }
 
         [HttpDelete("{id}")]
-        public Condominium Delete(int id)
+        public FlatAddress Delete(int id)
         {
             return repository.Delete(id);
         }

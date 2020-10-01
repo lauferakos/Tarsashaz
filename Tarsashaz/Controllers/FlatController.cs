@@ -13,41 +13,36 @@ namespace Tarsashaz.Controllers
     [Route("[controller]")]
     public class FlatController : ControllerBase
     {
-        private readonly IFlatRepository flatRepository;
-        private readonly IFlatDataRepository flatDataRepository;
-        private readonly IFlatBalanceRepository flatBalanceRepository;
-        private readonly IFlatAddressRepository flatAddressRepository;
+        private readonly IFlatRepository repository;
 
-        public FlatController (IFlatRepository fr, IFlatDataRepository fdr, IFlatBalanceRepository fbr, IFlatAddressRepository far)
+
+        public FlatController (IFlatRepository _repository)
         {
-            flatRepository = fr;
-            flatDataRepository = fdr;
-            flatBalanceRepository = fbr;
-            flatAddressRepository = far;
+            repository = _repository;
         }
 
-        [HttpGet("flats/{id}")]
-        public Flat FindFlat(int id)
+        [HttpGet("{id}")]
+        public Flat Find(int id)
         {
-            return flatRepository.Find(id);
+            return repository.Find(id);
         }
 
-        [HttpGet("flatdatas/{id}")]
-        public FlatData FindFlatData(int id)
+        [HttpPost]
+        public Flat Insert([FromBody] Flat f)
         {
-            return flatDataRepository.Find(id);
+            return repository.Insert(f);
         }
 
-        [HttpGet("flatbalances/{id}")]
-        public FlatBalance FindFlatBalance(int id)
+        [HttpPut("{id}")]
+        public Flat Update(int id, [FromBody] Flat f)
         {
-            return flatBalanceRepository.Find(id);
+            return repository.Update(f, id);
         }
 
-        [HttpGet("flataddresses/{id}")]
-        public FlatAddress FindFlatAddress(int id)
+        [HttpDelete("{id}")]
+        public Flat Delete(int id)
         {
-            return flatAddressRepository.Find(id);
+            return repository.Delete(id);
         }
     }
 }

@@ -4,42 +4,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
-using Tarsashaz.Models.Addresses;
-using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Flats;
 
 namespace Tarsashaz.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CondominiumController : ControllerBase
+    public class FlatBalanceController : ControllerBase
     {
-        private readonly ICondominiumRepository repository;
+        private readonly IFlatBalanceRepository repository;
 
-        public CondominiumController(ICondominiumRepository _repository)
+        public FlatBalanceController(IFlatBalanceRepository _repository)
         {
             repository = _repository;
         }
 
         [HttpGet("{id}")]
-        public Condominium Find(int id)
+        public FlatBalance Find(int id)
         {
             return repository.Find(id);
         }
 
         [HttpPost]
-        public Condominium Insert([FromBody] Condominium c)
+        public FlatBalance Insert([FromBody] FlatBalance fb)
         {
-            return repository.Insert(c);
+            return repository.Insert(fb);
         }
 
         [HttpPut("{id}")]
-        public Condominium Update(int id, [FromBody] Condominium c)
+        public FlatBalance Update(int id, [FromBody] FlatBalance fb)
         {
-            return repository.Update(c, id);
+            return repository.Update(fb, id);
         }
 
         [HttpDelete("{id}")]
-        public Condominium Delete(int id)
+        public FlatBalance Delete(int id)
         {
             return repository.Delete(id);
         }
