@@ -24,11 +24,8 @@ export class SignInComponent {
 
   
   async socialSignIn(socialPlatform: string) {
-    console.log('Dispatch UserLoggedIn')
     let platform = socialPlatform == Platform.Google ? Platform.Google : Platform.Facebook;
-    
     this.store.dispatch(new UserActions.UserLoggedIn(platform));
-    this.store.dispatch(new CondominiumActions.GetCondominium(1));
   }
 
 }

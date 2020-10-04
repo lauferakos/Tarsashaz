@@ -15,7 +15,6 @@ import * as UserActions from '../../../Store/Actions/user.actions';
 export class SignOutComponent {
     /** SignOut ctor */
   constructor(private store: Store<AppState>) {
-    console.log('Dispatch UserLoggedOut')
     this.store.dispatch(new UserActions.UserLoggedOut());
   }
 

@@ -3,19 +3,19 @@
     <div class="col">
       <h3>Prioritás</h3>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityLowRb" value="alacsony" [(ngModel)]="announcement.priority">
+        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityLowRb" value="0" [(ngModel)]="announcement.priority">
         <label class="form-check-label" for="inlineRadio1">
           <span class="badge badge-success">alacsony</span>
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityMediumRb" value="közepes" [(ngModel)]="announcement.priority">
+        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityMediumRb" value="1" [(ngModel)]="announcement.priority">
         <label class="form-check-label" for="inlineRadio2">
           <span class="badge badge-warning">közepes</span>
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityHighRb" value="magas" [(ngModel)]="announcement.priority">
+        <input class="form-check-input" type="radio" name="priorityRadioOptions" id="priorityHighRb" value="2" [(ngModel)]="announcement.priority">
         <label class="form-check-label" for="inlineRadio3"><span class="badge badge-danger">magas</span></label>
       </div>
     </div>
@@ -24,15 +24,15 @@
     <div class="col">
       <h3>Címzett</h3>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="rangeRadioOptions" id="inlineRadio1" value="mindenki" [(ngModel)]="announcement.range">
+        <input class="form-check-input" type="radio" name="rangeRadioOptions" id="inlineRadio1" value="0" [(ngModel)]="announcement.range">
         <label class="form-check-label" for="inlineRadio1">
-          <span class="badge badge-primary">mindenki</span>
+          <span class="badge badge-primary">lakók</span>
         </label>
       </div>
       <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" name="rangeRadioOptions" id="inlineRadio2" value="lakók" [(ngModel)]="announcement.range">
+        <input class="form-check-input" type="radio" name="rangeRadioOptions" id="inlineRadio2" value="1" [(ngModel)]="announcement.range">
         <label class="form-check-label" for="inlineRadio2">
-          <span class="badge badge-primary">lakók</span>
+          <span class="badge badge-primary">mindenki</span>
         </label>
       </div>
     </div>

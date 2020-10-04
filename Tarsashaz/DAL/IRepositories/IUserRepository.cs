@@ -13,5 +13,7 @@ namespace Tarsashaz.DAL.IRepositories
 
         public User Delete(int id);
         public User Find(int id);
+
+        public User FindByEmail(string email);
     }
 }

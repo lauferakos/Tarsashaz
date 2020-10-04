@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.DbContexts;
 using Tarsashaz.DAL.IRepositories;
 using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Flats;
 
 namespace Tarsashaz.DAL.Repositories
 {
@@ -25,9 +27,27 @@ namespace Tarsashaz.DAL.Repositories
             return deleted;
         }
 
-        public Condominium Find(int id)
+        public Condominium Find(int flatId)
         {
-            return db.Condominiums.Find(id);
+            Flat result = db.Flats.FirstOrDefault(f => f.Id == flatId);
+            if(result == null)
+            {
+                return null;
+            }
+            return db.Condominiums
+                .Include(c => c.Address)
+                .Include(c => c.Announcements).ThenInclude(a => a.Sender)
+                .Include(c => c.Bills).ThenInclude(b =>b.BillDate)
+                .Include(c => c.Bills).ThenInclude(b => b.Provider).ThenInclude(p =>p.Address)
+                .Include(c => c.Bills).ThenInclude(b => b.DestAddress)
+                .Include(c => c.Flats)
+                .Include(c => c.Problems)
+                .FirstOrDefault(c =>c.Id == result.CondominiumId);
+        }
+
+        public List<Condominium> FindAllWithAddress()
+        {
+            return db.Condominiums.Include(c => c.Address).ToList();
         }
 
         public Condominium Insert(Condominium i)

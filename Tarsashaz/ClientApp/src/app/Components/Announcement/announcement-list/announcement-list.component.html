@@ -1,6 +1,6 @@
 <h4 class="announcement-text">Hirdetmények</h4>
 <div class="container-btn">
-  <a class="btn btn-success btn-sm" [routerLink]="['/announcements/new']" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">Új hirdetmény</a>
+  <a class="btn btn-success btn-sm" [routerLink]="['/announcements/new']" *ngIf="(actualUser$ | async)?.role == 0">Új hirdetmény</a>
 </div>
 <div *ngFor="let a of announcements.slice().reverse()">
   <div class="container">
@@ -11,30 +11,30 @@
           <div class="container">
             <div class="row row-header">
 
-              <span class="badge badge-primary">Feladó: {{a.senderName}}</span>
+              <span class="badge badge-primary">Feladó: {{a.sender.name}}</span>
 
-
-              <span class="badge badge-primary">{{a.range}}</span>
-
-
-              <span class="badge badge-primary">{{a.date | date:'shortTime'}}</span>
-
-
-              <div [ngSwitch]="a?.priority">
-                <span class="badge badge-success" *ngSwitchCase="'alacsony'">alacsony</span>
-                <span class="badge badge-warning" *ngSwitchCase="'közepes'">közepes</span>
-                <span class="badge badge-danger" *ngSwitchCase="'magas'">magas</span>
-                <span class="badge badge-light" *ngSwitchDefault>ismeretlen</span>
+              <div [ngSwitch]="a?.range">
+                <span class="badge badge-primary" *ngSwitchCase="0">lakók</span>
+                <span class="badge badge-primary" *ngSwitchCase="1">mindenki</span>
               </div>
+                <span class="badge badge-primary">{{a.date | date:'mediumDate'}}</span>
 
-            <button class="badge badge-danger delete-btn" (click)="deleteAnnouncement(a.id)" *ngIf="(actualUser$ | async)?.role == 'közös képviselő'">Törlés</button>
-            </div>
-            <div class="row row-body">
-              <div class="col-12">
-                <p>{{a.text}}</p>
+
+                <div [ngSwitch]="a?.priority">
+                  <span class="badge badge-success" *ngSwitchCase="0">alacsony</span>
+                  <span class="badge badge-warning" *ngSwitchCase="1">közepes</span>
+                  <span class="badge badge-danger" *ngSwitchCase="2">magas</span>
+                  <span class="badge badge-light" *ngSwitchDefault>ismeretlen</span>
+                </div>
+
+                <button class="badge badge-danger delete-btn" (click)="deleteAnnouncement(a.id)" *ngIf="(actualUser$ | async)?.role == 0">Törlés</button>
+              </div>
+              <div class="row row-body">
+                <div class="col-12">
+                  <p>{{a.text}}</p>
+                </div>
               </div>
             </div>
-          </div>
         </div>
       </div>
       <div class="col-md-2 col-sm-1"></div>

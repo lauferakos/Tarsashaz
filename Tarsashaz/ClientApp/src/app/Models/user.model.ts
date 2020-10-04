@@ -2,8 +2,8 @@ import { Role } from "../Enums/Role";
 import { Flat } from "./flat.model";
 
 export interface User {
-  name: string;
   id: number;
+  name: string;
   email: string;
   token: string;
   role: Role.cr | Role.resident;

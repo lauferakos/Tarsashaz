@@ -80,7 +80,7 @@ export class BarChartComponent implements OnInit{
       this.electricBills = this.electricBills.sort(this.sortBills);
 
       for (let bill of this.waterBills) {
-        this.barChartLabels.push(bill.billDate.startDate.toLocaleDateString());
+        this.barChartLabels.push(new Date(bill.billDate.startDate).toLocaleDateString());
         this.waterPrices.push(bill.amount);
       }
       for (let bill of this.electricBills) {

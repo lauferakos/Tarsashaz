@@ -1,3 +1,9 @@
+<h3>Számlák: </h3>
+<div *ngIf="(actualFlat$ | async)?.bills.length == 0">
+  <div class="alert alert-warning" role="alert">
+    Nincs elérhető számla
+  </div>
+</div>
 <div class="container" *ngIf="(actualFlat$ | async)?.bills.length > 0">
   <div class="row row-header">
     <div class="col-md-2">

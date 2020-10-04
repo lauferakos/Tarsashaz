@@ -17,6 +17,9 @@ var Actions = require("./../Actions/condominium.actions");
 function condominiumReducers(state, action) {
     if (state === void 0) { state = condominium_state_1.initialConState; }
     switch (action.type) {
+        case Actions.GET_CONDOMINIUMS_SUCCESS:
+            console.log('GET_CONDOMINIUMS_SUCCESS');
+            return __assign(__assign({}, state), { condominiums: action.payload });
         case Actions.GET_CONDOMINIUM_SUCCESS:
             console.log('GET_CONDOMINIUM_SUCCESS');
             return __assign(__assign({}, state), { id: action.payload.id, crId: action.payload.crId, commonCharge: action.payload.commonCharge, bills: action.payload.bills, flats: action.payload.flats, address: action.payload.address });

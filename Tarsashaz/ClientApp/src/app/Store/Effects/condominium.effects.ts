@@ -3,7 +3,7 @@ import { AppState } from "../States/app.state";
 import { Store } from "@ngrx/store";
 import { Actions, Effect, ofType } from "@ngrx/effects";
 import { CondominiumService } from "../../Services/condominium.service";
-import { GET_CONDOMINIUM, GetCondominium, GetCondominiumSuccess } from "../Actions/condominium.actions";
+import { GET_CONDOMINIUM, GetCondominium, GetCondominiumSuccess, GetCondominiums, GET_CONDOMINIUMS, GetCondominiumsSuccess } from "../Actions/condominium.actions";
 import { switchMap } from "rxjs/operators";
 import { Condominium } from "../../Models/condominium.model";
 import { of } from "rxjs";
@@ -21,6 +21,17 @@ export class CondominiumEffects {
           this.store.dispatch(new AnnouncementActions.AnnouncementsAddedSuccess(conn.announcements));
         }
         return of(new GetCondominiumSuccess(conn));
+      }
+    })
+  );
+
+  @Effect()
+  getCondominiums$ = this.actions$.pipe(
+    ofType<GetCondominiums>(GET_CONDOMINIUMS),
+    switchMap((c: GetCondominiums) => this.conService.getCondominiumList()),
+    switchMap((conn: Condominium[]) => {
+      if (conn) {
+        return of(new GetCondominiumsSuccess(conn))
       }
     })
   );

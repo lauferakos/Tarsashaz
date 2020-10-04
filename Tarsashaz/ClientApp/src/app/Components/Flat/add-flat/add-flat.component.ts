@@ -1,132 +1,87 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
 import * as FlatActions from '../../../Store/Actions/flat.actions';
+import * as UserActions from '../../../Store/Actions/user.actions';
 import { Flat } from '../../../Models/flat.model';
 import { selectFlats } from '../../../Store/Selectors/flat.selectors';
 import { BillType } from '../../../Enums/BillType';
 import { Role } from '../../../Enums/Role';
+import { selectCondominiums } from '../../../Store/Selectors/condominium.selectors';
+import { Condominium } from '../../../Models/condominium.model';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
+import { User } from '../../../Models/user.model';
+import { concat } from 'rxjs';
 
 @Component({
-    selector: 'app-add-flat',
-    templateUrl: './add-flat.component.html',
-    styleUrls: ['./add-flat.component.css']
+  selector: 'app-add-flat',
+  templateUrl: './add-flat.component.html',
+  styleUrls: ['./add-flat.component.css']
 })
 /** AddFlat component*/
-export class AddFlatComponent {
+export class AddFlatComponent implements OnInit {
+  condominiums: Condominium[];
   addressForm: FormGroup;
+  user: User;
+  selected;
   @Output() flatSavedEvent = new EventEmitter();
 
   constructor(private router: Router, private store: Store<AppState>) {
 
   }
-  onSubmit() {
-    if (this.addressForm.valid) {
-      let flats$ = this.store.pipe(select(selectFlats));
-      let flatsLength = 0;
-      flats$.subscribe((flats) => flatsLength = flats.length);
 
-      let flat: Flat = {
-        id: flatsLength + 1,
-        address: this.addressForm.value,
-        ownerId: 1,
-        bills: [
-          {
-            id: 1,
-            type: BillType.Water,
-            pic: null,
-            isPaid: true,
-            amount: 20000,
-            user: {
-              name: 'Akos',
-              email: 'akos@gmail.com',
-              token: '1561',
-              id: 454,
-              role: Role.resident,
-              phone: '12345',
-              flats:[]
-            },
-            destAddress: {
-              postCode: 123,
-              city: 'Tevel',
-              street: 'Dorogi u.',
-              number: 340,
-              floor: 1,
-              door: 1
-            },
-            items: [
-              {
-                name: 'asd1',
-                vat: 25,
-                gross: 5000
-              },
-              {
-                name: 'asd2',
-                vat: 25,
-                gross: 5000
-              },
-              {
-                name: 'asd3',
-                vat: 25,
-                gross: 5000
-              },
-            ],
-            provider: {
-              address: {
-                postCode: 1234,
-                city: 'Budapest',
-                street: 'asd út',
-                number: 3,
-                floor: 1,
-                door: 2
-              },
-              phone: '123145',
-              email: 'asd@gmail.com',
-              accountNum: 1454431154487,
-            },
-            billDate: {
-              startDate: new Date('2020-09-15'),
-              payoffStart: new Date('2020-09-15'),
-              payoffEnd: new Date('2020-10-15'),
-              deadline: new Date('2020-11-15'),
-            }
-          }
-        ],
-        flatDatas: [],
-        balances: [
-          {
-            type: BillType.Electric,
-            amount: 5000
-          },
-          {
-            type: BillType.Heating,
-            amount: -10000
-          },
-          {
-            type: BillType.Water,
-            amount: 0
-          }
-        ],
+
+  onSubmit() {
+    let actualUser$ = this.store.pipe(select(selectActualUser));
+    actualUser$.subscribe(res => {
+      if (res !== null) {
+        this.user = {
+          id: res.id,
+          token: res.token,
+          name: res.name,
+          email: res.email,
+          role: res.role,
+          phone: res.phone,
+          flats: res.flats
+        }
       }
-      console.log('submit', flat);
-      this.store.dispatch(new FlatActions.FlatAdded(flat));
-      this.flatSavedEvent.emit();
+    });
+      if (this.addressForm.valid && this.selected) {
+
+        let flat: Flat = {
+          id: null,
+          address: {
+            postCode: this.condominiums[+this.selected].address.postCode,
+            city: this.condominiums[+this.selected].address.city,
+            street: this.condominiums[+this.selected].address.street,
+            number: this.condominiums[+this.selected].address.number,
+            floor: this.addressForm.get('floor').value,
+            door: this.addressForm.get('door').value
+          },
+          ownerId: this.user.id,
+          bills: [],
+          flatDatas: [],
+          balances: [],
+        }
+        this.user.flats.concat(flat);
+        this.store.dispatch(new UserActions.UserDataChanged(this.user));
+        this.store.dispatch(new FlatActions.FlatAdded(flat));
+        this.flatSavedEvent.emit();
+      }
+      else {
+        console.log('A form invalid');
+      }
+
     }
-    else {
-      console.log('A form invalid');
-    }
-  }
+  
 
   ngOnInit() {
+    this.store.pipe(select(selectCondominiums)).subscribe(c => this.condominiums = c);
     this.addressForm = new FormGroup({
-      'postCode': new FormControl(null, Validators.required),
-      'city': new FormControl(null, Validators.required),
-      'street': new FormControl(null, Validators.required),
-      'number': new FormControl(null, Validators.required),
-      'floor': new FormControl(null),
-      'door': new FormControl(null)
+      'floor': new FormControl(null, Validators.required),
+      'door': new FormControl(null, Validators.required)
     });
   }
 }

@@ -16,9 +16,7 @@ export class FlatService {
 
   }
 
-  addFlat(f: Flat): Observable<Flat>{
-    console.log('Addflat',f);
-    
+  addFlat(f: Flat): Observable<Flat>{ 
     return observableOf(f);
   }
   getFlatsByUserId(userId: number): Observable<Flat[]> {
@@ -67,7 +65,6 @@ export class FlatService {
   }
 
   updateActualFlat(f: Flat): Observable<Flat> {
-    console.log('UppdateFlat', f);
     return observableOf(f);
   }
 

@@ -21,7 +21,13 @@ export class UserEffects {
     switchMap((u: UserLoggedIn) => this.userService.signIn(u.payload)),
     switchMap((user: SocialUser) => this.userService.login(user)),
     switchMap((result: UserLoginStatus) => {
-      if (result.firstLogin) {
+      if (result.user) {
+        this.userService.putUserToSessionStorage(result.user);
+       
+        this.userService.loginAsCR();
+        
+      }
+      if (result.firstLogin) {   
         this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
       }
@@ -31,7 +37,6 @@ export class UserEffects {
       if (result.user.flats) {
         this.store.dispatch(new FlatActions.FlatsAddedSuccess(result.user.flats));
       }
-      console.log('UserLoginStatus', result);
       return of(new UserLoggedInSuccess(result.user)
       )
     })
@@ -53,10 +58,8 @@ export class UserEffects {
   userDataChanged$ = this.actions$.pipe(
     ofType<UserDataChanged>(USER_DATA_CHANGED),
     switchMap((u: UserDataChanged) => this.userService.updateActualUser(u.payload)),
-    switchMap((res: User) => {
-      if (res) {
-        return of(new UserDataChangedSuccess(res));
-      }
+    switchMap((u: User) => {
+      return of(new UserDataChangedSuccess(u));
     })
   );
 

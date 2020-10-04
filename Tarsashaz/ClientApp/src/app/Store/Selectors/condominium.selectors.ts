@@ -33,3 +33,8 @@ export const selectConCommonCharge = createSelector(
   selectCondominium,
   (state: CondominiumState) => state.commonCharge
 );
+
+export const selectCondominiums = createSelector(
+  selectCondominium,
+  (state: CondominiumState) => state.condominiums
+);

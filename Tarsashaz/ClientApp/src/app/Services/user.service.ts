@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { AuthService, FacebookLoginProvider, GoogleLoginProvider, SocialUser } from 'angular5-social-login';
 import { Platform } from '../Enums/Platform';
 import { User } from '../Models/user.model';
@@ -6,6 +6,7 @@ import { Observable, of as observableOf} from 'rxjs';
 import { Role } from '../Enums/Role';
 import { AppState } from '../Store/States/app.state';
 import { Store } from '@ngrx/store';
+import { HttpClient } from '@angular/common/http';
 
 export interface UserLoginStatus {
   firstLogin: boolean;
@@ -14,10 +15,14 @@ export interface UserLoginStatus {
 
 @Injectable()
 export class UserService {
-  constructor(private socialAuthService: AuthService,private store:Store<AppState>) {
-
+  baseUrl: string;
+  constructor(private socialAuthService: AuthService,
+    private store: Store<AppState>,
+    private http: HttpClient,
+    @Inject('BASE_URL') baseurl: string) {
+    this.baseUrl = baseurl;
   }
-
+  // Sign in to Google/Facebook
   async signIn(socialPlatform: string): Promise<SocialUser>{
     let socialPlatformProvider;
     if (socialPlatform == Platform.Facebook) {
@@ -28,60 +33,16 @@ export class UserService {
     return this.socialAuthService.signIn(socialPlatformProvider);
 
   }
-  login(user: SocialUser): Observable<UserLoginStatus> {
-    let result: Observable<UserLoginStatus> = observableOf({
-      //Ha DB-ben van akkor false, ha nincs akkor true
-      firstLogin: true,
-      user: {
-        name: user.name,
-        id: +user.id,
-        email: user.email,
-        token: user.token,
-        //DB-ből, ha benne vannak
-        role: Role.cr,
-        phone: '123456789',
-        flats: [
-          {
-            id: 1,
-            ownerId: +user.id,
-            address: {
-              postCode: 1000,
-              city: 'Budapest',
-              street: 'József u',
-              number: 10,
-              floor:3,
-              door:2
-            },
-            bills: [],
-            flatDatas: [],
-            balances:[]
-          },
-          {
-            id: 2,
-            ownerId: +user.id,
-            address: {
-              postCode: 1200,
-              city: 'Budapest',
-              street: 'Ferenc körút',
-              number: 8,
-              floor: 1,
-              door: 2
-            },
-            bills: [],
-            flatDatas: [],
-            balances: []
-          }
-        ],
-      }
-    });
-    result.subscribe((res) => {
-      this.putUserToSessionStorage(res.user);
-      if (res.user.role == Role.cr)
-        this.loginAsCR();
-    });
 
-    return result;
+
+
+  // Login
+  login(user: SocialUser): Observable<UserLoginStatus> {
+    let url = this.baseUrl + "user/login";
+    return this.http.post<UserLoginStatus>(url, user);
   }
+
+  
   putUserToSessionStorage(user: User) {
     sessionStorage.setItem('login_token', user.token);
   }
@@ -105,9 +66,6 @@ export class UserService {
     sessionStorage.setItem('first_login', 'true');
   }
 
-  firstLoginSaved() {
-    sessionStorage.removeItem('first_login');
-  }
   signOut(): Observable<boolean>{
     this.socialAuthService.signOut();
     this.clearSessionStorage();
@@ -131,6 +89,7 @@ export class UserService {
   }
 
   updateActualUser(u: User): Observable<User>{
-    return observableOf(u);
+    let url = this.baseUrl + "user/" + u.id;
+    return this.http.put<User>(url, u);
   }
 }

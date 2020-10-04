@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Store } from "@ngrx/store";
+import { Store, select } from "@ngrx/store";
 import { AppState } from "../States/app.state";
 import { Effect, ofType, Actions } from "@ngrx/effects";
 import { AnnouncementService } from "../../Services/announcement.service";
@@ -8,6 +8,7 @@ import { AnnouncementAdded, ANNOUNCEMENT_ADDED, GetAnnouncements, GET_ANNOUNCEME
 import { switchMap } from "rxjs/operators";
 import { Announcement } from "../../Models/announcement.model";
 import { of } from 'rxjs';
+import { selectActualUser } from "../Selectors/user.selectors";
 
 @Injectable()
 export class AnnouncementEffects {
@@ -28,6 +29,10 @@ export class AnnouncementEffects {
     ofType<AnnouncementAdded>(ANNOUNCEMENT_ADDED),
     switchMap((a: AnnouncementAdded) => this.annService.addAnnouncement(a.payload)),
     switchMap((res: Announcement) => {
+      this.Store.pipe(select(selectActualUser)).subscribe(u => {
+        if(u)
+          res.sender = u
+      });
         return of(new AnnouncementAddedSuccess(res));
     })
   );
@@ -36,8 +41,8 @@ export class AnnouncementEffects {
   announcementDeleted$ = this.actions$.pipe(
     ofType<AnnouncementDeleted>(ANNOUNCEMENT_DELETED),
     switchMap((a: AnnouncementDeleted) => this.annService.deleteAnnouncement(a.payload)),
-    switchMap((id: number) => {
-      return of(new AnnouncementDeletedSuccess(id))
+    switchMap((a: Announcement) => {
+      return of(new AnnouncementDeletedSuccess(a.id))
     })
   );
 

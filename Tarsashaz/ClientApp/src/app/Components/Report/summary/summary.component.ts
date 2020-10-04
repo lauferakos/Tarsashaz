@@ -10,6 +10,7 @@ import { Announcement } from '../../../Models/announcement.model';
 import { Range } from '../../../Enums/Range';
 import { Priority } from '../../../Enums/Priority';
 import { Router } from '@angular/router';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 
 
 @Component({
@@ -30,27 +31,31 @@ export class SummaryComponent implements OnInit {
 
   }
   sendSummary() {
-    if (this.commonCharge) {
-      let text = "Közös költség " + new Date().getMonth() + ".hónapra"
-        + "Víz számla: " + this.waterAmount 
-        + " Áram számla: " + this.electricAmount
-        + " Fűtés számla " + this.heatingAmount 
-        + " Összesen: " + this.fullAmount 
-        + " Ebből a közös költség 1 lakásra: " + this.commonCharge;
-      let announcement: Announcement = {
-        id: 10,
-        senderId: 1,
-        senderName: 'Laufer Ákos',
-        range: Range.resident,
-        date: new Date(),
-        priority: Priority.high,
-        text: text
+    this.store.pipe(select(selectActualUser)).subscribe(u => {
+      if (this.commonCharge) {
+        let text = "Közös költség " + new Date().getMonth() + ".hónapra"
+          + "Víz számla: " + this.waterAmount
+          + " Áram számla: " + this.electricAmount
+          + " Fűtés számla " + this.heatingAmount
+          + " Összesen: " + this.fullAmount
+          + " Ebből a közös költség 1 lakásra: " + this.commonCharge;
+        let announcement: Announcement = {
+          id: 0,
+          senderId: u ? u.id : 0,
+          sender: null,
+          range: Range.resident,
+          date: new Date(),
+          priority: Priority.high,
+          text: text
+        }
+        this.router.navigate(['/']);
+        this.store.dispatch(new AnnouncementActions.AnnouncementAdded(announcement));
+      } else {
+        console.log('Hiba az összesítésben!');
       }
-      this.router.navigate(['/']);
-      this.store.dispatch(new AnnouncementActions.AnnouncementAdded(announcement));
-    } else {
-      console.log('Hiba az összesítésben!');
-    }
+
+    })
+  
   }
 
 
@@ -58,8 +63,8 @@ export class SummaryComponent implements OnInit {
     let bills$ = this.store.pipe(select(selectConBills));
     let flats$ = this.store.pipe(select(selectConFlats));
     bills$.subscribe(bills => {
-      bills = bills.filter(b => b.billDate.payoffStart.getFullYear() == new Date().getFullYear() &&
-        b.billDate.payoffStart.getMonth() == new Date().getMonth());
+      bills = bills.filter(b => new Date(b.billDate.payoffStart).getFullYear() == new Date().getFullYear() &&
+        new Date(b.billDate.payoffStart).getMonth() == new Date().getMonth());
       for (let bill of bills) {
         switch (bill.type) {
           case BillType.Electric:

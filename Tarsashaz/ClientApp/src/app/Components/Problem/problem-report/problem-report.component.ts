@@ -37,7 +37,6 @@ export class ProblemReportComponent implements OnInit {
       for (let i = 0; i < event.target.files.length; i++) {
         var reader = new FileReader();
         let file = event.target.files[i];
-        console.log(file);
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
           this.problemForm.value.pictures.push({ url: event.target.result, file: file })
@@ -51,8 +50,6 @@ export class ProblemReportComponent implements OnInit {
   }
   onSubmit() {
     if (this.problemForm.valid) {
-      console.log('Uploading');
-      console.log(this.problemForm.value);
       this.isSuccess = true;
     }
   }

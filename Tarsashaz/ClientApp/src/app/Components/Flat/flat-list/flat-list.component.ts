@@ -31,7 +31,7 @@ export class FlatListComponent{
 
   selectFlat(i: number) {
     let actualIdx;
-    this.actualFlat$.subscribe(f => actualIdx = f.id)
+    this.actualFlat$.subscribe(f => { if(f) actualIdx = f.id })
     if (i != actualIdx)
       this.store.dispatch(new FlatActions.ActualFlatChanged(i));
   }

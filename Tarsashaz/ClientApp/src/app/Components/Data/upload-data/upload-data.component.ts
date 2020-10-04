@@ -68,10 +68,8 @@ export class UploadDataComponent implements OnInit{
     this.dataForm.value.pics = this.dataForm.value.pics.filter(p => p.url != url);
   }
   onSubmit() {
-    console.log(this.dataForm);
     if (this.dataForm.valid) {
       this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.dataForm.value);
-      console.log('Dispatch ActualFlatUpdated');
       this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
       this.router.navigate(['/flat']);
     }

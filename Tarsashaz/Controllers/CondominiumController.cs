@@ -20,10 +20,10 @@ namespace Tarsashaz.Controllers
             repository = _repository;
         }
 
-        [HttpGet("{id}")]
-        public Condominium Find(int id)
+        [HttpGet("{flatid}")]
+        public Condominium Find(int flatid)
         {
-            return repository.Find(id);
+            return repository.Find(flatid);
         }
 
         [HttpPost]
@@ -42,6 +42,12 @@ namespace Tarsashaz.Controllers
         public Condominium Delete(int id)
         {
             return repository.Delete(id);
+        }
+
+        [HttpGet("all")]
+        public List<Condominium> FindAllWithAddress()
+        {
+            return repository.FindAllWithAddress();
         }
     }
 }

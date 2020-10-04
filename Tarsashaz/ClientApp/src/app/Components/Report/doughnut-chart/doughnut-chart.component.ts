@@ -6,6 +6,7 @@ import { Condominium } from '../../../Models/condominium.model';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectConBills } from '../../../Store/Selectors/condominium.selectors';
+import { BillType } from '../../../Enums/BillType';
 
 @Component({
     selector: 'app-doughnut-chart',
@@ -22,14 +23,24 @@ export class DoughnutChartComponent implements OnInit{
   constructor(private connService: CondominiumService, private store: Store<AppState>) {
 
   }
+
+  getBillType(type: BillType): string {
+    if (type == BillType.Water)
+      return "Víz";
+    if (type == BillType.Electric)
+      return "Áram";
+    if (type == BillType.Heating)
+      return "Fűtés";
+    else return "";
+  }
   ngOnInit() {
     let bills$ = this.store.pipe(select(selectConBills));
     bills$.subscribe(bills => {
-      bills = bills.filter(b => b.billDate.payoffStart.getFullYear() == new Date().getFullYear() &&
-        b.billDate.payoffStart.getMonth() == new Date().getMonth()
+      bills = bills.filter(b => new Date(b.billDate.payoffStart).getFullYear() == new Date().getFullYear() &&
+        new Date(b.billDate.payoffStart).getMonth() == new Date().getMonth()
       );
       for (let bill of bills) {
-        this.doughnutChartLabels.push(bill.type);
+        this.doughnutChartLabels.push(this.getBillType(bill.type));
         this.doughnutChartData.push(bill.amount);
       }
     })

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Range = void 0;
 var Range;
 (function (Range) {
-    Range["resident"] = "lak\u00F3k";
-    Range["all"] = "mindenki";
+    Range[Range["resident"] = 0] = "resident";
+    Range[Range["all"] = 1] = "all";
 })(Range = exports.Range || (exports.Range = {}));
 //# sourceMappingURL=Range.js.map

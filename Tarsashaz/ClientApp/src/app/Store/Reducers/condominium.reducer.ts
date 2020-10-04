@@ -4,6 +4,12 @@ import * as Actions from './../Actions/condominium.actions'
 
 export function condominiumReducers(state = initialConState, action: Actions.CondominiumActions): CondominiumState {
   switch (action.type) {
+    case Actions.GET_CONDOMINIUMS_SUCCESS:
+      console.log('GET_CONDOMINIUMS_SUCCESS')
+      return {
+        ...state,
+        condominiums: action.payload
+      }
     case Actions.GET_CONDOMINIUM_SUCCESS:
       console.log('GET_CONDOMINIUM_SUCCESS');
       return {

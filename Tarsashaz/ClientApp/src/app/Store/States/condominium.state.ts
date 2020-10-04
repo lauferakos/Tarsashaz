@@ -10,6 +10,7 @@ export interface CondominiumState {
   crId: number;
   address: Address;
   commonCharge: number;
+  condominiums: Condominium[];
 }
 
 export const initialConState: CondominiumState = {
@@ -18,5 +19,6 @@ export const initialConState: CondominiumState = {
   id: null,
   crId: null,
   address: null,
-  commonCharge:null,
+  commonCharge: null,
+  condominiums: []
 }

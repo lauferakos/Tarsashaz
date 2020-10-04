@@ -61,7 +61,7 @@ import { HelpService } from './Services/help.service';
 import { AnnouncementService } from './Services/announcement.service';
 import { FlatService } from './Services/flat.service';
 import { CondominiumService } from './Services/condominium.service';
-
+import { FirstloginService } from './Services/firstlogin.service';
 
 // Guards
 import { AuthGuardService as AuthGuard } from './Guards/auth-guard.service';
@@ -106,6 +106,7 @@ import { CondominiumEffects } from './Store/Effects/condominium.effects';
 import { environment } from '../environments/environment';
 import { LOCALE_ID } from '@angular/core';
 import { logout } from './Store/Reducers/user.reducer';
+
 
 
 
@@ -179,7 +180,8 @@ import { logout } from './Store/Reducers/user.reducer';
     AnnouncementService,
     FlatService,
     CondominiumService,
-    ThemeService
+    ThemeService,
+    FirstloginService
   ],
   bootstrap: [AppComponent]
 })

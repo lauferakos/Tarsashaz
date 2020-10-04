@@ -19,12 +19,12 @@ export class NewAnnouncementComponent {
   actualUser: User;
   /** NewAnnouncement ctor */
   announcement: Announcement = {
-    id:1,
+    id:0,
     senderId: this.actualUser ? this.actualUser.id : 0,
-    senderName: this.actualUser?this.actualUser.name:'',
+    sender: this.actualUser,
     date: new Date(),
-    range: Range.resident,
-    priority: Priority.low,
+    range:0,
+    priority: 0,
     text:''
   }
   constructor(private store: Store<AppState>,private router:Router) {
@@ -35,9 +35,6 @@ export class NewAnnouncementComponent {
     if (this.actualUser) {
       if (this.announcement.senderId === 0)
         this.announcement.senderId = this.actualUser.id;
-      if (this.announcement.senderName === '')
-        this.announcement.senderName = this.actualUser.name;
-
       this.store.dispatch(new AnnouncementActions.AnnouncementAdded(this.announcement));
       this.router.navigate(['/']);
     }

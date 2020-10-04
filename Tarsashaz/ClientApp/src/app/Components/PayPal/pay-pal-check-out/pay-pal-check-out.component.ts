@@ -22,12 +22,14 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
   ngOnInit() {
     let actualFlat$ = this.store.pipe(select(selectActualFlat));
     actualFlat$.subscribe(flat => {
-      let result = flat.bills.find(b => b.type == BillType.CommonCharge &&
-        b.billDate.startDate.getFullYear() == new Date().getFullYear() &&
-        b.billDate.startDate.getMonth() == new Date().getMonth())
+      if (flat) {
+        let result = flat.bills.find(b => b.type == BillType.CommonCharge &&
+          b.billDate.startDate.getFullYear() == new Date().getFullYear() &&
+          b.billDate.startDate.getMonth() == new Date().getMonth())
 
-      if (result) {
-        this.successfulPayment = true;
+        if (result) {
+          this.successfulPayment = true;
+        }
       }
     });
   }

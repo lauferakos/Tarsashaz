@@ -6,7 +6,16 @@
 <div class="container" *ngIf="bill">
   <div class="row">
     <div class="col-sm-12 col-header">
-      <h5>{{bill.type}} számla</h5>
+
+
+      <div [ngSwitch]="bill?.type">
+        <h5 *ngSwitchCase="0">Víz számla</h5>
+        <h5 *ngSwitchCase="1">Villany számla</h5>
+        <h5 *ngSwitchCase="2">Fűtés számla</h5>
+        <h5 *ngSwitchCase="3">Közös költség számla</h5>
+        <h5 *ngSwitchDefault>Számla</h5>
+      </div>
+     
     </div>
   </div>
   <div class="row">

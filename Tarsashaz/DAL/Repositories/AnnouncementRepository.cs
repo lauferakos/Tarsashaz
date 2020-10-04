@@ -33,9 +33,15 @@ namespace Tarsashaz.DAL.Repositories
 
         public Announcement Insert(Announcement i)
         {
-            db.Announcements.Add(i);
-            db.SaveChanges();
-            return i;
+            Condominium result = db.Condominiums.FirstOrDefault(c => c.CommonRepresentativeId == i.SenderId);
+            if (result != null)
+            {
+                i.CondominiumId = result.Id;
+                db.Announcements.Add(i);
+                db.SaveChanges();
+                return i;
+            }
+            else return null;
         }
 
         public Announcement Update(Announcement u, int id)

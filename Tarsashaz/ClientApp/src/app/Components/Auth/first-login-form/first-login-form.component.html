@@ -1,33 +1,22 @@
 
 <div class="container">
-  <!--Validation-PostCode-->
-  <div *ngIf="addressForm.get('postCode').invalid && (addressForm.get('postCode').dirty || addressForm.get('postCode').touched)"
+
+  <!--Validation-Floor-->
+  <div *ngIf="addressForm.get('floor').invalid && (addressForm.get('floor').dirty || addressForm.get('floor').touched)"
        class="alert alert-danger">
-    <div *ngIf="addressForm.get('postCode').errors.required">
-      Add meg az irányítószámot!
+    <div *ngIf="addressForm.get('floor').errors.required">
+      Add meg az emeletet!
     </div>
   </div>
-  <!--Validation-City-->
-  <div *ngIf="addressForm.get('city').invalid && (addressForm.get('city').dirty || addressForm.get('city').touched)"
+
+  <!--Validation-Door-->
+  <div *ngIf="addressForm.get('door').invalid && (addressForm.get('door').dirty || addressForm.get('door').touched)"
        class="alert alert-danger">
-    <div *ngIf="addressForm.get('city').errors.required">
-      Add meg a várost!
+    <div *ngIf="addressForm.get('door').errors.required">
+      Add meg az ajtót!
     </div>
   </div>
-  <!--Validation-Street-->
-  <div *ngIf="addressForm.get('street').invalid && (addressForm.get('street').dirty || addressForm.get('street').touched)"
-       class="alert alert-danger">
-    <div *ngIf="addressForm.get('street').errors.required">
-      Add meg az utcát!
-    </div>
-  </div>
-  <!--Validation-Number-->
-  <div *ngIf="addressForm.get('number').invalid && (addressForm.get('number').dirty || addressForm.get('number').touched)"
-       class="alert alert-danger">
-    <div *ngIf="addressForm.get('number').errors.required">
-      Add meg a házszámot!
-    </div>
-  </div>
+
   <div class="row">
     <div class="col-sm-12">
       <h2>Amit meg kell adnod:</h2>
@@ -44,41 +33,27 @@
       <h2>Lakás címe:</h2>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-12">
+      <mat-form-field appearance="fill" *ngIf="condominiums">
+        <mat-label>Válaszd ki a társasházad!</mat-label>
+        <mat-select [(value)]="selected">
+          <mat-option value={{i}} *ngFor="let c of condominiums; let i = index">{{c.address.postCode}} {{c.address.city}} {{c.address.street}} {{c.address.number}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
   <form [formGroup]="addressForm" class="example-form" (ngSubmit)="onSubmit()">
 
+
     <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Irányítószám</mat-label>
-          <input matInput type="number" class="addressInput" formControlName="postCode">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Város</mat-label>
-          <input matInput type="text" formControlName="city">
-        </mat-form-field>
-      </div>
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Út</mat-label>
-          <input matInput type="text" formControlName="street">
-        </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4 col-sm-12">
-        <mat-form-field class="example-full-width">
-          <mat-label>Házszám</mat-label>
-          <input matInput type="number" formControlName="number">
-        </mat-form-field>
-      </div>
       <div class="col-md-4 col-sm-12">
         <mat-form-field class="example-full-width">
           <mat-label>Emelet</mat-label>
           <input matInput type="number" formControlName="floor">
         </mat-form-field>
       </div>
+      <div class="col-md-4"></div>
       <div class="col-md-4 col-sm-12">
         <mat-form-field class="example-full-width">
           <mat-label>Ajtó</mat-label>

@@ -22,14 +22,15 @@ export class AnnouncementListComponent{
 
   announcements: Announcement[] = [];
   constructor(private announcementService: AnnouncementService, private store: Store<AppState>) {
+    this.announcements = [];
     this.announcements$.subscribe((a) => this.announcements = a);
   }
 
 
 
   deleteAnnouncement(id: number) {
-    console.log('Hír törölve', id);
     this.announcements = this.announcements.filter(a => a.id != id);
     this.store.dispatch(new AnnouncementActions.AnnouncementDeleted(id));
   }
+
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,6 +31,16 @@ namespace Tarsashaz.DAL.Repositories
             return db.Users.Find(id);
         }
 
+        public User FindByEmail(string email)
+        {
+            return db.Users
+                .Include(u => u.Flats).ThenInclude(f => f.Address)
+                .Include(u => u.Flats).ThenInclude(f => f.Balances)
+                .Include(u => u.Flats).ThenInclude(f => f.Bills)
+                .Include(u => u.Flats).ThenInclude(f => f.FlatDatas)
+                .FirstOrDefault(u => u.Email == email);
+        }
+
         public User Insert(User i)
         {
             db.Users.Add(i);
@@ -40,7 +51,10 @@ namespace Tarsashaz.DAL.Repositories
         public User Update(User u, int id)
         {
             User updated = db.Users.Find(id);
-            updated = u;
+            updated.Phone = u.Phone;
+            updated.Token = u.Token;
+            updated.Role = u.Role;
+            updated.Flats = u.Flats;
             db.SaveChanges();
             return updated;
         }
