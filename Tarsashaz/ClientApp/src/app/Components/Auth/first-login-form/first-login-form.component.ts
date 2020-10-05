@@ -54,6 +54,7 @@ export class FirstLoginFormComponent implements OnInit{
       let flat: Flat = {
         id:0,
         address: {
+          id:0,
           postCode: this.condominiums[+this.selected].address.postCode,
           city: this.condominiums[+this.selected].address.city,
           street: this.condominiums[+this.selected].address.street,
@@ -61,21 +62,20 @@ export class FirstLoginFormComponent implements OnInit{
           floor: this.addressForm.get('floor').value,
           door: this.addressForm.get('door').value
         },
-        ownerId: this.user.id,
+        userId: this.user.id,
         bills: [],
         flatDatas: [],
         balances: [],
       }
       this.user.flats = [];
       this.user.flats.push(flat);
-      let result;
-      this.firstLoginService.saveUser(this.user).subscribe(u => {
-        this.store.dispatch(new UserActions.UserDataChanged(this.user));
-        this.store.dispatch(new FlatActions.FlatAdded(flat));
 
-        this.router.navigate(['/']);
+      this.store.dispatch(new UserActions.UserDataChanged(this.user));
+      this.store.dispatch(new FlatActions.FlatAdded(flat));
+      this.userService.firstLoginSaved();
+      this.router.navigate(['/']);
+        console.log('navigate');
 
-      });
 
     }
     else {

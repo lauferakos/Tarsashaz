@@ -24,8 +24,8 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
     actualFlat$.subscribe(flat => {
       if (flat) {
         let result = flat.bills.find(b => b.type == BillType.CommonCharge &&
-          b.billDate.startDate.getFullYear() == new Date().getFullYear() &&
-          b.billDate.startDate.getMonth() == new Date().getMonth())
+          new Date(b.billDate.startDate).getFullYear() == new Date().getFullYear() &&
+          new Date(b.billDate.startDate).getMonth() == new Date().getMonth())
 
         if (result) {
           this.successfulPayment = true;
@@ -51,7 +51,7 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
     onAuthorize: (data, actions) => {
       return actions.payment.execute().then((payment) => {
         this.successfulPayment = true;
-        this.flatService.addCommonChargeBillToActualFlat(this.price);
+        this.flatService.addCommonChargeBillToActualFlat(this.price).subscribe(bill => console.log(bill));
       })
     }
   };

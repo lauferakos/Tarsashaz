@@ -1,4 +1,4 @@
 export enum FlatDataType {
-  Water = "víz",
-  Electric = "villany",
+  Water,
+  Electric,
 }

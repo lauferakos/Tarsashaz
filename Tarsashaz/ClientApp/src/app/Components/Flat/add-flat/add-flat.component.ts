@@ -14,6 +14,7 @@ import { Condominium } from '../../../Models/condominium.model';
 import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 import { User } from '../../../Models/user.model';
 import { concat } from 'rxjs';
+import * as ConActions from '../../../Store/Actions/condominium.actions';
 
 @Component({
   selector: 'app-add-flat',
@@ -22,7 +23,7 @@ import { concat } from 'rxjs';
 })
 /** AddFlat component*/
 export class AddFlatComponent implements OnInit {
-  condominiums: Condominium[];
+  condominiums
   addressForm: FormGroup;
   user: User;
   selected;
@@ -51,8 +52,9 @@ export class AddFlatComponent implements OnInit {
       if (this.addressForm.valid && this.selected) {
 
         let flat: Flat = {
-          id: null,
+          id: 0,
           address: {
+            id:0,
             postCode: this.condominiums[+this.selected].address.postCode,
             city: this.condominiums[+this.selected].address.city,
             street: this.condominiums[+this.selected].address.street,
@@ -60,7 +62,7 @@ export class AddFlatComponent implements OnInit {
             floor: this.addressForm.get('floor').value,
             door: this.addressForm.get('door').value
           },
-          ownerId: this.user.id,
+          userId: this.user.id,
           bills: [],
           flatDatas: [],
           balances: [],
@@ -78,7 +80,11 @@ export class AddFlatComponent implements OnInit {
   
 
   ngOnInit() {
-    this.store.pipe(select(selectCondominiums)).subscribe(c => this.condominiums = c);
+    this.store.dispatch(new ConActions.GetCondominiums());
+    this.store.pipe(select(selectCondominiums)).subscribe(c => {
+      this.condominiums = c
+      console.log(this.condominiums);
+    });
     this.addressForm = new FormGroup({
       'floor': new FormControl(null, Validators.required),
       'door': new FormControl(null, Validators.required)

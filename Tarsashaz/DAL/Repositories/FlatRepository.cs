@@ -30,40 +30,36 @@ namespace Tarsashaz.DAL.Repositories
         {
             return db.Flats.Find(id);
         }
-
+        public int GetCondominiumIdByFlat(Flat i)
+        {
+            CondominiumAddress result = db.CondominiumAddresses.FirstOrDefault
+                (ca => ca.PostCode == i.Address.PostCode && ca.City == i.Address.City && ca.Street == i.Address.Street && ca.Number == i.Address.Number);
+            if (result != null)
+            {
+                return result.CondominiumId;
+            }
+            else return 0;
+        }
         public Flat Insert(Flat i)
         {
-            CondominiumAddress resultCA = db.CondominiumAddresses.SingleOrDefault
+            CondominiumAddress resultCA = db.CondominiumAddresses.FirstOrDefault
                 (ca => ca.PostCode == i.Address.PostCode && ca.City == i.Address.City && ca.Street == i.Address.Street && ca.Number == i.Address.Number);
 
-            i.CondominiumId = resultCA.CondominiumId;
+            if (resultCA != null)
+            {
+                i.CondominiumId = resultCA.CondominiumId;
+            }
 
-            FlatAddress resultFA = db.FlatAddresses.SingleOrDefault(
+            /*FlatAddress resultFA = db.FlatAddresses.FirstOrDefault(
                 fa => fa.PostCode == i.Address.PostCode && fa.City == i.Address.City && fa.Street == i.Address.Street && fa.Number == i.Address.Number
-                );
+                && fa.Floor == i.Address.Floor && fa.Door == i.Address.Door
+                );*/
 
-            if(resultFA != null)
-            {
-                i.AddressId = resultFA.Id;
-            }
-            else
-            {
-                db.FlatAddresses.Add(new FlatAddress
-                {
-                    PostCode = i.Address.PostCode,
-                    City = i.Address.City,
-                    Street = i.Address.Street,
-                    Number = i.Address.Number,
-                    Floor = i.Address.Floor,
-                    Door = i.Address.Door,
-                    FlatId = i.Id
-                });
-                FlatAddress result = db.FlatAddresses.FirstOrDefault(fa => fa.FlatId == i.Id);
-                i.AddressId = result.Id;
-            }
             db.Flats.Add(i);
+
             db.SaveChanges();
-            return i;
+            Flat addedFlat = db.Flats.OrderByDescending(f => f.Id).FirstOrDefault();
+            return addedFlat;
         }
 
         public Flat Update(Flat u, int id)

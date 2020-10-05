@@ -22,6 +22,7 @@ export class UserEffects {
     switchMap((user: SocialUser) => this.userService.login(user)),
     switchMap((result: UserLoginStatus) => {
       if (result.user) {
+        console.log(result.user);
         this.userService.putUserToSessionStorage(result.user);
        
         this.userService.loginAsCR();
@@ -37,6 +38,7 @@ export class UserEffects {
       if (result.user.flats) {
         this.store.dispatch(new FlatActions.FlatsAddedSuccess(result.user.flats));
       }
+      
       return of(new UserLoggedInSuccess(result.user)
       )
     })

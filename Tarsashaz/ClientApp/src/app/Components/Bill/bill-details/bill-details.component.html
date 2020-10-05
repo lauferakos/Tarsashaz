@@ -20,7 +20,8 @@
   </div>
   <div class="row">
     <div class="col-md-6 col-sm-12 col-user-info">
-      <h6>{{bill.user.name}}</h6>
+      <h6 *ngIf="bill.user">{{bill.user.name}}</h6>
+      <h6 *ngIf="!bill.user">{{(actualUser$ | async).name}}</h6>
       <h6>{{bill.destAddress.city}}</h6>
       <h6>{{bill.destAddress.street}} {{bill.destAddress.number}}</h6>
       <h6>{{bill.destAddress.postCode}}</h6>

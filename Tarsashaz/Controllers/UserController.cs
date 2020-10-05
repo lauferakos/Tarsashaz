@@ -60,6 +60,10 @@ namespace Tarsashaz.Controllers
                
                 return new UserLoginStatus { FirstLogin = true, User = inserted };
             }
+            if(result.Flats.Count == 0)
+            {
+                return new UserLoginStatus { FirstLogin = true, User = result };
+            }
             else return new UserLoginStatus { FirstLogin = false, User = result};
         }
 

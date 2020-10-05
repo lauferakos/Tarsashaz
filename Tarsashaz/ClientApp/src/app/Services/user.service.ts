@@ -65,6 +65,9 @@ export class UserService {
   firstLogin() {
     sessionStorage.setItem('first_login', 'true');
   }
+  firstLoginSaved() {
+    sessionStorage.removeItem('first_login');
+  }
 
   signOut(): Observable<boolean>{
     this.socialAuthService.signOut();

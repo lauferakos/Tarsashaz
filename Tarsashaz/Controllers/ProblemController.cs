@@ -25,9 +25,10 @@ namespace Tarsashaz.Controllers
             return repository.Find(id);
         }
 
-        [HttpPost]
-        public Problem Insert([FromBody] Problem p)
+        [HttpPost("{conid}")]
+        public Problem Insert([FromBody] Problem p, int conid)
         {
+            p.CondominiumId = conid;
             return repository.Insert(p);
         }
 

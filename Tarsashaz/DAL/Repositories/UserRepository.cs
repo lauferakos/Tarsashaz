@@ -36,8 +36,11 @@ namespace Tarsashaz.DAL.Repositories
             return db.Users
                 .Include(u => u.Flats).ThenInclude(f => f.Address)
                 .Include(u => u.Flats).ThenInclude(f => f.Balances)
-                .Include(u => u.Flats).ThenInclude(f => f.Bills)
-                .Include(u => u.Flats).ThenInclude(f => f.FlatDatas)
+                .Include(u => u.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.BillDate)
+                .Include(u => u.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.Provider).ThenInclude(p => p.Address)
+                .Include(u => u.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.DestAddress)
+                .Include(u => u.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.User)
+                .Include(u => u.Flats).ThenInclude(f => f.FlatDatas).ThenInclude(fd => fd.Pics)
                 .FirstOrDefault(u => u.Email == email);
         }
 

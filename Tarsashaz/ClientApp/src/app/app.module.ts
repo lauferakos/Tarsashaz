@@ -62,6 +62,7 @@ import { AnnouncementService } from './Services/announcement.service';
 import { FlatService } from './Services/flat.service';
 import { CondominiumService } from './Services/condominium.service';
 import { FirstloginService } from './Services/firstlogin.service';
+import { ProblemService } from './Services/problem.service';
 
 // Guards
 import { AuthGuardService as AuthGuard } from './Guards/auth-guard.service';
@@ -181,7 +182,8 @@ import { logout } from './Store/Reducers/user.reducer';
     FlatService,
     CondominiumService,
     ThemeService,
-    FirstloginService
+    FirstloginService,
+    ProblemService
   ],
   bootstrap: [AppComponent]
 })

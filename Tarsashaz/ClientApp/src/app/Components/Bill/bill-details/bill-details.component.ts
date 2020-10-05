@@ -10,6 +10,7 @@ import { AppState } from '../../../Store/States/app.state';
 import { selectActualFlatBills } from '../../../Store/Selectors/flat.selectors';
 import { CondominiumService } from '../../../Services/condominium.service';
 import { selectConBills } from '../../../Store/Selectors/condominium.selectors';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 
 @Component({
     selector: 'app-bill-details',
@@ -18,8 +19,8 @@ import { selectConBills } from '../../../Store/Selectors/condominium.selectors';
 })
 /** BillDetails component*/
 export class BillDetailsComponent implements OnInit{
-/** BillDetails ctor */
-  
+  /** BillDetails ctor */
+  actualUser$ = this.store.select(selectActualUser);
 
   bill: Bill;
 
@@ -40,5 +41,6 @@ export class BillDetailsComponent implements OnInit{
       let bills$ = this.store.pipe(select(selectActualFlatBills));
       bills$.subscribe(bills => this.bill = bills.find(b => b.id == id));
     }
+
   }
   }

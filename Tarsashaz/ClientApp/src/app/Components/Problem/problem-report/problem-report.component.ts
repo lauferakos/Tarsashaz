@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Problem } from '../../../Models/problem.model';
 import { ProblemType } from '../../../Enums/ProblemType';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProblemService } from '../../../Services/problem.service';
+import { AppState } from '../../../Store/States/app.state';
+import { Store, select } from '@ngrx/store';
+import { selectConId } from '../../../Store/Selectors/condominium.selectors';
 
 @Component({
     selector: 'app-problem-report',
@@ -14,8 +18,8 @@ export class ProblemReportComponent implements OnInit {
   isPicsVisible = false;
   isSuccess = false;
   problemForm: FormGroup;
-    /** ProblemReport ctor */
-    constructor() {
+  /** ProblemReport ctor */
+  constructor(private problemService: ProblemService,private store:Store<AppState>) {
 
   }
   ngOnInit() {
@@ -39,7 +43,7 @@ export class ProblemReportComponent implements OnInit {
         let file = event.target.files[i];
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
-          this.problemForm.value.pictures.push({ url: event.target.result, file: file })
+          this.problemForm.value.pictures.push({ url: event.target.result, file: file, name: file.name,type: file.type})
         }
       };
     }
@@ -49,8 +53,11 @@ export class ProblemReportComponent implements OnInit {
     this.problemForm.value.pictures = this.problemForm.value.pictures.filter(p => p.url != url);
   }
   onSubmit() {
+    let conid: number;
+    this.store.pipe(select(selectConId)).subscribe(id => conid = id);
     if (this.problemForm.valid) {
       this.isSuccess = true;
+      this.problemService.reportProblem(this.problemForm.value, conid).subscribe(problem => console.log(problem));
     }
   }
 }

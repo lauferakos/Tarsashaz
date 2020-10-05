@@ -9,7 +9,7 @@
     <div class="flatData-panel">
       <div class="row row-pics">
         <div class="col">
-          <h6 *ngIf="flatData.pics.length > 0">Feltöltött képek</h6>
+          <h6 *ngIf="flatData?.pics?.length > 0">Feltöltött képek</h6>
           <div class="container container-pic">
             <div class="row">
               <div *ngFor="let pic of flatData.pics">

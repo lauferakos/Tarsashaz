@@ -24,9 +24,10 @@ namespace Tarsashaz.Controllers
             return repository.Find(id);
         }
 
-        [HttpPost]
-        public FlatData Insert([FromBody] FlatData fd)
+        [HttpPost("{flatid}")]
+        public FlatData Insert([FromBody] FlatData fd, int flatid)
         {
+            fd.FlatId = flatid;
             return repository.Insert(fd);
         }
 

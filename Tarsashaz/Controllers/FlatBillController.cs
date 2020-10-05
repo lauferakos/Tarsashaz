@@ -28,6 +28,9 @@ namespace Tarsashaz.Controllers
         [HttpPost]
         public FlatBill Insert([FromBody] FlatBill fb)
         {
+            fb.DestAddress = null;
+            fb.Flat = null;
+            fb.User = null;
             return repository.Insert(fb);
         }
 

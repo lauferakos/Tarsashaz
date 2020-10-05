@@ -11,10 +11,13 @@ export interface Bill {
   type: BillType;
   pic: Picture;
   user: User;
+  userId: number;
   provider: Provider;
   billDate: BillDate;
   amount: number;
   items: Item[];
   destAddress: Address;
+  destAddressId: number;
   isPaid: boolean;
+  flatId: number;
 }

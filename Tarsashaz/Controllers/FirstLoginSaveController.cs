@@ -34,7 +34,8 @@ namespace Tarsashaz.Controllers
                 foreach (Flat flat in u.Flats)
                 {
                     flat.UserId = u.Id;
-                    flatRepository.Insert(flat);
+                    flat.CondominiumId = flatRepository.GetCondominiumIdByFlat(flat);
+                    //flatRepository.Insert(flat);
                 }
                 return repository.Update(u, result.Id);
 

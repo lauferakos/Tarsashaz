@@ -7,7 +7,7 @@ import { FlatBalance } from "./flatbalance.model";
 export interface Flat {
   id: number;
   address: Address;
-  ownerId: number;
+  userId: number;
   bills: Bill[];
   flatDatas: FlatData[];
   balances: FlatBalance[];

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Tarsashaz.DAL.DbContexts;
 using Tarsashaz.DAL.IRepositories;
 using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Pictures;
 
 namespace Tarsashaz.DAL.Repositories
 {
@@ -32,6 +33,11 @@ namespace Tarsashaz.DAL.Repositories
 
         public Problem Insert(Problem i)
         {
+            foreach(ProblemPicture pp in i.Pictures)
+            {
+                pp.ProblemId = i.Id;
+                db.ProblemPictures.Add(pp);
+            }
             db.Problems.Add(i);
             db.SaveChanges();
             return i;

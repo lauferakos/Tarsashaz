@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Flat } from '../Models/flat.model';
 import { Observable, of as observableOf } from 'rxjs';
 import { AppState } from '../Store/States/app.state';
@@ -9,15 +9,19 @@ import { User } from '../Models/user.model';
 import { Bill } from '../Models/bill.model';
 import { BillType } from '../Enums/BillType';
 import * as FlatActions from '../Store/Actions/flat.actions';
+import { HttpClient } from '@angular/common/http';
+import { FlatData } from '../Models/flatdata.model';
 
 @Injectable()
 export class FlatService {
-  constructor(private store: Store<AppState>) {
-
+  baseUrl: string;
+  constructor(private store: Store<AppState>, private http: HttpClient, @Inject('BASE_URL') baseurl: string) {
+    this.baseUrl = baseurl;
   }
 
-  addFlat(f: Flat): Observable<Flat>{ 
-    return observableOf(f);
+  addFlat(f: Flat): Observable<Flat>{
+    let url = this.baseUrl + "flat";
+    return this.http.post<Flat>(url, f);
   }
   getFlatsByUserId(userId: number): Observable<Flat[]> {
     let actualUser$ = this.store.pipe(select(selectActualUser));
@@ -25,8 +29,9 @@ export class FlatService {
     [
       {
         id: 1,
-        ownerId: 5,
+        userId: 5,
         address: {
+          id:1,
           postCode: 1000,
           city: 'Budapest',
           street: 'József u',
@@ -40,8 +45,9 @@ export class FlatService {
       },
       {
         id: 2,
-        ownerId: 5,
+        userId: 5,
         address: {
+          id:2,
           postCode: 1200,
           city: 'Budapest',
           street: 'Ferenc körút',
@@ -64,50 +70,63 @@ export class FlatService {
     return observableOf(result);
   }
 
-  updateActualFlat(f: Flat): Observable<Flat> {
-    return observableOf(f);
+  uploadData(data: FlatData, flatid: number): Observable<FlatData>{
+    let url = this.baseUrl + "flatdata/" + flatid;
+    return this.http.post<FlatData>(url, data);
   }
 
-  addCommonChargeBillToActualFlat(amount: number) {
+  updateActualFlat(f: Flat): Observable<Flat> {
+    let url = this.baseUrl + "flat/" + f.id;
+    return this.http.put<Flat>(url,f);
+  }
+
+  addCommonChargeBillToActualFlat(amount: number):Observable<Bill> {
     let actualUser$ = this.store.pipe(select(selectActualUser));
     let actualFlat$ = this.store.pipe(select(selectActualFlat));
-    let user;
+    let user : User;
     let flat: Flat;
+    let bill: Bill;
     actualUser$.subscribe(u => user = u);
-    actualFlat$.subscribe(f => flat = {
-      id: f.id,
-      address: f.address,
-      ownerId: f.ownerId,
-      flatDatas: f.flatDatas,
-      balances: f.balances,
-      bills: f.bills.concat(
-        {
-          id: 1,
-          type: BillType.CommonCharge,
-          user: user,
-          pic: null,
-          provider: null,
-          billDate: {
-            startDate: new Date(),
-            payoffEnd: null,
-            payoffStart: null,
-            deadline: new Date(),
-          },
-          amount: amount,
-          items: [
-            {
-              name: 'közös költség befizetése',
-              vat: 0,
-              gross: amount
-            }
-          ],
-          destAddress: f.address,
-          isPaid: true
-        }
-      )
+    actualFlat$.subscribe(f => {
+      bill = {
+        id: 0,
+        type: BillType.CommonCharge,
+        user: user,
+        pic: null,
+        provider: null,
+        billDate: {
+          startDate: new Date(),
+          payoffEnd: new Date(),
+          payoffStart: new Date(),
+          deadline: new Date(),
+        },
+        amount: amount,
+        items: [
+          {
+            name: 'közös költség befizetése',
+            vat: 0,
+            gross: amount
+          }
+        ],
+        destAddress: f.address,
+        destAddressId: f.address.id,
+        userId: user.id,
+        flatId: f.id,
+        isPaid: true
+      }
+      flat = {
+        id: f.id,
+        address: f.address,
+        userId: f.userId,
+        flatDatas: f.flatDatas,
+        balances: f.balances,
+        bills: f.bills.concat(bill)
+      }
     });
     this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
-    
+
+    let url = this.baseUrl + "flatbill";
+    return this.http.post<Bill>(url, bill);
 
   }
 }

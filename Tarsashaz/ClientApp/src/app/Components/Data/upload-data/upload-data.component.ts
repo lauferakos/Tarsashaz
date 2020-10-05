@@ -9,6 +9,7 @@ import * as FlatActions from '../../../Store/Actions/flat.actions';
 import { concat } from 'rxjs';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FlatService } from '../../../Services/flat.service';
 @Component({
     selector: 'app-upload-data',
     templateUrl: './upload-data.component.html',
@@ -23,14 +24,14 @@ export class UploadDataComponent implements OnInit{
 
   dataForm: FormGroup;
   /** UploadData ctor */
-  constructor(private store: Store<AppState>, private router: Router) {
+  constructor(private store: Store<AppState>, private router: Router, private flatService: FlatService) {
 
   }
 
   ngOnInit() {
     this.dataForm = new FormGroup({
-      'id': new FormControl(1, Validators.required),
-      'flatId': new FormControl(1, Validators.required),
+      'id': new FormControl(0, Validators.required),
+      'flatId': new FormControl(0, Validators.required),
       'type': new FormControl(FlatDataType.Water, Validators.required),
       'pics': new FormControl([]),
       'text': new FormControl(null),
@@ -42,7 +43,7 @@ export class UploadDataComponent implements OnInit{
         this.actualFlat = {
           id: actual.id,
           address: actual.address,
-          ownerId: actual.ownerId,
+          userId: actual.userId,
           bills: actual.bills,
           flatDatas: actual.flatDatas,
           balances: actual.balances
@@ -69,9 +70,21 @@ export class UploadDataComponent implements OnInit{
   }
   onSubmit() {
     if (this.dataForm.valid) {
-      this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(this.dataForm.value);
-      this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
-      this.router.navigate(['/flat']);
+      let id: number;
+      this.store.select(selectActualFlat).subscribe(
+        f => {
+          if (f) {
+            id = f.id;
+          }
+        }
+      );
+      this.flatService.uploadData(this.dataForm.value, id).subscribe(
+        data => {
+          this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(data);
+          this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
+          this.router.navigate(['/flat']);
+        });
+      
     }
   }
 }
