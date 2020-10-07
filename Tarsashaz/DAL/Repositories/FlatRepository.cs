@@ -59,6 +59,8 @@ namespace Tarsashaz.DAL.Repositories
 
             db.SaveChanges();
             Flat addedFlat = db.Flats.OrderByDescending(f => f.Id).FirstOrDefault();
+            addedFlat.AddressId = db.FlatAddresses.FirstOrDefault(fa => fa.FlatId == addedFlat.Id).Id;
+            db.SaveChanges();
             return addedFlat;
         }
 

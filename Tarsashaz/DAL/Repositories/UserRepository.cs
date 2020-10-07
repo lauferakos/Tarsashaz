@@ -57,8 +57,9 @@ namespace Tarsashaz.DAL.Repositories
             updated.Phone = u.Phone;
             updated.Token = u.Token;
             updated.Role = u.Role;
-            updated.Flats = u.Flats;
+            //updated.Flats = u.Flats;
             db.SaveChanges();
+            updated.Flats = u.Flats;
             return updated;
         }
     }

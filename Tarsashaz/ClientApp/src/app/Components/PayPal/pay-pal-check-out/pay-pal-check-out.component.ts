@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, OnInit } from '@angular/core';
+import { Component, AfterViewChecked, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CondominiumService } from '../../../Services/condominium.service';
 import { Store, select } from '@ngrx/store';
 import { AppState } from '../../../Store/States/app.state';
@@ -13,8 +13,7 @@ declare let paypal: any;
     styleUrls: ['./pay-pal-check-out.component.css']
 })
 /** PayPalCheckOut component*/
-export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
-  addScript: boolean = false;
+export class PayPalCheckOutComponent implements OnInit{
   successfulPayment: boolean = false;
   price: number;
 
@@ -30,8 +29,12 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
         if (result) {
           this.successfulPayment = true;
         }
+        console.log('Payment', this.successfulPayment)
       }
     });
+    this.addPayPalScript().then(() => {
+      paypal.Button.render(this.paypalConfig, '#checkout-btn')
+    })
   }
   paypalConfig = {
     env: 'sandbox',
@@ -40,19 +43,23 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
     },
     commit: true,
     payment: (data, actions) => {
-      return actions.payment.create({
-        payment: {
-          transactions: [
-            { amount: { total: this.price, currency: 'HUF' } }
-          ]
-        }
-      })
+      if (this.successfulPayment == false) {
+        return actions.payment.create({
+          payment: {
+            transactions: [
+              { amount: { total: this.price, currency: 'HUF' } }
+            ]
+          }
+        })
+      }
     },
     onAuthorize: (data, actions) => {
-      return actions.payment.execute().then((payment) => {
-        this.successfulPayment = true;
-        this.flatService.addCommonChargeBillToActualFlat(this.price).subscribe(bill => console.log(bill));
-      })
+      if (this.successfulPayment == false) {
+        return actions.payment.execute().then((payment) => {
+          this.successfulPayment = true;
+          this.flatService.addCommonChargeBillToActualFlat(this.price).subscribe(bill => console.log(bill));
+        })
+      }
     }
   };
   /** PayPalCheckOut ctor */
@@ -60,19 +67,7 @@ export class PayPalCheckOutComponent implements AfterViewChecked, OnInit{
     this.price = this.conService.getCommonCharge();
   }
 
-  ngAfterViewChecked(): void {
-
-    if (!this.addScript) {
-      this.addPayPalScript().then(() => {
-        paypal.Button.render(this.paypalConfig,'#checkout-btn')
-      })
-    }
-  }
-
-
-
   addPayPalScript() {
-    this.addScript = true;
     return new Promise((resolve, reject) => {
       let scriptTagElement = document.createElement('script');
       scriptTagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
