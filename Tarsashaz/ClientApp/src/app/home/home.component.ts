@@ -24,7 +24,14 @@ export class HomeComponent implements OnInit{
             this.store.dispatch(new CondominiumActions.GetCondominium(flat.id));
           }
         })
-       
+
+      }
+      else {
+        this.store.pipe(select(selectActualUser)).subscribe(u => {
+          if (u) {
+            this.store.dispatch(new CondominiumActions.GetCondominiumByCrId(u.id));
+          }
+        });
       }
     })
     

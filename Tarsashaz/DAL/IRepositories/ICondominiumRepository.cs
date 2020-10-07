@@ -13,7 +13,10 @@ namespace Tarsashaz.DAL.IRepositories
 
         public Condominium Delete(int id);
         public Condominium Find(int id);
+        public Condominium FindByCrId(int crId);
 
         public List<Condominium> FindAllWithAddress();
+
+        
     }
 }

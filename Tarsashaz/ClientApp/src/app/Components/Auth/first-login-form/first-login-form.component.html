@@ -66,5 +66,10 @@
         <button mat-raised-button color="warn" class="btn-lg save-button" type="submit">Mentés</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="warn" class="btn-lg save-button" (click)="skipFirstLogin()" *ngIf="(actualUser$ | async)?.role == 0">Kihagy</button>
+      </div>
+    </div>
   </form>
 </div>

@@ -21,8 +21,17 @@
     <div class="col-sm-2">
 
     </div>
+
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="alert alert-warning" role="alert" *ngIf="(flats$ | async)?.length == 0">
+        Még nem vettél fel lakást!
+      </div>
+    </div>
   </div>
   <mat-divider></mat-divider>
+  <div ></div>
   <div class="row row-flat" *ngFor="let f of (flats$ | async)" [ngClass]="{ 'actual-flat':f.id == (actualFlat$ | async)?.id }">
     <div class="col-sm-2">
       {{f.address.postCode}}
@@ -62,8 +71,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <mat-card class="menu-card">
-        <a [routerLink]="['/datas']">
+      <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
+        <a [routerLink]="['/datas']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/upload.jpg" class="menu-icon">
         </a>
         <mat-card-content>
@@ -72,8 +81,8 @@
       </mat-card>
     </div>
     <div class="col-md-3">
-      <mat-card class="menu-card">
-        <a [routerLink]="['/balance']">
+      <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
+        <a [routerLink]="['/balance']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/scale.png" class="menu-icon">
         </a>
         <mat-card-content>
@@ -82,8 +91,8 @@
       </mat-card>
     </div>
     <div class="col-md-3">
-      <mat-card class="menu-card">
-        <a [routerLink]="['/common']">
+      <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
+        <a [routerLink]="['/common']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/money.png" class="menu-icon">
         </a>
         <mat-card-content>
@@ -92,8 +101,8 @@
       </mat-card>
     </div>
     <div class="col-md-3">
-      <mat-card class="menu-card">
-        <a [routerLink]="['/bills']">
+      <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
+        <a [routerLink]="['/bills']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/bill.png" class="menu-icon">
         </a>
         <mat-card-content>

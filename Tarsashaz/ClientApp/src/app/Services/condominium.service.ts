@@ -31,6 +31,11 @@ export class CondominiumService {
     return this.http.get<Condominium>(url);
   }
 
+  getCondominiumByCrId(crId: number): Observable<Condominium> {
+    let url = this.baseUrl + "condominium/common/" + crId;
+    return this.http.get<Condominium>(url);
+  }
+
   getCommonCharge(): number {
     let condominium$ = this.store.pipe(select(selectConCommonCharge));
     let commonCharge: number;

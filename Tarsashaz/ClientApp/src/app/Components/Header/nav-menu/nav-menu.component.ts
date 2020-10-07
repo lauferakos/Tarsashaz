@@ -4,6 +4,7 @@ import { AppState } from '../../../Store/States/app.state';
 import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 import { UserService } from '../../../Services/user.service';
 import { Router } from '@angular/router';
+import { selectFlats } from '../../../Store/Selectors/flat.selectors';
 
 @Component({
   selector: 'app-nav-menu',
@@ -12,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit{
   actualUser$ = this.store.pipe(select(selectActualUser));
+  flats$ = this.store.pipe(select(selectFlats));
   isLoggedIn: boolean;
   constructor(private store: Store<AppState>, private userService: UserService, private router: Router) {
 

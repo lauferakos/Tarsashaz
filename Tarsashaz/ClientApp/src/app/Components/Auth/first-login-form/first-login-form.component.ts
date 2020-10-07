@@ -48,6 +48,11 @@ export class FirstLoginFormComponent implements OnInit{
     this.store.dispatch(new ConActions.GetCondominiums());
     this.store.pipe(select(selectCondominiums)).subscribe(cons => this.condominiums = cons);
   }
+
+  skipFirstLogin() {
+    this.userService.firstLoginSaved();
+    this.router.navigate(['/']);
+  }
   onSubmit() {
     console.log(this.selected);
     if (this.addressForm.valid && this.selected) {
@@ -75,8 +80,6 @@ export class FirstLoginFormComponent implements OnInit{
       this.userService.firstLoginSaved();
       this.router.navigate(['/']);
         console.log('navigate');
-
-
     }
     else {
       console.log('A form invalid');

@@ -50,6 +50,19 @@ namespace Tarsashaz.DAL.Repositories
             return db.Condominiums.Include(c => c.Address).ToList();
         }
 
+        public Condominium FindByCrId(int crId)
+        {
+            return db.Condominiums
+                 .Include(c => c.Address)
+                 .Include(c => c.Announcements).ThenInclude(a => a.Sender)
+                 .Include(c => c.Bills).ThenInclude(b => b.BillDate)
+                 .Include(c => c.Bills).ThenInclude(b => b.Provider).ThenInclude(p => p.Address)
+                 .Include(c => c.Bills).ThenInclude(b => b.DestAddress)
+                 .Include(c => c.Flats)
+                 .Include(c => c.Problems)
+                 .FirstOrDefault(c => c.CommonRepresentativeId == crId);
+        }
+
         public Condominium Insert(Condominium i)
         {
             db.Condominiums.Add(i);

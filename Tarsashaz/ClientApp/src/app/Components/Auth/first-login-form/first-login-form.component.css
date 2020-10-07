@@ -1,4 +1,6 @@
-
+.save-button {
+    margin: 10px;
+}
 .save-button:hover {
   background-color: #FF6C5B;
 }

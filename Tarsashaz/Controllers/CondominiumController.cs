@@ -26,6 +26,12 @@ namespace Tarsashaz.Controllers
             return repository.Find(flatid);
         }
 
+        [HttpGet("common/{crId}")]
+        public Condominium FindByCrId(int crId)
+        {
+            return repository.FindByCrId(crId);
+        }
+
         [HttpPost]
         public Condominium Insert([FromBody] Condominium c)
         {

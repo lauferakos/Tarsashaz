@@ -1,5 +1,8 @@
 <div class="flat-details">
   <h4 class="my-flat-text">Lakásom</h4>
+  <div class="alert alert-warning" role="alert" *ngIf="(actualFlat$ | async) == null">
+    Még nem vettél fel lakást!
+  </div>
   <!--Postal Code-->
   <div class="input-group mb-3">
     <div class="input-group-prepend">
