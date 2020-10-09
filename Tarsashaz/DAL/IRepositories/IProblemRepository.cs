@@ -12,6 +12,6 @@ namespace Tarsashaz.DAL.IRepositories
         public Problem Update(Problem u, int id);
 
         public Problem Delete(int id);
-        public Problem Find(int id);
+        public List<Problem> FindByConId(int id);
     }
 }

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetAnnouncementsSuccess = exports.GetAnnouncements = exports.AnnouncementDeletedSuccess = exports.AnnouncementDeleted = exports.AnnouncementsAddedSuccess = exports.AnnouncementAddedSuccess = exports.AnnouncementAdded = exports.GET_ANNOUNCEMENTS_SUCCESS = exports.GET_ANNOUNCEMENTS = exports.ANNOUNCEMENT_DELETED_SUCCESS = exports.ANNOUNCEMENT_DELETED = exports.ANNOUNCEMENTS_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED = void 0;
+exports.GetAnnouncementsSuccess = exports.GetAnnouncements = exports.AnnouncementDeletedSuccess = exports.AnnouncementDeleted = exports.AnnouncementsAddedSuccess = exports.AnnouncementAddedSuccess = exports.AnnouncementAdded = exports.ClearAnnouncements = exports.CLEAR_ANNOUNCEMENTS = exports.GET_ANNOUNCEMENTS_SUCCESS = exports.GET_ANNOUNCEMENTS = exports.ANNOUNCEMENT_DELETED_SUCCESS = exports.ANNOUNCEMENT_DELETED = exports.ANNOUNCEMENTS_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED_SUCCESS = exports.ANNOUNCEMENT_ADDED = void 0;
 exports.ANNOUNCEMENT_ADDED = '[ANNOUNCEMENT] Announcement added';
 exports.ANNOUNCEMENT_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcement added success';
 exports.ANNOUNCEMENTS_ADDED_SUCCESS = '[ANNOUNCEMENT] Announcements added success';
@@ -8,6 +8,14 @@ exports.ANNOUNCEMENT_DELETED = '[ANNOUNCEMENT] Announcement deleted';
 exports.ANNOUNCEMENT_DELETED_SUCCESS = '[ANNOUNCEMENT] Announcement deleted success';
 exports.GET_ANNOUNCEMENTS = '[ANNOUNCEMENT] Get announcements';
 exports.GET_ANNOUNCEMENTS_SUCCESS = '[ANNOUNCEMENT] Get announcements success';
+exports.CLEAR_ANNOUNCEMENTS = '[ANNOUNCEMENT] Clear announcements';
+var ClearAnnouncements = /** @class */ (function () {
+    function ClearAnnouncements() {
+        this.type = exports.CLEAR_ANNOUNCEMENTS;
+    }
+    return ClearAnnouncements;
+}());
+exports.ClearAnnouncements = ClearAnnouncements;
 var AnnouncementAdded = /** @class */ (function () {
     function AnnouncementAdded(payload) {
         this.payload = payload;

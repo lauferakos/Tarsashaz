@@ -6,6 +6,7 @@ import { ProblemService } from '../../../Services/problem.service';
 import { AppState } from '../../../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectConId } from '../../../Store/Selectors/condominium.selectors';
+import * as ProblemActions from '../../../Store/Actions/problem.actions';
 
 @Component({
     selector: 'app-problem-report',
@@ -53,11 +54,10 @@ export class ProblemReportComponent implements OnInit {
     this.problemForm.value.pictures = this.problemForm.value.pictures.filter(p => p.url != url);
   }
   onSubmit() {
-    let conid: number;
-    this.store.pipe(select(selectConId)).subscribe(id => conid = id);
     if (this.problemForm.valid) {
       this.isSuccess = true;
-      this.problemService.reportProblem(this.problemForm.value, conid).subscribe(problem => console.log(problem));
+      //this.problemService.reportProblem(this.problemForm.value, conid).subscribe(problem => console.log(problem));
+      this.store.dispatch(new ProblemActions.ProblemAdded(this.problemForm.value));
     }
   }
 }

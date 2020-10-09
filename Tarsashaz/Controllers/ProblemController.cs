@@ -19,17 +19,22 @@ namespace Tarsashaz.Controllers
             repository = _repository;
         }
 
-        [HttpGet("{id}")]
-        public Problem Find(int id)
+        [HttpGet("{conid}")]
+        public List<Problem> FindConId(int conid)
         {
-            return repository.Find(id);
+            return repository.FindByConId(conid);
         }
 
         [HttpPost("{conid}")]
         public Problem Insert([FromBody] Problem p, int conid)
         {
-            p.CondominiumId = conid;
-            return repository.Insert(p);
+            p.Id = 0;
+            if (conid != 0)
+            {
+                p.CondominiumId = conid;
+                return repository.Insert(p);
+            }
+            else return null;
         }
 
         [HttpPut("{id}")]

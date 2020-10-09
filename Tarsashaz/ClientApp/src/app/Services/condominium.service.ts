@@ -9,6 +9,7 @@ import { AppState } from '../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
 import {selectConCommonCharge } from '../Store/Selectors/condominium.selectors';
 import { HttpClient } from '@angular/common/http';
+import { Problem } from '../Models/problem.model';
 
 @Injectable()
 export class CondominiumService {
@@ -42,4 +43,5 @@ export class CondominiumService {
     condominium$.subscribe(c => commonCharge = c);
     return commonCharge;
   }
+
 }

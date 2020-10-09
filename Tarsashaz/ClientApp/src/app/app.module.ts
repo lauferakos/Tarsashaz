@@ -24,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 
+
 // Components
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './Components/Header/nav-menu/nav-menu.component';
@@ -54,6 +55,7 @@ import { ReportComponent } from './Components/Report/report/report.component';
 import { DoughnutChartComponent } from './Components/Report/doughnut-chart/doughnut-chart.component';
 import { BarChartComponent } from './Components/Report/bar-chart/bar-chart.component';
 import { SummaryComponent } from './Components/Report/summary/summary.component';
+import { ProblemListComponent } from './Components/Problem/problem-list/problem-list.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -107,6 +109,7 @@ import { CondominiumEffects } from './Store/Effects/condominium.effects';
 import { environment } from '../environments/environment';
 import { LOCALE_ID } from '@angular/core';
 import { logout } from './Store/Reducers/user.reducer';
+import { ProblemEffects } from './Store/Effects/problem.effects';
 
 
 
@@ -141,7 +144,8 @@ import { logout } from './Store/Reducers/user.reducer';
     ReportComponent,
     DoughnutChartComponent,
     BarChartComponent,
-    SummaryComponent
+    SummaryComponent,
+    ProblemListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -162,7 +166,7 @@ import { logout } from './Store/Reducers/user.reducer';
     FlatRoutingModule,
     AnnouncementRoutingModule,
     StoreModule.forRoot(appReducers, { metaReducers: [logout] }),
-    EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects, CondominiumEffects]),
+    EffectsModule.forRoot([UserEffects, FlatEffects, AnnouncementEffects, CondominiumEffects, ProblemEffects]),
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],

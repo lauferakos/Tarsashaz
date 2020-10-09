@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,9 +27,9 @@ namespace Tarsashaz.DAL.Repositories
             return deleted;
         }
 
-        public Problem Find(int id)
+        public List<Problem> FindByConId(int id)
         {
-            return db.Problems.Find(id);
+            return db.Problems.Where(p => p.CondominiumId == id && p.Type == ProblemType.társasház).Include(p => p.Pictures).ToList();
         }
 
         public Problem Insert(Problem i)

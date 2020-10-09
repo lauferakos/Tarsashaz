@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { selectActualUser } from '../Store/Selectors/user.selectors';
 import { selectActualFlat } from '../Store/Selectors/flat.selectors';
 import * as CondominiumActions from '../Store/Actions/condominium.actions';
+import * as ProblemActions from '../Store/Actions/problem.actions';
 import { selectConId } from '../Store/Selectors/condominium.selectors';
 
 
@@ -17,23 +18,22 @@ export class HomeComponent implements OnInit{
 
 
   ngOnInit() {
-    this.store.pipe(select(selectActualFlat)).subscribe(flat => {
-      if (flat) {
-        this.store.pipe(select(selectConId)).subscribe(id => {
-          if (!id) {
-            this.store.dispatch(new CondominiumActions.GetCondominium(flat.id));
-          }
-        })
-
-      }
-      else {
-        this.store.pipe(select(selectActualUser)).subscribe(u => {
-          if (u) {
-            this.store.dispatch(new CondominiumActions.GetCondominiumByCrId(u.id));
-          }
-        });
-      }
+    console.log('Home, ngOninit');
+    let flat;
+    this.store.pipe(select(selectActualFlat)).subscribe(f => {
+      flat = f;
     })
-    
+
+    if (flat && flat.id != null) {
+      this.store.dispatch(new CondominiumActions.GetCondominium(flat.id));
+      }
+    else {
+      this.store.pipe(select(selectActualUser)).subscribe(u => {
+        if (u) {
+          this.store.dispatch(new CondominiumActions.GetCondominiumByCrId(u.id));
+        }
+      });
+    }
   }
+  
 }

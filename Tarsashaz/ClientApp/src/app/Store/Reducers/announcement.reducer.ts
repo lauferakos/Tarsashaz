@@ -27,6 +27,12 @@ export function announcementReducers(state = initialAnnouncementState, action: A
         ...state,
         announcements: state.announcements.filter(a => a.id != action.payload)
       }
+    case Actions.CLEAR_ANNOUNCEMENTS:
+      console.log('CLEAR_ANNOUNCEMENTS');
+      return {
+        ...state,
+        announcements: []
+      }
     default:
       return state;
   }

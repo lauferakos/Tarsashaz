@@ -8,6 +8,6 @@ exports.initialConState = {
     crId: null,
     address: null,
     commonCharge: null,
-    condominiums: []
+    condominiums: [],
 };
 //# sourceMappingURL=condominium.state.js.map

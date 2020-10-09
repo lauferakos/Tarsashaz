@@ -12,7 +12,12 @@ export const ANNOUNCEMENT_DELETED_SUCCESS = '[ANNOUNCEMENT] Announcement deleted
 export const GET_ANNOUNCEMENTS = '[ANNOUNCEMENT] Get announcements';
 export const GET_ANNOUNCEMENTS_SUCCESS = '[ANNOUNCEMENT] Get announcements success';
 
+export const CLEAR_ANNOUNCEMENTS = '[ANNOUNCEMENT] Clear announcements';
 
+export class ClearAnnouncements implements Action {
+  public readonly type = CLEAR_ANNOUNCEMENTS;
+  constructor() {}
+}
 export class AnnouncementAdded implements Action {
   public readonly type = ANNOUNCEMENT_ADDED;
   constructor(public payload: Announcement) { }
@@ -48,4 +53,4 @@ export class GetAnnouncementsSuccess implements Action {
 }
 
 export type AnnouncementActions = AnnouncementAdded | AnnouncementAddedSuccess
-  | AnnouncementDeleted | AnnouncementDeletedSuccess | GetAnnouncements | GetAnnouncementsSuccess | AnnouncementsAddedSuccess;
+  | AnnouncementDeleted | AnnouncementDeletedSuccess | GetAnnouncements | GetAnnouncementsSuccess | AnnouncementsAddedSuccess | ClearAnnouncements;

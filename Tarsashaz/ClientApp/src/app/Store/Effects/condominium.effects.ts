@@ -18,6 +18,7 @@ export class CondominiumEffects {
     switchMap((conn: Condominium) => {
       if (conn) {
         if (conn.announcements) {
+          console.log(conn.announcements);
           this.store.dispatch(new AnnouncementActions.AnnouncementsAddedSuccess(conn.announcements));
         }
         return of(new GetCondominiumSuccess(conn));

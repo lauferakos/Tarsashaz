@@ -1,0 +1,20 @@
+<div class="container">
+  <h3>Bejelentett problémák</h3>
+  <div class="alert alert-success" role="alert" *ngIf="!problems || problems?.length == 0">
+    Még nem jelentettek be problémát!
+  </div>
+  <div class="problem-details" *ngFor="let problem of problems">
+    <div class="row">
+      <div *ngFor="let pic of problem.pictures">
+        <div class="col-sm-12">
+          <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <p>{{problem.text}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { Role } from '../../Enums/Role';
 import { User } from '../../Models/user.model';
 
+import * as AnnouncementActions from '../Actions/announcement.actions';
+
 import * as FlatActions from '../Actions/flat.actions';
 @Injectable()
 export class UserEffects {

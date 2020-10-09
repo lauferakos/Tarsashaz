@@ -5,11 +5,13 @@ var user_state_1 = require("./user.state");
 var flat_state_1 = require("./flat.state");
 var announcement_state_1 = require("./announcement.state");
 var condominium_state_1 = require("./condominium.state");
+var problem_state_1 = require("./problem.state");
 exports.initialAppState = {
     user: user_state_1.initialUserState,
     flat: flat_state_1.initialFlatState,
     announcement: announcement_state_1.initialAnnouncementState,
-    condominium: condominium_state_1.initialConState
+    condominium: condominium_state_1.initialConState,
+    problem: problem_state_1.initialProblemState
 };
 function getInitialState() {
     return exports.initialAppState;

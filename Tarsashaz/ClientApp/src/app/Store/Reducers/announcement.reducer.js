@@ -29,6 +29,9 @@ function announcementReducers(state, action) {
         case Actions.ANNOUNCEMENT_DELETED_SUCCESS:
             console.log('ANNOUNCEMENT_DELETED_SUCCESS');
             return __assign(__assign({}, state), { announcements: state.announcements.filter(function (a) { return a.id != action.payload; }) });
+        case Actions.CLEAR_ANNOUNCEMENTS:
+            console.log('CLEAR_ANNOUNCEMENTS');
+            return __assign(__assign({}, state), { announcements: [] });
         default:
             return state;
     }

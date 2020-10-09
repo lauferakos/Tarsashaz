@@ -2,6 +2,7 @@ import { Condominium } from "../../Models/condominium.model";
 import { Bill } from "../../Models/bill.model";
 import { Flat } from "../../Models/flat.model";
 import { Address } from "../../Models/address.model";
+import { Problem } from "../../Models/problem.model";
 
 export interface CondominiumState {
   bills: Bill[];
@@ -20,5 +21,5 @@ export const initialConState: CondominiumState = {
   crId: null,
   address: null,
   commonCharge: null,
-  condominiums: []
+  condominiums: [],
 }
