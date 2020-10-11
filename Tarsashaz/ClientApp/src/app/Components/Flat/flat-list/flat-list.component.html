@@ -70,7 +70,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
       <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
         <a [routerLink]="['/datas']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/upload.jpg" class="menu-icon">
@@ -80,7 +80,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
       <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
         <a [routerLink]="['/balance']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/scale.png" class="menu-icon">
@@ -90,7 +90,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
       <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
         <a [routerLink]="['/common']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/money.png" class="menu-icon">
@@ -100,7 +100,7 @@
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-6 col-sm-12">
       <mat-card class="menu-card" [ngClass]="{ 'menu-card-disabled': (flats$ | async)?.length == 0 }">
         <a [routerLink]="['/bills']" [ngClass]="{ 'disabled': (flats$ | async)?.length == 0 }">
           <img mat-card-image src="assets/img/bill.png" class="menu-icon">

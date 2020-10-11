@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.ComTypes;
@@ -29,6 +30,14 @@ namespace Tarsashaz.DAL.Repositories
         public Announcement Find(int id)
         {
             return db.Announcements.Find(id);
+        }
+
+        public List<Announcement> FindAnnouncementsByFlatId(int flatid)
+        {
+            var conId = db.Flats.FirstOrDefault(f => f.Id == flatid).CondominiumId;
+            if (conId == 0)
+                return null;
+            return db.Announcements.Include(a => a.Sender).Where(a => a.CondominiumId == conId).ToList();
         }
 
         public Announcement Insert(Announcement i)

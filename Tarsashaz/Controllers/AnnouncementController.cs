@@ -19,10 +19,10 @@ namespace Tarsashaz.Controllers
             repository = _repository;
         }
 
-        [HttpGet("{id}")]
-        public Announcement Find(int id)
+        [HttpGet("{flatid}")]
+        public List<Announcement> FindAnnouncementsByFlatId(int flatid)
         {
-            return repository.Find(id);
+            return repository.FindAnnouncementsByFlatId(flatid);
         }
 
         [HttpPost]

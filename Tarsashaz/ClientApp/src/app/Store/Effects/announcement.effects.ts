@@ -16,7 +16,7 @@ export class AnnouncementEffects {
   @Effect()
   getAnnouncements$ = this.actions$.pipe(
     ofType<GetAnnouncements>(GET_ANNOUNCEMENTS),
-    switchMap((a: GetAnnouncements) => this.annService.getAnnouncements()),
+    switchMap((a: GetAnnouncements) => this.annService.getAnnouncementsByFlatId(a.payload)),
     switchMap((res: Announcement[]) => {
       if (res.length != 0) {
         return of(new GetAnnouncementsSuccess(res));

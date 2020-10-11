@@ -1,4 +1,5 @@
 <h3>Számlák: </h3>
+<button class="btn btn-success" (click)="addBills()">Számla hozzáadás</button>
 <div *ngIf="(actualFlat$ | async)?.bills.length == 0">
   <div class="alert alert-warning" role="alert">
     Nincs elérhető számla
@@ -30,7 +31,13 @@
   <div class="row row-body" *ngFor="let bill of (actualFlat$ | async)?.bills">
     <div class="col-md-2">
       <div class="table-body">
-        <h6>{{bill.type}}</h6>
+        <div [ngSwitch]="bill?.type">
+          <h6 *ngSwitchCase="0">Víz számla</h6>
+          <h6 *ngSwitchCase="1">Villany számla</h6>
+          <h6 *ngSwitchCase="2">Fűtés számla</h6>
+          <h6 *ngSwitchCase="3">Közös költség számla</h6>
+          <h6 *ngSwitchDefault>Számla</h6>
+        </div>
       </div>
     </div>
     <div class="col-md-3">

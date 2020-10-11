@@ -36,7 +36,6 @@ namespace Tarsashaz.DAL.Repositories
             }
             return db.Condominiums
                 .Include(c => c.Address)
-                .Include(c => c.Announcements).ThenInclude(a => a.Sender)
                 .Include(c => c.Bills).ThenInclude(b =>b.BillDate)
                 .Include(c => c.Bills).ThenInclude(b => b.Provider).ThenInclude(p =>p.Address)
                 .Include(c => c.Bills).ThenInclude(b => b.DestAddress)

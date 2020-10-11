@@ -6,5 +6,8 @@ const selectProblem = (state: AppState) => state.problem;
 
 export const selectProblems = createSelector(
   selectProblem,
-  (state: ProblemState) => state.problems
+  (state: ProblemState) => {
+    if (state && state.problems)
+      return state.problems;
+  }
 );

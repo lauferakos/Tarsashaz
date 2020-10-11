@@ -41,7 +41,10 @@ export class AnnouncementService {
       })
     
   }
-
+  getAnnouncementsByFlatId(flatId: number): Observable<Announcement[]> {
+    let url = this.baseUrl + "announcement/" + flatId;
+    return this.http.get<Announcement[]>(url);
+  }
   addAnnouncement(a: Announcement): Observable<Announcement> {
     let url = this.baseUrl + "announcement";
     return this.http.post<Announcement>(url, a);

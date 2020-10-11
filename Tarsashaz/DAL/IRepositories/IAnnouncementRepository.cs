@@ -13,5 +13,7 @@ namespace Tarsashaz.DAL.IRepositories
 
         public Announcement Delete(int id);
         public Announcement Find(int id);
+
+        public List<Announcement> FindAnnouncementsByFlatId(int flatid);
     }
 }

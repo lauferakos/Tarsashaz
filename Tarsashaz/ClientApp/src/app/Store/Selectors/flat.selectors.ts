@@ -6,24 +6,41 @@ const selectFlat = (state: AppState) => state.flat;
 
 export const selectFlats = createSelector(
   selectFlat,
-  (state: FlatState) => state.flats
+  (state: FlatState) => {
+    if (state && state.flats)
+      return state.flats;
+  }
 );
 
 export const selectActualFlat = createSelector(
   selectFlat,
-  (state: FlatState) => state.actualFlat
+  (state: FlatState) => {
+    if (state && state.actualFlat)
+      return state.actualFlat;
+  }
 );
 
 export const selectActualFlatDatas = createSelector(
   selectFlat,
-  (state: FlatState) => state.actualFlat.flatDatas
+  (state: FlatState) => {
+    if (state && state.actualFlat && state.actualFlat.flatDatas)
+      return state.actualFlat.flatDatas;
+  }
 );
 
 export const selectActualFlatBalance = createSelector(
   selectFlat,
-  (state: FlatState) => state.actualFlat.balances
+  (state: FlatState) => {
+    if (state && state.actualFlat && state.actualFlat.balances)
+      return state.actualFlat.balances;
+  }
 );
 
 export const selectActualFlatBills = createSelector(
   selectFlat,
-  (state: FlatState) => state.actualFlat.bills);
+  (state: FlatState) => {
+    if (state && state.actualFlat && state.actualFlat.bills)
+      return state.actualFlat.bills;
+  }
+);
+    

@@ -24,7 +24,16 @@ namespace Tarsashaz.Controllers
         {
             return repository.Find(id);
         }
-
+        [HttpPost("{addbills}")]
+        public List<FlatBill> AddBills([FromBody] List<FlatBill> bills)
+        {
+            List<FlatBill> flatBills = new List<FlatBill>();
+            foreach(FlatBill b in bills)
+            {
+                flatBills.Add(this.Insert(b));
+            }
+            return flatBills;
+        }
         [HttpPost]
         public FlatBill Insert([FromBody] FlatBill fb)
         {

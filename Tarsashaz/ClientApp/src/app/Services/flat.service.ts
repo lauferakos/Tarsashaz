@@ -11,6 +11,7 @@ import { BillType } from '../Enums/BillType';
 import * as FlatActions from '../Store/Actions/flat.actions';
 import { HttpClient } from '@angular/common/http';
 import { FlatData } from '../Models/flatdata.model';
+import { concat } from 'rxjs/operators';
 
 @Injectable()
 export class FlatService {
@@ -79,7 +80,60 @@ export class FlatService {
     let url = this.baseUrl + "flat/" + f.id;
     return this.http.put<Flat>(url,f);
   }
+  private getRandomInt(max): number {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+  addBills(amount: number): Observable<Bill[]> {
+    let actualUser$ = this.store.pipe(select(selectActualUser));
+    let actualFlat$ = this.store.pipe(select(selectActualFlat));
+    let user: User;
+    let flat: Flat;
+    let bills: Bill[] = [];
+    let bill: Bill;
+    actualUser$.subscribe(u => user = u);
+    actualFlat$.subscribe(f => {
+      for (let i = 0; i < amount; i++) {
+        bill = {
+          id: 0,
+          type: this.getRandomInt(3) == 2 ? BillType.Water : this.getRandomInt(3) == 1 ? BillType.Electric : BillType.Heating,
+          user: user,
+          pic: null,
+          provider: null,
+          billDate: {
+            startDate: new Date(),
+            payoffEnd: new Date(),
+            payoffStart: new Date(),
+            deadline: new Date('2020-09-05')
+          },
+          amount: this.getRandomInt(5000)+5000,
+          items: [],
+          destAddress: f.address,
+          destAddressId: f.address.id,
+          userId: user.id,
+          flatId: f.id,
+          isPaid: false
+        }
+        
+        bills = bills.concat(bill);
+      }
+      flat = {
+        id: f.id,
+        address: f.address,
+        userId: f.userId,
+        flatDatas: f.flatDatas,
+        balances: f.balances,
+        bills: bills
+      }
+      
+    });
+    console.log(flat);
+    this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
 
+    let url = this.baseUrl + "flatbill/addbills";
+    return this.http.post<Bill[]>(url, bills);
+
+
+  }
   addCommonChargeBillToActualFlat(amount: number):Observable<Bill> {
     let actualUser$ = this.store.pipe(select(selectActualUser));
     let actualFlat$ = this.store.pipe(select(selectActualFlat));

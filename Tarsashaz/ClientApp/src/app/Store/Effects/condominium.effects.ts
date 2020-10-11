@@ -17,10 +17,6 @@ export class CondominiumEffects {
     switchMap((c: GetCondominium) => this.conService.getCondominiumByFlatId(c.payload)),
     switchMap((conn: Condominium) => {
       if (conn) {
-        if (conn.announcements) {
-          console.log(conn.announcements);
-          this.store.dispatch(new AnnouncementActions.AnnouncementsAddedSuccess(conn.announcements));
-        }
         return of(new GetCondominiumSuccess(conn));
       }
     })

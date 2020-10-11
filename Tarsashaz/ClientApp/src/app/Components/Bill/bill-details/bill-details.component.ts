@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Bill } from '../../../Models/bill.model';
 import { BillType } from '../../../Enums/BillType';
 import { Provider } from '../../../Models/provider.model';
@@ -21,12 +21,12 @@ import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 export class BillDetailsComponent implements OnInit{
   /** BillDetails ctor */
   actualUser$ = this.store.select(selectActualUser);
-
   bill: Bill;
 
   constructor(private _Activatedroute: ActivatedRoute, private store: Store<AppState>, private connService: CondominiumService) {
 
   }
+
 
   ngOnInit() {
     let id = Number.parseInt(this._Activatedroute.snapshot.paramMap.get("id"));

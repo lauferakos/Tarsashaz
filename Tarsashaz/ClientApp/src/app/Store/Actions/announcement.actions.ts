@@ -45,6 +45,7 @@ export class AnnouncementDeletedSuccess implements Action {
 
 export class GetAnnouncements implements Action {
   public readonly type = GET_ANNOUNCEMENTS;
+  constructor(public payload: number) { }
 }
 
 export class GetAnnouncementsSuccess implements Action {

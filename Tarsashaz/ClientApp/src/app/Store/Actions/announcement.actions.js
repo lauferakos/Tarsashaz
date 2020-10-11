@@ -57,7 +57,8 @@ var AnnouncementDeletedSuccess = /** @class */ (function () {
 }());
 exports.AnnouncementDeletedSuccess = AnnouncementDeletedSuccess;
 var GetAnnouncements = /** @class */ (function () {
-    function GetAnnouncements() {
+    function GetAnnouncements(payload) {
+        this.payload = payload;
         this.type = exports.GET_ANNOUNCEMENTS;
     }
     return GetAnnouncements;

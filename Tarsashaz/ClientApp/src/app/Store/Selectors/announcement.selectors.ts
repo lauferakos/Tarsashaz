@@ -6,5 +6,8 @@ const selectAnnouncement = (state: AppState) => state.announcement;
 
 export const selectAnnouncements = createSelector(
   selectAnnouncement,
-  (state: AnnouncementState) => state.announcements
+  (state: AnnouncementState) => {
+    if (state && state.announcements)
+      return state.announcements;
+  }
 );
