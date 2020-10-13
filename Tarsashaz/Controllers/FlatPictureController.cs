@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
@@ -13,9 +16,37 @@ namespace Tarsashaz.Controllers
     public class FlatPictureController : ControllerBase
     {
         private readonly IFlatPictureRepository repository;
-        public FlatPictureController(IFlatPictureRepository _repository)
+        private IHostingEnvironment _hostingEnvironment;
+        public FlatPictureController(IFlatPictureRepository _repository, IHostingEnvironment environment)
         {
             repository = _repository;
+            _hostingEnvironment = environment;
+        }
+
+        [HttpPost]
+        [Route("upload/{id}")]
+        public async Task<IActionResult> Upload(IFormFile file,int id)
+        {
+            var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+            string url= null;
+            if (!Directory.Exists(uploads))
+            {
+                Directory.CreateDirectory(uploads);
+            }
+
+            if (file.Length > 0)
+              {
+                    var filePath = Path.Combine(uploads, file.FileName);
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                url = "uploads/" + file.FileName;
+                repository.UpdateUrl(url,id);
+                return Ok();
+            }
+            else return NotFound();
+            
         }
 
         [HttpGet("{id}")]

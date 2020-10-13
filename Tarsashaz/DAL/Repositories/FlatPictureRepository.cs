@@ -36,13 +36,22 @@ namespace Tarsashaz.DAL.Repositories
             db.SaveChanges();
             return i;
         }
-
         public FlatPicture Update(FlatPicture u, int id)
         {
             FlatPicture updated = db.FlatPictures.Find(id);
             updated = u;
             db.SaveChanges();
             return updated;
+        }
+
+        public string UpdateUrl(string url,int id)
+        {
+            FlatPicture updated = db.FlatPictures.Find(id);
+            if (updated == null)
+                return null;
+            updated.Url = url;
+            db.SaveChanges();
+            return url;
         }
     }
 }

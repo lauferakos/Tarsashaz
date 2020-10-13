@@ -9,9 +9,10 @@ import { User } from '../Models/user.model';
 import { Bill } from '../Models/bill.model';
 import { BillType } from '../Enums/BillType';
 import * as FlatActions from '../Store/Actions/flat.actions';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { FlatData } from '../Models/flatdata.model';
 import { concat } from 'rxjs/operators';
+import { Picture } from '../Models/picture.model';
 
 @Injectable()
 export class FlatService {
@@ -67,13 +68,33 @@ export class FlatService {
   getFlatById(id: number): Observable<Flat> {
     let flats$ = this.store.pipe(select(selectFlats));
     let result: Flat;
-    flats$.subscribe((flats) => result = flats.find(f => f.id == id));
+    flats$.subscribe((flats) => result = flats.filter(f => f.id == id)[0]);
     return observableOf(result);
   }
 
   uploadData(data: FlatData, flatid: number): Observable<FlatData>{
     let url = this.baseUrl + "flatdata/" + flatid;
-    return this.http.post<FlatData>(url, data);
+    this.http.post<FlatData>(url, data).subscribe(
+      fd => {
+        console.log(fd);
+        for (let idx = 0; idx < data.pics.length; idx++)
+          this.uploadPicture(data.pics[idx], fd.pics[idx].id).subscribe();
+      }
+    );
+   
+    return observableOf(data);
+  }
+  uploadPicture(picture: Picture,id:number) {
+    let url = this.baseUrl + "flatpicture/upload/"+id;
+    const formData = new FormData();
+    formData.append('file', picture.file); 
+    return this.http.request(new HttpRequest(
+      'POST',
+      url,
+      formData,
+      {
+        reportProgress: true
+      }));
   }
 
   updateActualFlat(f: Flat): Observable<Flat> {

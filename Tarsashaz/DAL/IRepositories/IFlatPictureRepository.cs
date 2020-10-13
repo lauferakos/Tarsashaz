@@ -13,5 +13,7 @@ namespace Tarsashaz.DAL.IRepositories
 
         public FlatPicture Delete(int id);
         public FlatPicture Find(int id);
+
+        public string UpdateUrl(string url, int id);
     }
 }
