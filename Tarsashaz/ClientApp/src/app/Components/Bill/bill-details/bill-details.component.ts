@@ -35,11 +35,11 @@ export class BillDetailsComponent implements OnInit{
       // ?
 
       let bills$ = this.store.pipe(select(selectConBills));
-      bills$.subscribe(bills => this.bill = bills.find(b=>b.id == id))
+      bills$.subscribe(bills => {if(bills) this.bill = bills.find(b => b.id == id) })
     }
     else {
       let bills$ = this.store.pipe(select(selectActualFlatBills));
-      bills$.subscribe(bills => this.bill = bills.find(b => b.id == id));
+      bills$.subscribe(bills => { if (bills) this.bill = bills.find(b => b.id == id) });
     }
 
   }

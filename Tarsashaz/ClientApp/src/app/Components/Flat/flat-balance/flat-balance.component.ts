@@ -33,34 +33,35 @@ export class FlatBalanceComponent implements OnInit{
 
   ngOnInit() {
     this.balances$.subscribe(balances => {
-      if (balances.length > 0) {
+      if (balances && balances.length > 0) {
         this.electricBalance = balances.filter(b => b.type == BillType.Electric)[0];
         this.waterBalance = balances.filter(b => b.type == BillType.Water)[0];
         this.heathingBalance = balances.filter(b => b.type == BillType.Heating)[0];
       }
       else {
         this.store.pipe(select(selectActualFlatBills)).subscribe(bills => {
-          for (let bill of bills) {
-            if (bill.isPaid == false && new Date(bill.billDate.deadline).getFullYear() == new Date().getFullYear() &&
-              new Date(bill.billDate.deadline).getMonth() <= (new Date().getMonth() - 1))
-            {
-              switch (bill.type) {
-                case BillType.Electric: {
-                  this.electricBalance.amount += bill.amount;
-                  break;
-                }
-                case BillType.Water: {
-                  this.waterBalance.amount += bill.amount;
-                  break;
-                }
-                case BillType.Heating: {
-                  this.heathingBalance.amount += bill.amount;
-                  break;
-                }
-                default: {
-                  break;
-                }
+          if (bills) {
+            for (let bill of bills) {
+              if (bill.isPaid == false && new Date(bill.billDate.deadline).getFullYear() == new Date().getFullYear() &&
+                new Date(bill.billDate.deadline).getMonth() <= (new Date().getMonth() - 1)) {
+                switch (bill.type) {
+                  case BillType.Electric: {
+                    this.electricBalance.amount += bill.amount;
+                    break;
+                  }
+                  case BillType.Water: {
+                    this.waterBalance.amount += bill.amount;
+                    break;
+                  }
+                  case BillType.Heating: {
+                    this.heathingBalance.amount += bill.amount;
+                    break;
+                  }
+                  default: {
+                    break;
+                  }
 
+                }
               }
             }
           }

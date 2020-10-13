@@ -33,7 +33,7 @@ export class UserDetailsComponent implements OnInit{
 
   ngOnInit() {
     this.actualUser$.subscribe(res => {
-      if (res !== null) {
+      if (res && res.id) {
         this.actualUser = {
           id: res.id,
           token: res.token,
