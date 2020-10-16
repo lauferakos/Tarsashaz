@@ -59,7 +59,7 @@ export class UploadDataComponent implements OnInit{
         let file = event.target.files[i];
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
-          this.dataForm.value.pics.push({ url: event.target.result, file: file })
+          this.dataForm.value.pics.push({ url: "uploads/"+file.name, file: file })
         }
       };
     }
@@ -68,7 +68,7 @@ export class UploadDataComponent implements OnInit{
   deletePic(url: string) {
     this.dataForm.value.pics = this.dataForm.value.pics.filter(p => p.url != url);
   }
-  onSubmit() {
+  async onSubmit() {
     if (this.dataForm.valid) {
       let id: number;
       this.store.select(selectActualFlat).subscribe(
@@ -83,8 +83,8 @@ export class UploadDataComponent implements OnInit{
           this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(data);
           this.store.dispatch(new FlatActions.ActualFlatUpdated(this.actualFlat));
           this.router.navigate(['/flat']);
-        });
-      
+        }
+      );
     }
   }
 }

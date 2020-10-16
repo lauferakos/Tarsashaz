@@ -56,6 +56,7 @@ import { DoughnutChartComponent } from './Components/Report/doughnut-chart/dough
 import { BarChartComponent } from './Components/Report/bar-chart/bar-chart.component';
 import { SummaryComponent } from './Components/Report/summary/summary.component';
 import { ProblemListComponent } from './Components/Problem/problem-list/problem-list.component';
+import { AddBillComponent } from './Components/Bill/add-bill/add-bill.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -114,6 +115,7 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -145,7 +147,8 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
     DoughnutChartComponent,
     BarChartComponent,
     SummaryComponent,
-    ProblemListComponent
+    ProblemListComponent,
+    AddBillComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -43,6 +43,9 @@
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async)?.role == 0">
             <a class="nav-link text-dark" [routerLink]="['/report']">Beszámoló</a>
           </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async)?.role == 0">
+            <a class="nav-link text-dark" [routerLink]="['/newbill']">Új számla</a>
+          </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(actualUser$ | async) || isLoggedIn">
             <button mat-raised-button color="warn" class="save-button" (click)="logOut()">Kijelentkezés</button>
           </li>

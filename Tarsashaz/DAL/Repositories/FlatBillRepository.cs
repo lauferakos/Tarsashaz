@@ -30,6 +30,11 @@ namespace Tarsashaz.DAL.Repositories
             return db.FlatBills.Find(id);
         }
 
+        public FlatBill FindLastBill()
+        {
+            return db.FlatBills.OrderByDescending(fb => fb.Id).FirstOrDefault();
+        }
+
         public FlatBill Insert(FlatBill i)
         {
             

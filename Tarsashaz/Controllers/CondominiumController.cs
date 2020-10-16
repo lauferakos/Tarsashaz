@@ -50,6 +50,7 @@ namespace Tarsashaz.Controllers
             return repository.Delete(id);
         }
 
+
         [HttpGet("all")]
         public List<Condominium> FindAllWithAddress()
         {

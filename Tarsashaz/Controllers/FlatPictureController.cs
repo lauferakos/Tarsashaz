@@ -16,16 +16,16 @@ namespace Tarsashaz.Controllers
     public class FlatPictureController : ControllerBase
     {
         private readonly IFlatPictureRepository repository;
-        private IHostingEnvironment _hostingEnvironment;
-        public FlatPictureController(IFlatPictureRepository _repository, IHostingEnvironment environment)
+        private IWebHostEnvironment _hostingEnvironment;
+        public FlatPictureController(IFlatPictureRepository _repository, IWebHostEnvironment environment)
         {
             repository = _repository;
             _hostingEnvironment = environment;
         }
 
         [HttpPost]
-        [Route("upload/{id}")]
-        public async Task<IActionResult> Upload(IFormFile file,int id)
+        [Route("upload")]
+        public bool Upload(List<IFormFile> files)
         {
             var uploads = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
             string url= null;
@@ -34,19 +34,26 @@ namespace Tarsashaz.Controllers
                 Directory.CreateDirectory(uploads);
             }
 
-            if (file.Length > 0)
-              {
+            foreach (IFormFile file in files)
+            {
+                if (file.Length > 0)
+                {
+                    url = "uploads/" + file.FileName;
+                    var result = repository.FindByUrl(url);
                     var filePath = Path.Combine(uploads, file.FileName);
-                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    if (result == null)
                     {
-                        await file.CopyToAsync(fileStream);
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                             file.CopyTo(fileStream);
+                        }
+
                     }
-                url = "uploads/" + file.FileName;
-                repository.UpdateUrl(url,id);
-                return Ok();
+
+                    
+                }
             }
-            else return NotFound();
-            
+            return true;
         }
 
         [HttpGet("{id}")]

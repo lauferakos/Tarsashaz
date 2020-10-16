@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
@@ -13,9 +16,11 @@ namespace Tarsashaz.Controllers
     public class FlatDataController : ControllerBase
     {
         private readonly IFlatDataRepository repository;
-        public FlatDataController(IFlatDataRepository _repository)
+        private readonly IFlatPictureRepository flatPictureRepository;
+        public FlatDataController(IFlatDataRepository _repository, IFlatPictureRepository _flatPictureRepository)
         {
             repository = _repository;
+            flatPictureRepository = _flatPictureRepository;
         }
 
         [HttpGet("{id}")]

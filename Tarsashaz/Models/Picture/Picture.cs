@@ -17,6 +17,8 @@ namespace Tarsashaz.Models.Pictures
         public string Name { get; set; }
         public string Type { get; set; }
         /*[NotMapped]
-        public IFormFile File { get; set; }*/
+        public FileStream File { get; set; }*/
+        [NotMapped]
+        public FileInfo File { get; set; }
     }
 }

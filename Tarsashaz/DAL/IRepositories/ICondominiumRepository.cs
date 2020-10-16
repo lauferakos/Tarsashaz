@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.Models.Condominiums;
+using Tarsashaz.Models.Flats;
 
 namespace Tarsashaz.DAL.IRepositories
 {
@@ -17,6 +18,9 @@ namespace Tarsashaz.DAL.IRepositories
 
         public List<Condominium> FindAllWithAddress();
 
-        
+
+
+
+
     }
 }

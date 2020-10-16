@@ -13,5 +13,7 @@ namespace Tarsashaz.DAL.IRepositories
 
         public FlatBill Delete(int id);
         public FlatBill Find(int id);
+
+        public FlatBill FindLastBill();
     }
 }

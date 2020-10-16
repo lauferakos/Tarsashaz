@@ -39,6 +39,12 @@ namespace Tarsashaz.Controllers
             return repository.Update(f, id);
         }
 
+        [HttpGet("flats/{conId}")]
+        public List<Flat> FindFlatsInCondominium(int conId)
+        {
+            return repository.FindFlatsInCondominium(conId);
+        }
+
         [HttpDelete("{id}")]
         public Flat Delete(int id)
         {

@@ -62,6 +62,7 @@ namespace Tarsashaz.DAL.Repositories
                  .FirstOrDefault(c => c.CommonRepresentativeId == crId);
         }
 
+
         public Condominium Insert(Condominium i)
         {
             db.Condominiums.Add(i);

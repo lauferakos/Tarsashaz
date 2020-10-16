@@ -30,6 +30,14 @@ namespace Tarsashaz.DAL.Repositories
             return db.FlatPictures.Find(id);
         }
 
+        public string FindByUrl(string url)
+        {
+            var result =  db.FlatPictures.FirstOrDefault(p => p.Url == url);
+            if (result == null)
+                return null;
+            else return result.Url;
+        }
+
         public FlatPicture Insert(FlatPicture i)
         {
             db.FlatPictures.Add(i);

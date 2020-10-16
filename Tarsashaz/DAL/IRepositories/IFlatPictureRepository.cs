@@ -15,5 +15,7 @@ namespace Tarsashaz.DAL.IRepositories
         public FlatPicture Find(int id);
 
         public string UpdateUrl(string url, int id);
+
+        public string FindByUrl(string url);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tarsashaz.Models.Addresses;
 using Tarsashaz.Models.Bills;
 
 namespace Tarsashaz.DAL.IRepositories
@@ -13,5 +14,6 @@ namespace Tarsashaz.DAL.IRepositories
 
         public Provider Delete(int id);
         public Provider Find(int id);
+        public Provider FindByAddress(ProviderAddress address);
     }
 }

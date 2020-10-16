@@ -19,9 +19,10 @@ export class ProblemService {
     let conId = 0;
     
     this.store.pipe(select(selectConId)).subscribe(id => conId = id);
+
+    console.log(p);
+    let url = this.baseUrl + "problem/" + conId;
     
-    
-    let url = this.baseUrl + "problem/"+conId;
     return this.http.post<Problem>(url, p);
   }
 

@@ -10,6 +10,7 @@ import { Store, select } from '@ngrx/store';
 import {selectConCommonCharge } from '../Store/Selectors/condominium.selectors';
 import { HttpClient } from '@angular/common/http';
 import { Problem } from '../Models/problem.model';
+import { Flat } from '../Models/flat.model';
 
 @Injectable()
 export class CondominiumService {
@@ -26,6 +27,7 @@ export class CondominiumService {
     let url = this.baseUrl + "condominium/all";
     return this.http.get<Condominium[]>(url);
   }
+
 
   getCondominiumByFlatId(flatid: number): Observable<Condominium>{
     let url = this.baseUrl + "condominium/" + flatid;

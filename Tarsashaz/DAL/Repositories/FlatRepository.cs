@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -64,6 +65,10 @@ namespace Tarsashaz.DAL.Repositories
             return addedFlat;
         }
 
+        public List<Flat> FindFlatsInCondominium(int conId)
+        {
+            return db.Flats.Include(f => f.Address).Where(f => f.CondominiumId == conId).ToList();
+        }
         public Flat Update(Flat u, int id)
         {
             Flat updated = db.Flats.Find(id);

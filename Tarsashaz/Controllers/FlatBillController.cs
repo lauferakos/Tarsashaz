@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.IRepositories;
 using Tarsashaz.Models.Bills;
+using Tarsashaz.Services;
 
 namespace Tarsashaz.Controllers
 {
@@ -13,10 +14,12 @@ namespace Tarsashaz.Controllers
     public class FlatBillController : ControllerBase
     {
         private readonly IFlatBillRepository repository;
+        private readonly BillService service;
 
-        public FlatBillController(IFlatBillRepository _repository)
+        public FlatBillController(IFlatBillRepository _repository, BillService billService)
         {
             repository = _repository;
+            service = billService;
         }
 
         [HttpGet("{id}")]
@@ -33,6 +36,12 @@ namespace Tarsashaz.Controllers
                 flatBills.Add(this.Insert(b));
             }
             return flatBills;
+        }
+
+        [HttpPost("new")]
+        public FlatBill AddBill([FromBody] FlatBill fb)
+        {
+            return service.AddBill(fb);
         }
         [HttpPost]
         public FlatBill Insert([FromBody] FlatBill fb)

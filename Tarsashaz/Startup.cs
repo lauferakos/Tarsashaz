@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Tarsashaz.Services;
 
 namespace Tarsashaz
 {
@@ -28,6 +30,12 @@ namespace Tarsashaz
                 configuration.RootPath = "ClientApp/dist";
             });
 
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
+            });
+
             services.AddDbContext<DAL.DbContexts.CondominiumDbContext>
                 (options => options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TarsashazDB;Trusted_Connection=True;"));
             services.AddScoped<DAL.IRepositories.ICondominiumAddressRepository, DAL.Repositories.CondominiumAddressRepository>();
@@ -48,6 +56,7 @@ namespace Tarsashaz
             services.AddScoped<DAL.IRepositories.IProblemPictureRepository, DAL.Repositories.ProblemPictureRepository>();
             services.AddScoped<DAL.IRepositories.IUserRepository, DAL.Repositories.UserRepository>();
 
+            services.AddTransient<BillService>();
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );

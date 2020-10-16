@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.DbContexts;
 using Tarsashaz.DAL.IRepositories;
+using Tarsashaz.Models.Addresses;
 using Tarsashaz.Models.Bills;
 
 namespace Tarsashaz.DAL.Repositories
@@ -28,6 +30,17 @@ namespace Tarsashaz.DAL.Repositories
         public Provider Find(int id)
         {
             return db.Providers.Find(id);
+        }
+
+        public Provider FindByAddress(ProviderAddress address)
+        {
+            return db.Providers.Include(p => p.Address).FirstOrDefault(p =>
+              p.Address.PostCode == address.PostCode &&
+              p.Address.City == address.City &&
+              p.Address.Street == address.Street &&
+              p.Address.Number == address.Number &&
+              p.Address.Floor == address.Floor &&
+              p.Address.Door == address.Door);
         }
 
         public Provider Insert(Provider i)

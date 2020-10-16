@@ -72,29 +72,33 @@ export class FlatService {
     return observableOf(result);
   }
 
-  uploadData(data: FlatData, flatid: number): Observable<FlatData>{
+   uploadData(data: FlatData, flatid: number): Observable<FlatData>{
     let url = this.baseUrl + "flatdata/" + flatid;
-    this.http.post<FlatData>(url, data).subscribe(
-      fd => {
-        console.log(fd);
-        for (let idx = 0; idx < data.pics.length; idx++)
-          this.uploadPicture(data.pics[idx], fd.pics[idx].id).subscribe();
-      }
-    );
-   
-    return observableOf(data);
+     
+    if (data.pics.length > 0) {
+      console.log('Uploading pictures...');
+      this.uploadPicture(data.pics).subscribe();
+    }
+    console.log('Uploading data...');
+    return this.http.post<FlatData>(url, data);
   }
-  uploadPicture(picture: Picture,id:number) {
-    let url = this.baseUrl + "flatpicture/upload/"+id;
+
+
+   uploadPicture(pictures: Picture[]) {
+    let url = this.baseUrl + "flatpicture/upload"
     const formData = new FormData();
-    formData.append('file', picture.file); 
-    return this.http.request(new HttpRequest(
-      'POST',
-      url,
-      formData,
-      {
-        reportProgress: true
-      }));
+    for (let picture of pictures) {
+      formData.append('files', picture.file);
+    }
+
+    console.log(formData.get('files'));
+     return this.http.request(new HttpRequest(
+       'POST',
+       url,
+       formData,
+       {
+         reportProgress: true
+       }));
   }
 
   updateActualFlat(f: Flat): Observable<Flat> {
@@ -103,6 +107,11 @@ export class FlatService {
   }
   private getRandomInt(max): number {
     return Math.floor(Math.random() * Math.floor(max));
+  }
+  addBill(bill: Bill) {
+    console.log(bill);
+    let url = this.baseUrl + "flatbill/new";
+    return this.http.post(url, bill);
   }
   addBills(amount: number): Observable<Bill[]> {
     let actualUser$ = this.store.pipe(select(selectActualUser));
@@ -154,6 +163,11 @@ export class FlatService {
     return this.http.post<Bill[]>(url, bills);
 
 
+  }
+
+  getFlatsInCondominium(conId: number): Observable<Flat[]> {
+    let url = this.baseUrl + "flat/flats/" + conId;
+    return this.http.get<Flat[]>(url);
   }
   addCommonChargeBillToActualFlat(amount: number):Observable<Bill> {
     let actualUser$ = this.store.pipe(select(selectActualUser));

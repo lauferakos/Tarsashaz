@@ -15,5 +15,7 @@ namespace Tarsashaz.DAL.IRepositories
         public Flat Find(int id);
 
         public int GetCondominiumIdByFlat(Flat f);
+
+        public List<Flat> FindFlatsInCondominium(int conId);
     }
 }
