@@ -73,13 +73,8 @@ export class FlatService {
   }
 
    uploadData(data: FlatData, flatid: number): Observable<FlatData>{
-    let url = this.baseUrl + "flatdata/" + flatid;
-     
-    if (data.pics.length > 0) {
-      console.log('Uploading pictures...');
-      this.uploadPicture(data.pics).subscribe();
-    }
-    console.log('Uploading data...');
+    let url = this.baseUrl + "flatdata/" + flatid;    
+   console.log('Uploading data...');
     return this.http.post<FlatData>(url, data);
   }
 
@@ -152,7 +147,7 @@ export class FlatService {
         userId: f.userId,
         flatDatas: f.flatDatas,
         balances: f.balances,
-        bills: bills
+        bills: f.bills.concat(bills)
       }
       
     });

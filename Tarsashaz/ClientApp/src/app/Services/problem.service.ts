@@ -1,11 +1,12 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 import { Problem } from '../Models/problem.model';
 import { Observable } from 'rxjs';
 import { AppState } from '../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
 import { selectConId } from '../Store/Selectors/condominium.selectors';
 import { ProblemType } from '../Enums/ProblemType';
+import { Picture } from '../Models/picture.model';
 
 @Injectable()
 export class ProblemService {
@@ -25,6 +26,24 @@ export class ProblemService {
     
     return this.http.post<Problem>(url, p);
   }
+
+  uploadPicture(pictures: Picture[]) {
+    let url = this.baseUrl + "flatpicture/upload"
+    const formData = new FormData();
+    for (let picture of pictures) {
+      formData.append('files', picture.file);
+    }
+
+    console.log(formData.get('files'));
+    return this.http.request(new HttpRequest(
+      'POST',
+      url,
+      formData,
+      {
+        reportProgress: true
+      }));
+  }
+
 
   getProblems(conId: number): Observable<Problem[]> {
     let url = this.baseUrl + "problem/" + conId;

@@ -25,12 +25,15 @@ export class UserEffects {
     switchMap((result: UserLoginStatus) => {
       if (result.user) {
         console.log(result.user);
+        console.log('Put user to session storage');
         this.userService.putUserToSessionStorage(result.user);
-       
+
+        console.log('Login as CR');
         this.userService.loginAsCR();
         
       }
-      if (result.firstLogin) {   
+      if (result.firstLogin) {
+        console.log('FirstLogin')
         this.userService.firstLogin();
         this.router.navigate(['/firstlogin']);
       }
@@ -38,6 +41,7 @@ export class UserEffects {
         this.router.navigate(['/']);
       }
       if (result.user.flats) {
+        console.log('Dispatched FlatsAddedSuccess');
         this.store.dispatch(new FlatActions.FlatsAddedSuccess(result.user.flats));
       }
       

@@ -78,6 +78,10 @@ export class UploadDataComponent implements OnInit{
           }
         }
       );
+      if (this.dataForm.value.pics.length > 0) {
+        console.log('Uploading pictures...');
+        this.flatService.uploadPicture(this.dataForm.value.pics).subscribe();
+      }
       this.flatService.uploadData(this.dataForm.value, id).subscribe(
         data => {
           this.actualFlat.flatDatas = this.actualFlat.flatDatas.concat(data);

@@ -44,7 +44,7 @@ export class ProblemReportComponent implements OnInit {
         let file = event.target.files[i];
         reader.readAsDataURL(event.target.files[i]);
         reader.onload = (event: any) => {
-          this.problemForm.value.pictures.push({ url: event.target.result, file: file, name: file.name,type: file.type})
+          this.problemForm.value.pictures.push({ url: "uploads/" + file.name, file: file, name: file.name,type: file.type})
         }
       };
     }
@@ -56,7 +56,11 @@ export class ProblemReportComponent implements OnInit {
   onSubmit() {
     if (this.problemForm.valid) {
       this.isSuccess = true;
-      //this.problemService.reportProblem(this.problemForm.value, conid).subscribe(problem => console.log(problem));
+      
+      if (this.problemForm.value.pictures.length > 0) {
+        console.log('Upload image');
+        this.problemService.uploadPicture(this.problemForm.value.pictures);
+      }
       this.store.dispatch(new ProblemActions.ProblemAdded(this.problemForm.value));
     }
   }

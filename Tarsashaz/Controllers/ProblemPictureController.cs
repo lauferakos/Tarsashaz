@@ -41,5 +41,7 @@ namespace Tarsashaz.Controllers
         {
             return repository.Delete(id);
         }
+
+
     }
 }
