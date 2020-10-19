@@ -1,3 +1,7 @@
+
+
+<app-user-balance></app-user-balance>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-4">
@@ -11,6 +15,7 @@
               </div>
               <div *ngIf="waterBalance?.amount > 0">
                 <div>Elmaradás</div>
+                <button class="btn btn-danger">Befizet</button>
               </div>
               <div *ngIf="waterBalance?.amount < 0">
                 <div>Túlfizetés</div>
@@ -42,6 +47,7 @@
               </div>
               <div *ngIf="heathingBalance?.amount > 0">
                 <div>Elmaradás</div>
+                <button class="btn btn-danger">Befizet</button>
               </div>
               <div *ngIf="heathingBalance?.amount < 0">
                 <div>Túlfizetés</div>
@@ -73,6 +79,7 @@
               </div>
               <div *ngIf="electricBalance?.amount > 0">
                 <div>Elmaradás</div>
+                <button class="btn btn-danger">Befizet</button>
               </div>
               <div *ngIf="electricBalance?.amount < 0">
                 <div>Túlfizetés</div>

@@ -58,7 +58,8 @@ export class UserService {
       return true;
     else return false;
   }
-  clearSessionStorage() {
+  clearStorages() {
+    localStorage.clear();
     sessionStorage.clear();
   }
 
@@ -71,7 +72,7 @@ export class UserService {
 
   signOut(): Observable<boolean>{
     this.socialAuthService.signOut();
-    this.clearSessionStorage();
+    this.clearStorages();
     return observableOf(true);
   }
   isFirstLogin(): boolean {

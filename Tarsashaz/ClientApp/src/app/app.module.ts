@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 // Components
@@ -57,6 +58,8 @@ import { BarChartComponent } from './Components/Report/bar-chart/bar-chart.compo
 import { SummaryComponent } from './Components/Report/summary/summary.component';
 import { ProblemListComponent } from './Components/Problem/problem-list/problem-list.component';
 import { AddBillComponent } from './Components/Bill/add-bill/add-bill.component';
+import { UserBalanceComponent } from './Components/User/user-balance/user-balance.component';
+import { PayPalButtonComponent } from './Components/PayPal/pay-pal-button/pay-pal-button.component';
 
 // Services
 import { UserService } from './Services/user.service';
@@ -116,6 +119,8 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -149,6 +154,8 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
     SummaryComponent,
     ProblemListComponent,
     AddBillComponent,
+    UserBalanceComponent,
+    PayPalButtonComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -163,6 +170,7 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
     MatExpansionModule,
     MatCardModule,
     MatDividerModule,
+    MatRadioModule,
     SocialLoginModule,
     AppRoutingModule,
     LoginRoutingModule,
