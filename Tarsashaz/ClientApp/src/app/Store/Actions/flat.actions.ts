@@ -62,4 +62,4 @@ export class ActualFlatUpdatedSuccess implements Action {
 }
 
 export type FlatActions = FlatAdded | FlatAddedSuccess | ActualFlatChanged |
-  ActualFlatChangedSuccess | ActualFlatUpdated | ActualFlatUpdatedSuccess | GetFlats | GetFlatsSuccess | FlatsAddedSuccess;
+  ActualFlatChangedSuccess | ActualFlatUpdated | ActualFlatUpdatedSuccess | GetFlats | GetFlatsSuccess | FlatsAddedSuccess ;

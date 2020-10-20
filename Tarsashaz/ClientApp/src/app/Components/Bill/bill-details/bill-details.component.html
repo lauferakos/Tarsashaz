@@ -84,3 +84,9 @@
     </div>
   </div>
 </div>
+
+<div class="container" *ngIf="bill">
+  <h4>Befizet</h4>
+  <button class="btn btn-danger btn-sm">Levonás az egyenlegből</button>
+  <app-pay-pal-button [price]="bill.amount" (successfulPayment)="successfulPayment($event)"></app-pay-pal-button>
+</div>

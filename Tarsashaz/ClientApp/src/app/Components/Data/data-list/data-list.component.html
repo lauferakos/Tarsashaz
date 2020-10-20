@@ -5,36 +5,122 @@
   </div>
 </div>
 <div class="container">
-  <div *ngFor="let flatData of (flatDatas$ | async)">
-    <div class="flatData-panel">
-      <div class="row row-pics">
-        <div class="col">
-          <h6 *ngIf="flatData?.pics?.length > 0">Feltöltött képek</h6>
-          <div class="container container-pic">
+  <div class="row">
+    <div class="col-md-12">
+
+      <div *ngFor="let flatData of (flatDatas$ | async)">
+        <div class="row flatData-panel">
+          <div class="col-md-5 address-details">
             <div class="row">
-              <div *ngFor="let pic of flatData.pics">
-                <div class="col-sm-12">
-                  <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+              <div class="col-md-12">
+                <h5>Lakás adatok</h5>
+              </div>
+            </div>
+            <div class="row title">
+              <div class="col-md-12">
+                <h6><strong>Lakás címe:</strong></h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualFlat$ | async).address.postCode}} {{(actualFlat$ | async).address.city}}</h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualFlat$ | async).address.street}} {{(actualFlat$ | async).address.number}}</h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualFlat$ | async).address.floor}}.emelet {{(actualFlat$ | async).address.door}}.ajtó</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h5>Tulajdonos:</h5>
+              </div>
+            </div>
+            <div class="row title">
+              <div class="col-md-12">
+                <h6><strong>Név:</strong></h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualUser$ | async).name}}</h6>
+              </div>
+            </div>
+            <div class="row title">
+              <div class="col-md-12">
+                <h6><strong>Email:</strong></h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualUser$ | async).email}}</h6>
+              </div>
+            </div>
+            <div class="row title">
+              <div class="col-md-12">
+                <h6><strong>Elérhetőség:</strong></h6>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <h6>{{(actualUser$ | async).phone}}</h6>
+              </div>
+            </div>
+            <div class="row title">
+              <div class="col-md-12 title">
+                <strong>Adat típusa:</strong>
+              </div>
+            </div>
+            <div class="row value">
+              <div class="col-md-12">
+                <div [ngSwitch]="flatData?.type">
+                  <h6 *ngSwitchCase="0">Vízóra adat</h6>
+                  <h6 *ngSwitchCase="1">Villanyóra adat</h6>
+                  <h6 *ngSwitchDefault></h6>
                 </div>
               </div>
             </div>
           </div>
+          <div class="col-md-7 flatData-value">
+            <div class="row row-pics">
+              <div class="col">
+                <h6 *ngIf="flatData?.pics?.length > 0">Feltöltött képek</h6>
+                <div class="container container-pic">
+                  <div class="row">
+                    <div *ngFor="let pic of flatData.pics">
+                      <div class="col-sm-12">
+                        <img [src]="pic.url" alt="egy kép" width="150px" height="auto">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row row-value">
+              <div class="col col-value">
+                <h6><strong>Érték:</strong></h6>
+                <h6>{{flatData.value}}</h6>
+                <h6 *ngIf="flatData.type == 'víz'">m3</h6>
+                <h6 *ngIf="flatData.type == 'villany'">kWh</h6>
+              </div>
+            </div>
+            <div class="row row-text">
+              <div class="col col-text">
+                <h6><strong>Megjegyzés:</strong></h6>
+                <p>{{flatData.text}}</p>
+              </div>
+            </div>
+          </div>
         </div>
+
+
       </div>
-      <div class="row row-value">
-        <div class="col col-value">
-          <h6><strong>Érték:</strong></h6>
-          <h6>{{flatData.value}}</h6>
-          <h6 *ngIf="flatData.type == 'víz'">m3</h6>
-          <h6 *ngIf="flatData.type == 'villany'">kWh</h6>
-        </div>
-      </div>
-      <div class="row row-text">
-        <div class="col col-text">
-          <h6><strong>Megjegyzés:</strong></h6>
-          <p>{{flatData.text}}</p>
-        </div>
-      </div>
+
     </div>
   </div>
 </div>

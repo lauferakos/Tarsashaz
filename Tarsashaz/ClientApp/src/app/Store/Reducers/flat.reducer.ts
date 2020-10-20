@@ -1,5 +1,7 @@
 import { FlatState, initialFlatState } from "../States/flat.state";
 import * as Actions from './../Actions/flat.actions'
+import { concat } from "rxjs/operators";
+
 
 export function flatReducers(state = initialFlatState, action: Actions.FlatActions): FlatState {
   switch (action.type) {

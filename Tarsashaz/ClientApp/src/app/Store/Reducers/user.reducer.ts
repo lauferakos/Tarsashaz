@@ -23,7 +23,13 @@ export function userReducers (state = initialUserState, action: Actions.UserActi
       return {
         ...state,
         actualUser: action.payload
-      }
+      };
+    case Actions.USER_BALANCE_CHANGED_SUCCESS:
+      console.log('USER_BALANCE_CHANGED_SUCCESS');
+      return {
+        ...state,
+        balance: action.payload
+      };
     default:
       return state;
   }

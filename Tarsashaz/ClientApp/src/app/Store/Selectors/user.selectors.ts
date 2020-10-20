@@ -12,3 +12,11 @@ export const selectActualUser = createSelector(
   }
 );
 
+export const selectUserBalance = createSelector(
+  selectUser,
+  (state: UserState) => {
+    if (state && state.balance)
+      return state.balance;
+  }
+);
+
