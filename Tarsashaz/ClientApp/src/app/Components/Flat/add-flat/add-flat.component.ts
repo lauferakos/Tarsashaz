@@ -45,7 +45,8 @@ export class AddFlatComponent implements OnInit {
           email: res.email,
           role: res.role,
           phone: res.phone,
-          flats: res.flats
+          flats: res.flats,
+          balance: res.balance
         }
       }
     });

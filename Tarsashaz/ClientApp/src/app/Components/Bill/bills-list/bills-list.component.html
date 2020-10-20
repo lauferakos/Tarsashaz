@@ -5,6 +5,14 @@
     Nincs elérhető számla
   </div>
 </div>
+
+<div class="row">
+  <button class="badge badge-danger" (click)="notPaidBillsFilter()">Befizetésre váró számlák</button>
+
+  <button class="badge badge-success" (click)="paidBillsFilter()">Befizetett számlák</button>
+
+  <button class="badge badge-primary" (click)="cancelFilter()">Összes</button>
+</div>
 <div class="container" *ngIf="(actualFlat$ | async)?.bills.length > 0">
   <div class="row row-header">
     <div class="col-md-2">
@@ -33,7 +41,7 @@
       </div>
     </div>
   </div>
-  <div class="row row-body" *ngFor="let bill of (actualFlat$ | async)?.bills">
+  <div class="row row-body" *ngFor="let bill of (actualFlat$ | async)?.bills.filter(billFilter)">
     <div class="col-md-2">
       <div class="table-body">
         <span class="badge badge-success" *ngIf="bill.isPaid">Fizetve</span>

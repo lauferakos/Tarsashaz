@@ -49,7 +49,14 @@ namespace Tarsashaz.Controllers
             return repository.Delete(id);
         }
      
-
+        [HttpPost("balance/{userid}")]
+        public int BalanceChanged([FromBody]int newBalance, int userid)
+        {
+            User u = repository.Find(userid);
+            u.Balance = newBalance;
+            repository.Update(u, userid);
+            return newBalance;
+        }
         [HttpPost("login")]
         public UserLoginStatus Login([FromBody] SocialUser u)
         {

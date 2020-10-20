@@ -14,7 +14,6 @@ import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 export class DataListComponent {
   flatDatas$ = this.store.pipe(select(selectActualFlatDatas));
   actualFlat$ = this.store.pipe(select(selectActualFlat));
-  conAddress$ = this.store.pipe(select(selectConAddress));
   actualUser$ = this.store.pipe(select(selectActualUser));
     /** DataList ctor */
   constructor(private store: Store<AppState>) {

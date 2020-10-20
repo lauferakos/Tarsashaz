@@ -5,8 +5,9 @@ import { User } from '../Models/user.model';
 import { Observable, of as observableOf} from 'rxjs';
 import { Role } from '../Enums/Role';
 import { AppState } from '../Store/States/app.state';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
+import { selectActualUser } from '../Store/Selectors/user.selectors';
 
 export interface UserLoginStatus {
   firstLogin: boolean;
@@ -16,6 +17,7 @@ export interface UserLoginStatus {
 @Injectable()
 export class UserService {
   baseUrl: string;
+  userId: number;
   constructor(private socialAuthService: AuthService,
     private store: Store<AppState>,
     private http: HttpClient,
@@ -34,7 +36,10 @@ export class UserService {
 
   }
 
-
+  balanceChanged(newBalance: number,userId:number): Observable<number>{
+    let url = this.baseUrl + "user/balance/" + userId;
+    return this.http.post<number>(url, newBalance);
+  }
 
   // Login
   login(user: SocialUser): Observable<UserLoginStatus> {

@@ -11,11 +11,7 @@
         <div class="payment-info"> Az alábbi gomb megnyomásával, PayPal-on keresztül tudsz fizetni. Regisztráció nélkül, bankkártya adatok megadásával is lehetséges a fizetés.</div>
       </div>
     </div>
-    <div class="row">
-      <div class="col" >
-          <div id="checkout-btn"></div>
-      </div>
-    </div>
+    <app-pay-pal-button [price]="price" (successfulPayment)="success($event)"></app-pay-pal-button>
     <div class="row">
       <div class="col justify-content-center">
         <div *ngIf="successfulPayment">

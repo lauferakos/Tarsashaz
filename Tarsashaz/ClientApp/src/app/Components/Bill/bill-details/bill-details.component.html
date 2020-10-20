@@ -1,3 +1,6 @@
+<div class="alert alert-danger" role="alert" *ngIf="notEnoughMoney">
+  Nincs elég pénz a számládon!
+</div>
 <div *ngIf="!bill">
   <div class="alert alert-danger" role="alert">
     Hiba a betöltés közben!
@@ -87,6 +90,15 @@
 
 <div class="container" *ngIf="bill">
   <h4>Befizet</h4>
-  <button class="btn btn-danger btn-sm">Levonás az egyenlegből</button>
-  <app-pay-pal-button [price]="bill.amount" (successfulPayment)="successfulPayment($event)"></app-pay-pal-button>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-danger btn-sm" (click)="PayWithBalance(bill.amount)">Levonás az egyenlegből</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <app-pay-pal-button [price]="bill.amount" (successfulPayment)="successfulPayment($event)"></app-pay-pal-button>
+    </div>
+  </div>
+  
 </div>

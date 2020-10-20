@@ -32,47 +32,15 @@ export class PayPalCheckOutComponent implements OnInit{
         console.log('Payment', this.successfulPayment)
       }
     });
-    this.addPayPalScript().then(() => {
-      paypal.Button.render(this.paypalConfig, '#checkout-btn')
-    })
   }
-  paypalConfig = {
-    env: 'sandbox',
-    client: {
-      sandbox: 'AbHTdJJu9bsPFfTxcsPe3xUd_3Lbd4FmYhb85txHeIij1ceiPqgb6hxqpxkNzdHYK75whwojf_b0fHGr'
-    },
-    commit: true,
-    payment: (data, actions) => {
-      if (this.successfulPayment == false) {
-        return actions.payment.create({
-          payment: {
-            transactions: [
-              { amount: { total: this.price, currency: 'HUF' } }
-            ]
-          }
-        })
-      }
-    },
-    onAuthorize: (data, actions) => {
-      if (this.successfulPayment == false) {
-        return actions.payment.execute().then((payment) => {
-          this.successfulPayment = true;
-          this.flatService.addCommonChargeBillToActualFlat(this.price).subscribe(bill => console.log(bill));
-        })
-      }
-    }
-  };
+
   /** PayPalCheckOut ctor */
   constructor(private conService: CondominiumService, private store: Store<AppState>, private flatService: FlatService) {
     this.price = this.conService.getCommonCharge();
   }
 
-  addPayPalScript() {
-    return new Promise((resolve, reject) => {
-      let scriptTagElement = document.createElement('script');
-      scriptTagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
-      scriptTagElement.onload = resolve;
-      document.body.appendChild(scriptTagElement);
-    })
+  success($event) {
+    this.successfulPayment = true;
+    this.flatService.addCommonChargeBillToActualFlat(this.price).subscribe(bill => console.log(bill));
   }
 }

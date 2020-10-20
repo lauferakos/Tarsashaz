@@ -22,3 +22,7 @@
 .btn-details:hover {
   background-color: rgb(255,151,137);
 }
+
+.badge {
+    margin:10px;
+}

@@ -50,3 +50,8 @@ thead {
   background-color: #FF6F61;
   color:white;
 }
+
+button {
+    margin-top:10px;
+    margin-bottom:10px;
+}

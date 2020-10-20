@@ -6,6 +6,7 @@ export interface User {
   name: string;
   email: string;
   token: string;
+  balance: number;
   role: Role.cr | Role.resident;
   phone: string;
   flats: Flat[];

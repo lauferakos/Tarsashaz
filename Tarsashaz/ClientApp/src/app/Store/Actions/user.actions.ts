@@ -10,8 +10,13 @@ export const USER_LOGGED_OUT_SUCCESS = '[USER] Logged out Success';
 export const USER_DATA_CHANGED = '[USER] User data changed';
 export const USER_DATA_CHANGED_SUCCESS = '[USER] User data changed success';
 export const USER_BALANCE_CHANGED_SUCCESS = '[USER] Balance changed success';
+export const USER_BALANCE_CHANGED = '[USER] Balance changed';
 
 
+export class UserBalanceChanged implements Action {
+  public readonly type = USER_BALANCE_CHANGED;
+  constructor(public payload: number) {}
+}
 export class UserBalanceChangedSuccess implements Action {
   public readonly type = USER_BALANCE_CHANGED_SUCCESS;
   constructor(public payload: number) {}
@@ -46,4 +51,4 @@ export class UserDataChangedSuccess implements Action {
   constructor(public payload: User) { }
 }
 export type UserActions = UserLoggedIn | UserLoggedInSuccess | UserLoggedOut | UserLoggedOutSuccess | UserDataChanged | UserDataChangedSuccess
-  | UserBalanceChangedSuccess;
+  | UserBalanceChangedSuccess | UserBalanceChanged;

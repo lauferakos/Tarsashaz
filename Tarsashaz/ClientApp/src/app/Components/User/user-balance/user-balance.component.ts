@@ -28,6 +28,6 @@ export class UserBalanceComponent implements OnInit {
 
   successfulPayment($event) {
     console.log(+$event);
-    this.store.dispatch(new UserActions.UserBalanceChangedSuccess(this.balance + +$event));
+    this.store.dispatch(new UserActions.UserBalanceChanged(this.balance + +$event));
   }
 }

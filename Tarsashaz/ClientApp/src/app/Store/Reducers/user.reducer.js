@@ -26,6 +26,9 @@ function userReducers(state, action) {
         case Actions.USER_DATA_CHANGED_SUCCESS:
             console.log('USER_DATA_CHANGED_SUCCESS');
             return __assign(__assign({}, state), { actualUser: action.payload });
+        case Actions.USER_BALANCE_CHANGED_SUCCESS:
+            console.log('USER_BALANCE_CHANGED_SUCCESS');
+            return __assign(__assign({}, state), { balance: action.payload });
         default:
             return state;
     }

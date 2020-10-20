@@ -10,9 +10,10 @@ import { AppState } from '../../../Store/States/app.state';
 import { selectActualFlatBills, selectFlats } from '../../../Store/Selectors/flat.selectors';
 import { CondominiumService } from '../../../Services/condominium.service';
 import { selectConBills } from '../../../Store/Selectors/condominium.selectors';
-import { selectActualUser } from '../../../Store/Selectors/user.selectors';
+import { selectActualUser, selectUserBalance } from '../../../Store/Selectors/user.selectors';
 import * as FlatActions from '../../../Store/Actions/flat.actions';
 import { Flat } from '../../../Models/flat.model';
+import * as UserActions from '../../../Store/Actions/user.actions';
 
 @Component({
     selector: 'app-bill-details',
@@ -25,6 +26,8 @@ export class BillDetailsComponent implements OnInit{
   actualUser$ = this.store.select(selectActualUser);
   flats: Flat[];
   bill: Bill;
+  balance: number = 0;
+  notEnoughMoney: boolean = false;
 
   constructor(private _Activatedroute: ActivatedRoute, private store: Store<AppState>, private connService: CondominiumService, private router: Router) {
     
@@ -48,9 +51,14 @@ export class BillDetailsComponent implements OnInit{
       bills$.subscribe(bills => { if (bills) this.bill = bills.find(b => b.id == id) });
       console.log(this.bill);
     }
-
+    this.store.select(selectUserBalance).subscribe(bal => this.balance = bal);
   }
-
+  PayWithBalance(amount: number) {
+    if (this.balance >= amount) {
+      this.store.dispatch(new UserActions.UserBalanceChanged(this.balance - amount));
+      this.successfulPayment(amount);
+    } else { this.notEnoughMoney = true};
+  }
 
   successfulPayment($event) {
     let flat: Flat = {
@@ -65,4 +73,6 @@ export class BillDetailsComponent implements OnInit{
     this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
 
   }
+
+
   }

@@ -36,7 +36,8 @@ export class FirstLoginFormComponent implements OnInit{
     email: '',
     role: null,
     phone: '',
-    flats:[]
+    flats: [],
+    balance:0
   };
   actualUser$ = this.store.pipe(select(selectActualUser));
   /** FirstLoginForm ctor */
@@ -100,7 +101,8 @@ export class FirstLoginFormComponent implements OnInit{
           email: res.email,
           role: res.role,
           phone: res.phone,
-          flats: res.flats
+          flats: res.flats,
+          balance: res.balance
         }
       }
     });

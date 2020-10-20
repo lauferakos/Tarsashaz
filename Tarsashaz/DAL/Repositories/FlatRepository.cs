@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Tarsashaz.DAL.DbContexts;
 using Tarsashaz.DAL.IRepositories;
 using Tarsashaz.Models.Addresses;
+using Tarsashaz.Models.Bills;
 using Tarsashaz.Models.Flats;
 
 namespace Tarsashaz.DAL.Repositories
@@ -73,6 +74,15 @@ namespace Tarsashaz.DAL.Repositories
         {
             Flat updated = db.Flats.Find(id);
             updated = u;
+            foreach(FlatBill fb in u.Bills)
+            {
+                Bill bill = db.FlatBills.Find(fb.Id);
+                if(fb.IsPaid == true && bill.IsPaid == false)
+                {
+                    bill.IsPaid = true;
+                    db.SaveChanges();
+                }
+            }
             db.SaveChanges();
             return updated;
         }
