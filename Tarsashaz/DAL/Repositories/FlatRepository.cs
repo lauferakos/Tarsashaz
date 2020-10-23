@@ -68,7 +68,8 @@ namespace Tarsashaz.DAL.Repositories
 
         public List<Flat> FindFlatsInCondominium(int conId)
         {
-            return db.Flats.Include(f => f.Address).Where(f => f.CondominiumId == conId).ToList();
+            return db.Flats.Include(f => f.Address)
+                .Where(f => f.CondominiumId == conId).ToList();
         }
         public Flat Update(Flat u, int id)
         {

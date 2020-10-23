@@ -9,6 +9,8 @@ import { PayPalCheckOutComponent } from '../../Components/PayPal/pay-pal-check-o
 import { UploadDataComponent } from '../../Components/Data/upload-data/upload-data.component';
 import { BillDetailsComponent } from '../../Components/Bill/bill-details/bill-details.component';
 import { BillsListComponent } from '../../Components/Bill/bills-list/bills-list.component';
+import { FlatSummaryComponent } from '../../Components/Report/flat-summary/flat-summary.component';
+import { RepresentativeGuardService as RepresentativeGuard } from '../../Guards/representative-guard.service';
 
 const flatRoutes: Routes = [
   { path: 'flat', component: FlatListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
@@ -19,6 +21,7 @@ const flatRoutes: Routes = [
   { path: 'bill/details/:id', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'bill/details/:id/:connId', component: BillDetailsComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
   { path: 'bills', component: BillsListComponent, canActivate: [AuthGuard, FirstLoginSavedGuard] },
+  { path: 'flat/summary', component: FlatSummaryComponent, canActivate: [AuthGuard, FirstLoginSavedGuard, RepresentativeGuard] },
 ];
 
 @NgModule({

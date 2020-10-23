@@ -1,3 +1,8 @@
+
+<div class="otherflats d-flex justify-content-center">
+  <a class="nav-link text-dark" [routerLink]="['/flat/summary']">Lakások áttekintése</a>
+</div>
+
 <div class="container" *ngIf="(bills$ | async)">
   <h4>A lakásra vonatkozó havi számlák:</h4>
   <div class="row" *ngIf="years">

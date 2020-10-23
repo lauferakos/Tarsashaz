@@ -41,7 +41,7 @@ export class AddBillComponent implements OnInit {
   ngOnInit() {
     this.flatService.getFlatsInCondominium(this.conId).subscribe(
       res => {
-        console.log(res);
+        console.log('Flats:',res);
         this.flats = res;
       }
     );

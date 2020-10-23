@@ -36,8 +36,8 @@ export class DoughnutChartComponent implements OnInit{
   ngOnInit() {
     let bills$ = this.store.pipe(select(selectConBills));
     bills$.subscribe(bills => {
-      bills = bills.filter(b => new Date(b.billDate.payoffStart).getFullYear() == new Date().getFullYear() &&
-        new Date(b.billDate.payoffStart).getMonth() == new Date().getMonth()
+      bills = bills.filter(b => new Date(b.billDate.deadline).getFullYear() == new Date().getFullYear() &&
+        new Date(b.billDate.deadline).getMonth() == new Date().getMonth()+1
       );
       for (let bill of bills) {
         this.doughnutChartLabels.push(this.getBillType(bill.type));
