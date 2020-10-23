@@ -13,6 +13,7 @@ import { HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { FlatData } from '../Models/flatdata.model';
 import { concat } from 'rxjs/operators';
 import { Picture } from '../Models/picture.model';
+import { FlatBalance } from '../Models/flatbalance.model';
 
 @Injectable()
 export class FlatService {
@@ -158,6 +159,15 @@ export class FlatService {
     return this.http.post<Bill[]>(url, bills);
 
 
+  }
+  addFlatBalance(flatId: number, balance: FlatBalance): Observable<FlatBalance> {
+    let url = this.baseUrl + "flatbalance/" + flatId;
+    return this.http.post<FlatBalance>(url, balance);
+  }
+
+  updateFlatbalance(balanceId: number, balance: FlatBalance) {
+    let url = this.baseUrl + "flatbalance/" + balanceId;
+    return this.http.put<FlatBalance>(url, balance);
   }
 
   getFlatsInCondominium(conId: number): Observable<Flat[]> {

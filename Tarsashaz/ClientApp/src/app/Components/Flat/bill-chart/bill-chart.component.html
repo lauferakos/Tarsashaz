@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
+      <div style="display: block" *ngIf="waterData.length > 0">
+        <canvas baseChart
+                [datasets]="waterData"
+                [labels]="waterLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div style="display: block" *ngIf="electricData.length > 0">
+        <canvas baseChart
+                [datasets]="electricData"
+                [labels]="electricalLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-6">
+      <div style="display: block" *ngIf="heatingData.length > 0">
+        <canvas baseChart
+                [datasets]="heatingData"
+                [labels]="heatingLabels"
+                [options]="barChartOptions"
+                [legend]="barChartLegend"
+                [chartType]="barChartType">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+

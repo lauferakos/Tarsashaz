@@ -40,7 +40,9 @@ namespace Tarsashaz.DAL.Repositories
         public FlatBalance Update(FlatBalance u, int id)
         {
             FlatBalance updated = db.FlatBalances.Find(id);
-            updated = u;
+            updated.ElectricalAmount = u.ElectricalAmount;
+            updated.WaterAmount = u.WaterAmount;
+            updated.HeatingAmount = u.HeatingAmount;
             db.SaveChanges();
             return updated;
         }

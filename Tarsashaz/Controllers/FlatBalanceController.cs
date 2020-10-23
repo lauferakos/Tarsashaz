@@ -25,15 +25,17 @@ namespace Tarsashaz.Controllers
             return repository.Find(id);
         }
 
-        [HttpPost]
-        public FlatBalance Insert([FromBody] FlatBalance fb)
+        [HttpPost("{flatid}")]
+        public FlatBalance Insert([FromBody] FlatBalance fb,int flatid)
         {
+            fb.FlatId = flatid;
             return repository.Insert(fb);
         }
 
         [HttpPut("{id}")]
         public FlatBalance Update(int id, [FromBody] FlatBalance fb)
         {
+            fb.Id = id;
             return repository.Update(fb, id);
         }
 

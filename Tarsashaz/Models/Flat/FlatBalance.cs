@@ -11,8 +11,11 @@ namespace Tarsashaz.Models.Flats
     {
         [Key]
         public int Id { get; set; }
-        public BillType Type { get; set; }
-        public int Amount { get; set; }
+        public int WaterAmount { get; set; }
+        public int HeatingAmount { get; set; }
+
+        public int ElectricalAmount { get; set; }
+        public DateTime Date { get; set; }
         public int FlatId { get; set; }
         public Flat Flat { get; set; }
     }

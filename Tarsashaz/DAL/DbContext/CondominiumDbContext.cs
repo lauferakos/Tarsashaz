@@ -239,9 +239,7 @@ namespace Tarsashaz.DAL.DbContexts
                 );
            
 
-            modelBuilder.Entity<FlatBalance>().HasData(
-                new FlatBalance { Id = 1 ,FlatId=1,Amount=1000, Type = BillType.Heating}
-                );
+
             modelBuilder.ApplyConfiguration(new UserSeedConfig());
             modelBuilder.ApplyConfiguration(new FlatSeedConfig());
         }

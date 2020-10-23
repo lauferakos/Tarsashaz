@@ -5,6 +5,7 @@ import { selectActualFlat } from '../../../Store/Selectors/flat.selectors';
 import { Router } from '@angular/router';
 import { FlatService } from '../../../Services/flat.service';
 import { Bill } from '../../../Models/bill.model';
+import { BillType } from '../../../Enums/BillType';
 
 @Component({
     selector: 'app-bills-list',
@@ -33,6 +34,16 @@ export class BillsListComponent {
   }
   paidBillsFilter() {
     this.billFilter = (bill: Bill) => bill.isPaid == true  
+  }
+  waterBillsFilter() {
+    this.billFilter = (bill: Bill) => bill.type == BillType.Water
+  }
+  electricBillsFilter() {
+    this.billFilter = (bill: Bill) => bill.type == BillType.Electric
+  }
+
+  heatingBillsFilter() {
+    this.billFilter = (bill: Bill) => bill.type == BillType.Heating
   }
 
   notPaidBillsFilter() {

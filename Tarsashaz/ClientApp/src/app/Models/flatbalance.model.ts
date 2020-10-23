@@ -1,6 +1,9 @@
 import { BillType } from "../Enums/BillType";
 
 export interface FlatBalance {
-  type: BillType;
-  amount: number;
+  id: number;
+  waterAmount: number;
+  heatingAmount: number;
+  electricalAmount: number;
+  date: Date;
 }

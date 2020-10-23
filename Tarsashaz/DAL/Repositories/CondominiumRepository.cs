@@ -41,6 +41,7 @@ namespace Tarsashaz.DAL.Repositories
                 .Include(c => c.Bills).ThenInclude(b => b.DestAddress)
                 .Include(c => c.Flats).ThenInclude(f => f.Address)
                 .Include(c => c.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.BillDate)
+                .Include(c => c.Flats).ThenInclude(f => f.Balances)
                 .Include(c => c.Problems)
                 .FirstOrDefault(c =>c.Id == result.CondominiumId);
         }
@@ -60,6 +61,7 @@ namespace Tarsashaz.DAL.Repositories
                  .Include(c => c.Bills).ThenInclude(b => b.DestAddress)
                  .Include(c => c.Flats).ThenInclude(f => f.Address)
                  .Include(c => c.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.BillDate)
+                 .Include(c => c.Flats).ThenInclude(f => f.Balances)
                  .Include(c => c.Problems)
                  .FirstOrDefault(c => c.CommonRepresentativeId == crId);
         }

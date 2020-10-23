@@ -12,6 +12,12 @@
   <button class="badge badge-success" (click)="paidBillsFilter()">Befizetett számlák</button>
 
   <button class="badge badge-primary" (click)="cancelFilter()">Összes</button>
+
+  <button class="badge badge-light" (click)="waterBillsFilter()">Víz számlák</button>
+
+  <button class="badge badge-light" (click)="electricBillsFilter()">Villany számlák</button>
+
+  <button class="badge badge-light" (click)="heatingBillsFilter()">Fűtés számlák</button>
 </div>
 <div class="container" *ngIf="(actualFlat$ | async)?.bills.length > 0">
   <div class="row row-header">
@@ -76,3 +82,4 @@
     </div>
   </div>
 </div>
+<app-bill-chart></app-bill-chart>

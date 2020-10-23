@@ -1,5 +1,8 @@
-<div class="container flat-card" *ngIf="flat">
-      <div class="row">
+<div class="container" *ngIf="flat">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-md-6 flat-card">
+      <div class="row justify-content-md-center">
         <div class="col-sm-12 row-header">
           {{flat?.address?.door}}.emelet {{flat?.address?.floor}}.ajtó
         </div>
@@ -18,8 +21,11 @@
             <path fill-rule="evenodd" d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6zM6.646 4.646c-.376.377-1.272 1.489-2.093 3.13l.894.448c.78-1.559 1.616-2.58 1.907-2.87l-.708-.708z" />
           </svg>
         </div>
-        <div class="col-sm-10">
-          Elmaradás: 5000Ft
+        <div class="col-sm-10" *ngIf="flat?.balances[0]">
+          {{flat?.balances[0].waterAmount}} Ft
+        </div>
+        <div class="col-sm-10" *ngIf="!flat?.balances[0]">
+          Nincs adat
         </div>
       </div>
       <div class="row">
@@ -31,8 +37,11 @@
             <path fill-rule="evenodd" d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09zM4.157 8.5H7a.5.5 0 0 1 .478.647L6.11 13.59l5.732-6.09H9a.5.5 0 0 1-.478-.647L9.89 2.41 4.157 8.5z" />
           </svg>
         </div>
-        <div class="col-sm-10">
-          Túlfizetés: 6000Ft
+        <div class="col-sm-10" *ngIf="flat?.balances[0]">
+          {{flat?.balances[0].electricalAmount}} Ft
+        </div>
+        <div class="col-sm-10" *ngIf="!flat?.balances[0]">
+          Nincs adat
         </div>
       </div>
       <div class="row">
@@ -45,8 +54,14 @@
             <path fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z" />
           </svg>
         </div>
-        <div class="col-sm-10">
-          Egyenlőség
+        <div class="col-sm-10" *ngIf="flat?.balances[0]">
+          {{flat?.balances[0].heatingAmount}} Ft
+        </div>
+        <div class="col-sm-10" *ngIf="!flat?.balances[0]">
+          Nincs adat
         </div>
       </div>
+    </div>
+    <div class="col"></div>
+  </div>
 </div>

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tarsashaz.DAL.DbContexts;
 
 namespace Tarsashaz.Migrations
 {
     [DbContext(typeof(CondominiumDbContext))]
-    partial class CondominiumDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201023102932_FlatBalanceUpdate")]
+    partial class FlatBalanceUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

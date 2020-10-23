@@ -62,7 +62,7 @@ import { UserBalanceComponent } from './Components/User/user-balance/user-balanc
 import { PayPalButtonComponent } from './Components/PayPal/pay-pal-button/pay-pal-button.component';
 import { FlatSummaryComponent } from './Components/Report/flat-summary/flat-summary.component';
 import { FlatCardComponent } from './Components/Report/flat-card/flat-card.component';
-
+import { BillChartComponent } from './Components/Flat/bill-chart/bill-chart.component';
 // Services
 import { UserService } from './Services/user.service';
 import { HelpService } from './Services/help.service';
@@ -122,6 +122,7 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -158,7 +159,8 @@ import { ProblemEffects } from './Store/Effects/problem.effects';
     UserBalanceComponent,
     PayPalButtonComponent,
     FlatSummaryComponent,
-    FlatCardComponent
+    FlatCardComponent,
+    BillChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
