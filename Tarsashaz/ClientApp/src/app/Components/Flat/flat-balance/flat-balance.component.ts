@@ -95,12 +95,12 @@ export class FlatBalanceComponent implements OnInit{
         console.log('FlatBalance from DB:',this.flatBalance);
       }
       else {
+        console.log('Else ág');
         this.store.pipe(select(selectActualFlatBills)).subscribe(bills => {
           this.bills = bills;
           if (bills) {
             for (let bill of bills) {
-              if (bill.isPaid == false && new Date(bill.billDate.deadline).getFullYear() == new Date().getFullYear() &&
-                new Date(bill.billDate.deadline).getMonth() <= (new Date().getMonth() - 1)) {
+              if (bill.isPaid == false) {
                 switch (bill.type) {
                   case BillType.Electric: {
                     this.flatBalance.electricalAmount += bill.amount;

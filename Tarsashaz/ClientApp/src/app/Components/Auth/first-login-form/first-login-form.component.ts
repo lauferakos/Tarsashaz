@@ -71,7 +71,15 @@ export class FirstLoginFormComponent implements OnInit{
         userId: this.user.id,
         bills: [],
         flatDatas: [],
-        balances: [],
+        balances: [
+          {
+            id: 0,
+            date: new Date(),
+            waterAmount: 0,
+            electricalAmount: 0,
+            heatingAmount: 0
+          }
+        ],
       }
       this.user.flats = [];
       this.user.flats.push(flat);

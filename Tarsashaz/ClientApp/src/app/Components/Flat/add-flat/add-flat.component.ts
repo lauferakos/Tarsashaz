@@ -66,7 +66,15 @@ export class AddFlatComponent implements OnInit {
           userId: this.user.id,
           bills: [],
           flatDatas: [],
-          balances: [],
+          balances: [
+            {
+              id: 0,
+              date: new Date(),
+              waterAmount: 0,
+              electricalAmount: 0,
+              heatingAmount:0
+            }
+          ],
         }
         this.user.flats.concat(flat);
         this.store.dispatch(new UserActions.UserDataChanged(this.user));
