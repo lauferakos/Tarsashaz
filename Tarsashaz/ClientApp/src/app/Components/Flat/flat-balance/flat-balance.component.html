@@ -10,9 +10,6 @@
         <div class="row">
           <div class="col">
             <div class="row justify-content-center">
-              <div *ngIf="!flatBalance.waterAmount">
-                <div>Nincs adat</div>
-              </div>
               <div *ngIf="flatBalance.waterAmount > 0">
                 <div>Elmaradás</div>
                 <button class="btn btn-danger" (click)="payWaterBills(flatBalance.waterAmount,0)">Befizet</button>
@@ -42,9 +39,6 @@
         <div class="row">
           <div class="col">
             <div class="row justify-content-center">
-              <div *ngIf="!flatBalance.heatingAmount">
-                <div>Nincs adat</div>
-              </div>
               <div *ngIf="flatBalance.heatingAmount > 0">
                 <div>Elmaradás</div>
                 <button class="btn btn-danger" (click)="payWaterBills(flatBalance.heatingAmount,2)">Befizet</button>
@@ -74,9 +68,6 @@
         <div class="row">
           <div class="col">
             <div class="row justify-content-center">
-              <div *ngIf="!flatBalance.electricalAmount">
-                <div>Nincs adat</div>
-              </div>
               <div *ngIf="flatBalance.electricalAmount > 0">
                 <div>Elmaradás</div>
                 <button class="btn btn-danger" (click)="payWaterBills(flatBalance.electricalAmount,1)">Befizet</button>

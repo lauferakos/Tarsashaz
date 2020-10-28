@@ -3,7 +3,7 @@ import { Flat } from '../Models/flat.model';
 import { Observable, of as observableOf } from 'rxjs';
 import { AppState } from '../Store/States/app.state';
 import { Store, select } from '@ngrx/store';
-import { selectFlats, selectActualFlat } from '../Store/Selectors/flat.selectors';
+import { selectFlats, selectActualFlat, selectActualFlatBalance } from '../Store/Selectors/flat.selectors';
 import { selectActualUser } from '../Store/Selectors/user.selectors';
 import { User } from '../Models/user.model';
 import { Bill } from '../Models/bill.model';
@@ -104,18 +104,25 @@ export class FlatService {
   private getRandomInt(max): number {
     return Math.floor(Math.random() * Math.floor(max));
   }
-  addBill(bill: Bill) {
+  addBill(bill: Bill): Observable<Bill> {
     console.log(bill);
     let url = this.baseUrl + "flatbill/new";
-    return this.http.post(url, bill);
+    return this.http.post<Bill>(url, bill);
   }
+
+  //Nem kell
   addBills(amount: number): Observable<Bill[]> {
     let actualUser$ = this.store.pipe(select(selectActualUser));
     let actualFlat$ = this.store.pipe(select(selectActualFlat));
+    let balances$ = this.store.pipe(select(selectActualFlatBalance));
     let user: User;
     let flat: Flat;
     let bills: Bill[] = [];
     let bill: Bill;
+    let updatedFlatBalance: FlatBalance;
+    balances$.subscribe(balances => {
+      updatedFlatBalance = { ...balances[0] };
+    });
     actualUser$.subscribe(u => user = u);
     actualFlat$.subscribe(f => {
       for (let i = 0; i < amount; i++) {
@@ -141,18 +148,28 @@ export class FlatService {
         }
         
         bills = bills.concat(bill);
+
+        if (bill.type == BillType.Water) {
+          updatedFlatBalance.waterAmount += bill.amount;
+        } else if (bill.type == BillType.Electric) {
+          updatedFlatBalance.electricalAmount += bill.amount;
+          
+        } else if (bill.type == BillType.Heating) {
+          updatedFlatBalance.heatingAmount += bill.amount;
+        }
       }
       flat = {
         id: f.id,
         address: f.address,
         userId: f.userId,
         flatDatas: f.flatDatas,
-        balances: f.balances,
+        balances: f.balances.filter(b => b.id != updatedFlatBalance.id).concat(updatedFlatBalance),
         bills: f.bills.concat(bills)
       }
-      
     });
+    console.log('-----------');
     console.log(flat);
+
     this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
 
     let url = this.baseUrl + "flatbill/addbills";

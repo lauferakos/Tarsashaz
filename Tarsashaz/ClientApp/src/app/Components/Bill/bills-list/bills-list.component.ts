@@ -25,9 +25,6 @@ export class BillsListComponent {
     this.router.navigate(['/bill/details',id]);
   }
 
-  addBills() {
-    this.flatService.addBills(5).subscribe(bills => console.log(bills));
-  }
 
   cancelFilter() {
     this.billFilter = (bill: Bill) => true;

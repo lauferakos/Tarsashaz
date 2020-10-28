@@ -45,10 +45,9 @@ export class FlatBalanceComponent implements OnInit{
   successfulPayment(type: BillType) {
     let flat: Flat = {
       ...this.flat
-    };;
+    };
     let updatedBills: Bill[] =
-      this.bills.filter(bill => bill.isPaid == false && new Date(bill.billDate.deadline).getFullYear() == new Date().getFullYear() &&
-        new Date(bill.billDate.deadline).getMonth() <= (new Date().getMonth() - 1) && bill.type == type);
+      this.bills.filter(bill => bill.isPaid == false && bill.type == type);
 
     console.log(updatedBills);
 
@@ -91,9 +90,7 @@ export class FlatBalanceComponent implements OnInit{
     this.store.select(selectActualFlatBills).subscribe(bills => this.bills = bills);
     this.balances$.subscribe(balances => {
       if (balances && balances.length > 0) {
-        /*this.flatBalance = balances.filter(bal => bal.date == new Date(Math.max.apply(null, balances.map(function (e) {
-          return new Date(e.date);
-        }))))[0];*/
+
         this.flatBalance = { ...balances[0]};
         console.log('FlatBalance from DB:',this.flatBalance);
       }

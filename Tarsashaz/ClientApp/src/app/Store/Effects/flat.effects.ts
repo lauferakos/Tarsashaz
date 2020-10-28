@@ -48,6 +48,7 @@ export class FlatEffects {
     switchMap((a: ActualFlatUpdated) => this.flatService.updateActualFlat(a.payload)),
     switchMap((f: Flat) => {
       if (f != null) {
+        console.log('Actual Flat updated:', f);
         return of(new ActualFlatUpdatedSuccess(f));
       }
     })

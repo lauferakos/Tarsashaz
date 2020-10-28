@@ -25,32 +25,32 @@
     <div class="col-md-6 col-sm-12 col-user-info">
       <h6 *ngIf="bill.user">{{bill.user.name}}</h6>
       <h6 *ngIf="!bill.user">{{(actualUser$ | async).name}}</h6>
-      <h6>{{bill.destAddress.city}}</h6>
-      <h6>{{bill.destAddress.street}} {{bill.destAddress.number}}</h6>
-      <h6>{{bill.destAddress.postCode}}</h6>
+      <h6>{{bill?.destAddress?.city}}</h6>
+      <h6>{{bill?.destAddress?.street}} {{bill?.destAddress?.number}}</h6>
+      <h6>{{bill?.destAddress?.postCode}}</h6>
     </div>
     <div class="col-md-6 col-sm-12 col-provider-info" *ngIf="bill.provider">
-      <h6>{{bill.provider.address.postCode}}</h6>
-      <h6>{{bill.provider.address.city}} {{bill.provider.address.street}} {{bill.provider.address.number}}</h6>
-      <h6>{{bill.provider.accountNum}}</h6>
-      <h6>Kelt: {{bill.billDate.startDate | date:'medium'}}</h6>
+      <h6>{{bill?.provider?.address?.postCode}}</h6>
+      <h6>{{bill?.provider?.address?.city}} {{bill?.provider?.address?.street}} {{bill?.provider?.address?.number}}</h6>
+      <h6>{{bill?.provider?.accountNum}}</h6>
+      <h6>Kelt: {{bill?.billDate?.startDate | date:'medium'}}</h6>
     </div>
   </div>
   <div class="row row-pay-info-header" *ngIf="bill.billDate">
     <div class="col-sm-12 col-md-6">
       <div class="row row-pay-info-body">
         <div class="col-sm-12" *ngIf="bill.billDate.payoffStart &&  bill.billDate.payoffEnd">
-          <h6>Elszámolási időszak: {{bill.billDate.payoffStart | date:'medium'}} - {{bill.billDate.payoffEnd | date:'medium'}}</h6>
+          <h6>Elszámolási időszak: {{bill?.billDate?.payoffStart | date:'medium'}} - {{bill?.billDate?.payoffEnd | date:'medium'}}</h6>
         </div>
       </div>
       <div class="row row-pay-info-body">
         <div class="col-sm-12">
-          <h6>Határidő: {{bill.billDate.deadline | date:'medium'}}</h6>
+          <h6>Határidő: {{bill?.billDate?.deadline | date:'medium'}}</h6>
         </div>
       </div>
     </div>
     <div class="col-sm-12 col-md-6 pay-amount">
-      <h3><strong>{{bill.amount | currency:'HUF'}}</strong></h3>
+      <h3><strong>{{bill?.amount | currency:'HUF'}}</strong></h3>
     </div>
   </div>
   <div class="row payment-details">

@@ -1,5 +1,4 @@
 <h3>Számlák: </h3>
-<button class="btn btn-success" (click)="addBills()">Számla hozzáadás</button>
 <div *ngIf="(actualFlat$ | async)?.bills.length == 0">
   <div class="alert alert-warning" role="alert">
     Nincs elérhető számla
