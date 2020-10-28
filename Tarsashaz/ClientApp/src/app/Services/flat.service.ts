@@ -27,43 +27,9 @@ export class FlatService {
     return this.http.post<Flat>(url, f);
   }
   getFlatsByUserId(userId: number): Observable<Flat[]> {
-    let actualUser$ = this.store.pipe(select(selectActualUser));
-    let flats: Flat[]=
-    [
-      {
-        id: 1,
-        userId: 5,
-        address: {
-          id:1,
-          postCode: 1000,
-          city: 'Budapest',
-          street: 'József u',
-          number: 10,
-          floor: 3,
-          door: 2
-        },
-        bills: [],
-        flatDatas: [],
-        balances: []
-      },
-      {
-        id: 2,
-        userId: 5,
-        address: {
-          id:2,
-          postCode: 1200,
-          city: 'Budapest',
-          street: 'Ferenc körút',
-          number: 8,
-          floor: 1,
-          door: 2
-        },
-        bills: [],
-        flatDatas: [],
-        balances: []
-      }
-    ]
-    return observableOf(flats);
+    let url = this.baseUrl + "user/flats/" + userId;
+    return this.http.get<Flat[]>(url);
+  
   }
 
   getFlatById(id: number): Observable<Flat> {

@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { selectConId, selectConFlats } from '../../../Store/Selectors/condominium.selectors';
 import { FlatService } from '../../../Services/flat.service';
 import { Flat } from '../../../Models/flat.model';
+import { FlatBalance } from '../../../Models/flatbalance.model';
 
 @Component({
   selector: 'app-flat-summary',
@@ -15,6 +16,7 @@ export class FlatSummaryComponent implements OnInit {
   /** FlatSummary ctor */
   conId: number;
   flats: Flat[];
+  flatBalanceFilter: Function = (flat: Flat) => true;
   constructor(private store: Store<AppState>, private flatService: FlatService) {
     this.store.pipe(select(selectConId)).subscribe(
       id => this.conId = id
@@ -28,5 +30,18 @@ export class FlatSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  clearFilter() {
+    this.flatBalanceFilter = (flat: Flat) => true;
+  }
+  notPaidBalanceFilter() {
+    this.flatBalanceFilter = (flat: Flat) => {
+      if (flat.balances[0]) {
+        return flat.balances[0].electricalAmount > 0 ||
+          flat.balances[0].waterAmount > 0 || flat.balances[0].heatingAmount > 0;
+      }
+      else return false;
+    };
   }
 }

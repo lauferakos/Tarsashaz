@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Tarsashaz.DAL.DbContexts;
 using Tarsashaz.DAL.IRepositories;
+using Tarsashaz.Models.Flats;
 using Tarsashaz.Models.Users;
 
 namespace Tarsashaz.DAL.Repositories
@@ -42,6 +43,19 @@ namespace Tarsashaz.DAL.Repositories
                 .Include(u => u.Flats).ThenInclude(f => f.Bills).ThenInclude(b => b.User)
                 .Include(u => u.Flats).ThenInclude(f => f.FlatDatas).ThenInclude(fd => fd.Pics)
                 .FirstOrDefault(u => u.Email == email);
+        }
+
+        public List<Flat> GetFlatsByUserId(int userid)
+        {
+            return db.Flats.
+                Include(f => f.Address)
+                .Include(f => f.Balances)
+                .Include(f => f.Bills).ThenInclude(b => b.BillDate)
+                .Include(f => f.Bills).ThenInclude(b => b.Provider).ThenInclude(p => p.Address)
+                .Include(f => f.Bills).ThenInclude(b => b.DestAddress)
+                .Include(f => f.Bills)
+                .Include(f => f.FlatDatas).ThenInclude(fd => fd.Pics)
+                .Where(f => f.UserId == userid).ToList();
         }
 
         public User Insert(User i)

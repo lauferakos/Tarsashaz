@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tarsashaz.DAL.SeedData;
+using Tarsashaz.Models.Flats;
 using Tarsashaz.Models.Users;
 
 namespace Tarsashaz.DAL.IRepositories
@@ -15,5 +17,7 @@ namespace Tarsashaz.DAL.IRepositories
         public User Find(int id);
 
         public User FindByEmail(string email);
+
+        public List<Flat> GetFlatsByUserId(int userid);
     }
 }

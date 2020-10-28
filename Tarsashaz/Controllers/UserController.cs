@@ -31,6 +31,11 @@ namespace Tarsashaz.Controllers
             return repository.Find(id);
         }
 
+        [HttpGet("flats/{userid}")]
+        public List<Flat> GetFlatsByUserId(int userid)
+        {
+            return repository.GetFlatsByUserId(userid);
+        }
         [HttpPost]
         public User Insert([FromBody] User u)
         {

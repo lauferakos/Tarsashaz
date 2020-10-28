@@ -4,6 +4,8 @@ import { AppState } from '../../../Store/States/app.state';
 import { selectFlats, selectActualFlat } from '../../../Store/Selectors/flat.selectors';
 import { Flat } from '../../../Models/flat.model';
 import * as FlatActions from '../../../Store/Actions/flat.actions';
+import * as UserActions from '../../../Store/Actions/user.actions';
+import { selectActualUser } from '../../../Store/Selectors/user.selectors';
 
 @Component({
     selector: 'app-flat-list',
@@ -11,15 +13,18 @@ import * as FlatActions from '../../../Store/Actions/flat.actions';
     styleUrls: ['./flat-list.component.css']
 })
 /** FlatList component*/
-export class FlatListComponent{
+export class FlatListComponent implements OnInit {
   flats$ = this.store.pipe(select(selectFlats));
   actualFlat$ = this.store.pipe(select(selectActualFlat));
+ 
   isAddPanelVisible: boolean = false;
-
+  
     /** FlatList ctor */
   constructor(private store: Store<AppState>) {
-
   }
+  ngOnInit(): void {
+
+    }
 
   showAddPanel() {
     this.isAddPanelVisible = true;
