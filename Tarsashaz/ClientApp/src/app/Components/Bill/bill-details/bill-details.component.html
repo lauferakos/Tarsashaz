@@ -88,7 +88,7 @@
   </div>
 </div>
 
-<div class="container" *ngIf="bill">
+<div class="container" *ngIf="bill && !bill.isPaid">
   <h4>Befizet</h4>
   <div class="row">
     <div class="col">

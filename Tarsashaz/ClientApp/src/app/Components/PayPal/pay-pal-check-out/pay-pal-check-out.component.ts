@@ -5,7 +5,6 @@ import { AppState } from '../../../Store/States/app.state';
 import { FlatService } from '../../../Services/flat.service';
 import { selectActualFlat } from '../../../Store/Selectors/flat.selectors';
 import { BillType } from '../../../Enums/BillType';
-declare let paypal: any;
 
 @Component({
     selector: 'app-pay-pal-check-out',

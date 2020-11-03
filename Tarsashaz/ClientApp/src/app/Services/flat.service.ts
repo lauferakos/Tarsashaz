@@ -76,73 +76,7 @@ export class FlatService {
     return this.http.post<Bill>(url, bill);
   }
 
-  //Nem kell
-  addBills(amount: number): Observable<Bill[]> {
-    let actualUser$ = this.store.pipe(select(selectActualUser));
-    let actualFlat$ = this.store.pipe(select(selectActualFlat));
-    let balances$ = this.store.pipe(select(selectActualFlatBalance));
-    let user: User;
-    let flat: Flat;
-    let bills: Bill[] = [];
-    let bill: Bill;
-    let updatedFlatBalance: FlatBalance;
-    balances$.subscribe(balances => {
-      updatedFlatBalance = { ...balances[0] };
-    });
-    actualUser$.subscribe(u => user = u);
-    actualFlat$.subscribe(f => {
-      for (let i = 0; i < amount; i++) {
-        bill = {
-          id: 0,
-          type: this.getRandomInt(3) == 2 ? BillType.Water : this.getRandomInt(3) == 1 ? BillType.Electric : BillType.Heating,
-          user: user,
-          pic: null,
-          provider: null,
-          billDate: {
-            startDate: new Date(),
-            payoffEnd: new Date(),
-            payoffStart: new Date(),
-            deadline: new Date('2020-09-05')
-          },
-          amount: this.getRandomInt(5000)+5000,
-          items: [],
-          destAddress: f.address,
-          destAddressId: f.address.id,
-          userId: user.id,
-          flatId: f.id,
-          isPaid: false
-        }
-        
-        bills = bills.concat(bill);
 
-        if (bill.type == BillType.Water) {
-          updatedFlatBalance.waterAmount += bill.amount;
-        } else if (bill.type == BillType.Electric) {
-          updatedFlatBalance.electricalAmount += bill.amount;
-          
-        } else if (bill.type == BillType.Heating) {
-          updatedFlatBalance.heatingAmount += bill.amount;
-        }
-      }
-      flat = {
-        id: f.id,
-        address: f.address,
-        userId: f.userId,
-        flatDatas: f.flatDatas,
-        balances: f.balances.filter(b => b.id != updatedFlatBalance.id).concat(updatedFlatBalance),
-        bills: f.bills.concat(bills)
-      }
-    });
-    console.log('-----------');
-    console.log(flat);
-
-    this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
-
-    let url = this.baseUrl + "flatbill/addbills";
-    return this.http.post<Bill[]>(url, bills);
-
-
-  }
   addFlatBalance(flatId: number, balance: FlatBalance): Observable<FlatBalance> {
     let url = this.baseUrl + "flatbalance/" + flatId;
     return this.http.post<FlatBalance>(url, balance);
@@ -200,10 +134,9 @@ export class FlatService {
         bills: f.bills.concat(bill)
       }
     });
-    this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
-
-    let url = this.baseUrl + "flatbill";
-    return this.http.post<Bill>(url, bill);
-
+    //this.store.dispatch(new FlatActions.ActualFlatUpdated(flat));
+    console.log(bill);
+    return this.addBill(bill);
+    
   }
 }

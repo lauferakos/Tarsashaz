@@ -30,7 +30,10 @@ namespace Tarsashaz.Services
             Flat result = flatRepository.Find(fb.FlatId);
             fb.DestAddressId = result.AddressId;
             fb.UserId = result.UserId;
+            
 
+            if(fb.Provider != null)
+            {
             Provider provider = providerRepository.FindByAddress(fb.Provider.Address);
             if (provider == null)
             {
@@ -42,6 +45,8 @@ namespace Tarsashaz.Services
                 fb.ProviderId = provider.Id;
                 fb.Provider = null;
                     }
+            }
+            
             flatBillrepository.Insert(fb);
             FlatBill insertedBill = flatBillrepository.FindLastBill();
             return insertedBill;

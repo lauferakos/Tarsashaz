@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, SimpleChanges, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, ElementRef, Input, SimpleChanges, OnInit, OnDestroy, Output, EventEmitter, AfterViewChecked } from '@angular/core';
 declare let paypal: any;
 @Component({
     selector: 'app-pay-pal-button',
@@ -7,11 +7,13 @@ declare let paypal: any;
 })
 /** PayPalButton component*/
 export class PayPalButtonComponent implements OnInit, OnDestroy {
+
   ngOnDestroy(): void {
   }
   constructor() {
     console.log('contsructor');
   }
+
   @Output() successfulPayment = new EventEmitter<number>();
   isVisible: boolean = false;
   @Input() price: number;
@@ -38,7 +40,7 @@ export class PayPalButtonComponent implements OnInit, OnDestroy {
 
       return actions.payment.execute().then((payment) => {
         this.successfulPayment.emit(this.price);
-          //Service hívás
+          
         })
       
     }
@@ -55,6 +57,7 @@ export class PayPalButtonComponent implements OnInit, OnDestroy {
         this.addPayPalScript().then(() => {
           this.isVisible = true;
           localStorage.setItem('isVisible', 'true');
+          var btn = document.createElement('button');
           paypal.Button.render(this.paypalConfig, '#checkout-btn');
         })
       }

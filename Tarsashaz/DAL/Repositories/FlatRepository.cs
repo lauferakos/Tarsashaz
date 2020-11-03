@@ -77,11 +77,21 @@ namespace Tarsashaz.DAL.Repositories
             updated = u;
             foreach(FlatBill fb in u.Bills)
             {
-                Bill bill = db.FlatBills.Find(fb.Id);
-                if(fb.IsPaid == true && bill.IsPaid == false)
+                if (fb.Id == 0)
                 {
-                    bill.IsPaid = true;
-                    db.SaveChanges();
+                    FlatBill last = db.FlatBills.OrderByDescending(b => b.Id).Take(1).ToList()[0];
+                    fb.Id = last.Id + 1;
+                    db.FlatBills.Add(fb);
+                    updated.Bills.Add(fb);
+                }
+                else
+                {
+                    Bill bill = db.FlatBills.Find(fb.Id);
+                    if (fb.IsPaid == true && bill.IsPaid == false)
+                    {
+                        bill.IsPaid = true;
+                        db.SaveChanges();
+                    }
                 }
             }
             db.SaveChanges();

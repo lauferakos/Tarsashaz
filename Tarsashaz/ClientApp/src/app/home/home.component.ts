@@ -8,7 +8,6 @@ import * as AnnouncementActions from '../Store/Actions/announcement.actions';
 import * as FlatActions from '../Store/Actions/flat.actions';
 import { selectConId } from '../Store/Selectors/condominium.selectors';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',

@@ -37,7 +37,10 @@ namespace Tarsashaz.DAL.Repositories
 
         public FlatBill Insert(FlatBill i)
         {
-            
+            i.DestAddress = null;
+            i.Flat = null;
+            i.Provider = null;
+            i.User = null;
             db.FlatBills.Add(i);
             db.SaveChanges();
             return i;
