@@ -21,7 +21,7 @@ namespace Tarsashaz.Models.Users
         public Role Role { get; set; }
         public string Phone { get; set; }
         public ICollection<Flat> Flats { get; set; }
-        public ICollection<FlatBill> FlatBills { get; set; }
+       // public ICollection<FlatBill> FlatBills { get; set; }
         public int Balance { get; set; }
     }
 }

@@ -100,10 +100,10 @@ namespace Tarsashaz.DAL.DbContexts
             .WithMany(u => u.Flats)
             .HasForeignKey(f => f.UserId);
 
-            modelBuilder.Entity<FlatBill>()
+            /*modelBuilder.Entity<FlatBill>()
             .HasOne(fb => fb.User)
             .WithMany(u => u.FlatBills)
-            .HasForeignKey(fb => fb.UserId);
+            .HasForeignKey(fb => fb.UserId);*/
 
             // 1 - 1 kapcsolatok
 
@@ -139,10 +139,10 @@ namespace Tarsashaz.DAL.DbContexts
             .WithMany()
             .HasForeignKey(b => b.ProviderId);
 
-            modelBuilder.Entity<CondominiumBill>()
+            /*modelBuilder.Entity<CondominiumBill>()
             .HasOne(cb => cb.DestAddress)
             .WithMany(ca => ca.Bills)
-            .HasForeignKey(cb => cb.DestAddressId);
+            .HasForeignKey(cb => cb.DestAddressId);*/
 
             modelBuilder.Entity<FlatBill>()
             .HasOne(fb => fb.DestAddress)

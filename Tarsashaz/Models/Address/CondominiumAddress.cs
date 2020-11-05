@@ -14,6 +14,6 @@ namespace Tarsashaz.Models.Addresses
         public int CondominiumId { get; set; }
         public Condominium Condominium { get; set; }
 
-        public ICollection<CondominiumBill> Bills { get; set; }
+        //public ICollection<CondominiumBill> Bills { get; set; }
     }
 }
