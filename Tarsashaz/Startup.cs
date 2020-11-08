@@ -57,6 +57,12 @@ namespace Tarsashaz
             services.AddScoped<DAL.IRepositories.IUserRepository, DAL.Repositories.UserRepository>();
 
             services.AddTransient<BillService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Tarsashaz", Version = "v1" });
+            });
+
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
             );
@@ -85,6 +91,11 @@ namespace Tarsashaz
             }
 
             app.UseRouting();
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tarsashaz v1");
+            });
 
             app.UseEndpoints(endpoints =>
             {
